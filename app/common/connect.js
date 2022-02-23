@@ -1,6 +1,6 @@
 const mysql = require("mysql");
 
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
@@ -11,5 +11,12 @@ connection.connect((err, res) => {
   if (err) {
     console.error(err);
   }
+  console.log('kết nối mysql thành công');
 });
+
+// connection.end(function(err) {
+//   if (err) throw err;
+//   console.log("ngắt kết nối mysql thành công");
+// });
+
 module.exports = connection;
