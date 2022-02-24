@@ -8,6 +8,8 @@ const ThanhVien = (thanhVien) => {
   this.diaChi = thanhVien.diaChi;
   this.soCMT = thanhVien.soCMT;
   this.phanQuyen = thanhVien.phanQuyen;
+  this.userName = thanhVien.userName;
+  this.passW = thanhVien.passW;
 };
 
 ThanhVien.get = (id, callback) => {
@@ -43,7 +45,7 @@ ThanhVien.insert = (thanhVien, callBack) => {
 
 ThanhVien.update = (thanhVien, callBack) => {
   const sqlString =
-    "UPDATE thanhVien SET hoTen = ?, diaChi = ?, soCMT = ?,ngayTao = ?, ngaySua = ?, phanQuyen = ?  WHERE id = ?";
+    "UPDATE thanhVien SET hoTen = ?, diaChi = ?, soCMT = ?,ngayTao = ?, ngaySua = ?, phanQuyen = ?, userName = ?, passW = ?  WHERE id = ?";
   db.query(
     sqlString,
     [
@@ -53,6 +55,8 @@ ThanhVien.update = (thanhVien, callBack) => {
       thanhVien.ngayTao,
       thanhVien.ngaySua,
       thanhVien.phanQuyen,
+      thanhVien.userName,
+      thanhVien.passW,
       thanhVien.id,
     ],
     (err, res) => {
@@ -73,6 +77,19 @@ ThanhVien.delete = (id, callBack) => {
     }
     callBack("xóa thành công!");
   });
+};
+
+ThanhVien.checkLogin = (data, callBack) => {
+  db.query(
+    `SELECT * FROM thanhVien WHERE userName = ? AND passW = ?`,
+    [data.userName, data.passW],
+    (err, result) => {
+      if (err || result.length === 0) {
+        callBack(null);
+      }
+      callBack(result[0]);
+    }
+  );
 };
 
 module.exports = ThanhVien;

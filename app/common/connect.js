@@ -1,22 +1,17 @@
 const mysql = require("mysql");
 
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "qlbd",
+  host: process.env.HOST,
+  user: process.env.USER,
+  password: process.env.PASSWORD,
+  database: process.env.DATABASE,
 });
 
 connection.connect((err, res) => {
   if (err) {
     console.error(err);
   }
-  console.log('kết nối mysql thành công');
+  console.log("kết nối mysql thành công");
 });
-
-// connection.end(function(err) {
-//   if (err) throw err;
-//   console.log("ngắt kết nối mysql thành công");
-// });
 
 module.exports = connection;

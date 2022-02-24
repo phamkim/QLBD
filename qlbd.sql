@@ -52,14 +52,16 @@ create table if not exists thanhVien
     soCMT char(11) not null,
     ngayTao date not null default current_timestamp,
     ngaySua date,
-    phanQuyen int
+    phanQuyen int,
+    userName varchar(55),
+    passW varchar(55)
 );
 -- thêm dữ liệu bảng thành viên
-insert into thanhVien(hoTen,diaChi,soCMT)
-values ('phạm hoàng kim','thái nguyên','0912367');
+insert into thanhVien(hoTen,diaChi,soCMT,userName,passW)
+values ('phạm hoàng kim','thái nguyên','0912367','kim2k','kim@123');
 
-insert into thanhVien(hoTen,diaChi,soCMT)
-values ('cao hải nam','hạ long','0912367');
+insert into thanhVien(hoTen,diaChi,soCMT,userName,passW)
+values ('cao hải nam','hạ long','0912367','nam2k','nam@123');
 
 insert into thanhVien(hoTen,diaChi,soCMT)
 values ('kiều hoàng phúc','hà nội','0912367');
