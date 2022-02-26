@@ -1,8 +1,10 @@
 import React from "react";
-import ThanhVienStore from './thanhVien.store';
+import ThanhVien from './thanhVien.store';
+import ThanhVienStore from "./thanhViens.store";
 class RootStore {
     constructor(){
-        this.thanhVienStore = new ThanhVienStore();
+        this.thanhVien = new ThanhVien(this);
+        this.thanhVienStore = new ThanhVienStore(this);
     }
 }
 

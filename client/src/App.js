@@ -2,11 +2,12 @@ import "./App.css";
 import { useStores } from "./stores";
 import { observer } from "mobx-react";
 import { LogIn } from "./component/logIn";
+import { MyLayout } from "./layout";
 const App = observer(() => {
-  const { thanhVienStore } = useStores();
+  const { thanhVien } = useStores();
   return (
     <div className="App">
-      {thanhVienStore.token != null ? <h1>ok</h1> : <LogIn />}
+      {thanhVien.token != null ? <MyLayout /> : <LogIn />}
     </div>
   );
 });

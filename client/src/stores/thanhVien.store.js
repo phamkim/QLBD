@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 //import { API } from '../common/request';
 import axios from "axios";
 
-class ThanhVienStore {
+class ThanhVien {
   userName = "";
   passW = "";
   token = window.sessionStorage.getItem("token");
@@ -44,6 +44,7 @@ class ThanhVienStore {
         alert("dang nhap that bai");
       });
   };
+
 }
 
-export default ThanhVienStore;
+export default ThanhVien;

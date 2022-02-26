@@ -4,22 +4,23 @@ import React, { useState } from "react";
 import { useStores } from "../stores";
 
 export const LogIn = () => {
-  const { thanhVienStore } = useStores();
+  const { thanhVien } = useStores();
   const [userName, setUserName] = useState("");
   const [passW, setPassW] = useState("");
 
   const handleUserNameChange = (e) => {
     setUserName(e.target.value);
   };
+  
   const handlePassWordChange = (e) => {
     setPassW(e.target.value);
   };
 
   const handleIsLoginChange = () => {
-    thanhVienStore
+    thanhVien
       .logIn(userName, passW)
       .then(() => {
-          thanhVienStore.refreshToken();
+        thanhVien.refreshToken();
       })
       .catch((err) => {
         console.log(err);

@@ -1,14 +1,12 @@
 import axios from "axios";
 
-const config = {
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: window.sessionStorage.getItem("token"),
-  },
-};
 
 const API = axios.create({
-  baseURL: process.env.BASE_URL,
+  baseURL: process.env.REACT_APP_BASE_URL,
+  headers: {
+    "Content-Type": "application/json",
+    authorization: window.sessionStorage.getItem("token"),
+  },
 });
 
-export { API, config };
+export { API };

@@ -52,7 +52,7 @@ create table if not exists thanhVien
     soCMT char(11) not null,
     ngayTao date not null default current_timestamp,
     ngaySua date,
-    phanQuyen int,
+    phanQuyen int default 0,
     userName varchar(55),
     passW varchar(55)
 );

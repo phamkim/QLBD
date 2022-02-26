@@ -7,10 +7,10 @@ const isAuth = async (req, res, next) => {
       req.auth = authData;
       next();
     } catch (err) {
-      return res.send({ data: "mã token không hợp lệ" });
+      return res.send({ result: "mã token không hợp lệ" });
     }
   } else {
-    return res.send({ data: "bạn chưa gửi kèm token" });
+    return res.send({ result: "bạn chưa gửi kèm token" });
   }
 };
 
