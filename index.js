@@ -20,6 +20,7 @@ require("./app/routers/bangDia.router")(app);
 require("./app/routers/chiTietPhieuThue.router")(app);
 require("./app/routers/phieuThue.router")(app);
 require("./app/routers/theLoai.router")(app);
+require("./app/routers/nhaSX.router")(app);
 
 app.listen(3000, function () {
   console.log("server listening on port 3000");

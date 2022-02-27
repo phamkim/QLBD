@@ -19,29 +19,49 @@ values ('phim hành động','đây là mô tả');
 insert into theLoai(tenTheLoai,ghiChu)
 values ('phim khoa học viễn tưởng','đây là mô tả');
 
+
+-- tạo bảng nhà Sản xuất
+create table if not exists nhaSX
+(
+    id int primary key auto_increment,
+    tenNhaSX varchar(55) not null,
+    diaChi varchar(255)
+);
+-- thêm dữ liệu bảng nhà Sản xuất
+insert into nhaSX(tenNhaSX,diaChi)
+values ('hãng miền nam','đây là địa chỉ');
+
+insert into nhaSX(tenNhaSX,diaChi)
+values ('hãng miền trung','đây là địa chỉ');
+
+insert into nhaSX(tenNhaSX,diaChi)
+values ('hãng miền bắc','đây là địa chỉ');
+
+
 -- tạo bảng băng đĩa
 create table if not exists bangDia
 (
     id int primary key auto_increment,
-    idTheLoai int not null,
+    idTheLoai int,
     tenBangDia varchar(55) not null,
-    nhaSX varchar(55),
+    idNhaSX int,
     tinhTrang varchar(55),
     ngayTao date not null default current_timestamp,
     ngaySua date,
     ghiChu varchar(255),
-    foreign key(idTheLoai) references theLoai(id)
+    constraint pk_bd_1 foreign key(idTheLoai) references theLoai(id),
+    constraint pk_bd_2 foreign key(idNhaSX) references nhaSX(id)
 );
 
 -- thêm dữ liệu bảng băng đĩa
-insert into bangDia(idTheLoai,tenBangDia,nhaSX,tinhTrang,ghiChu)
-values (1,'phim pikachu','nhật bản','mới','đây là mô tả');
+insert into bangDia(idTheLoai,tenBangDia,idNhaSX,tinhTrang,ghiChu)
+values (1,'phim pikachu',1,'mới','đây là mô tả');
 
-insert into bangDia(idTheLoai,tenBangDia,nhaSX,tinhTrang,ghiChu)
-values (2,'phim thành long','trung quốc','mới','đây là mô tả');
+insert into bangDia(idTheLoai,tenBangDia,idNhaSX,tinhTrang,ghiChu)
+values (2,'phim thành long',2,'mới','đây là mô tả');
 
-insert into bangDia(idTheLoai,tenBangDia,nhaSX,tinhTrang,ghiChu)
-values (3,'phim chiến tranh giữa các vì sao','mỹ','mới','đây là mô tả');
+insert into bangDia(idTheLoai,tenBangDia,idNhaSX,tinhTrang,ghiChu)
+values (3,'phim chiến tranh giữa các vì sao',3,'mới','đây là mô tả');
 
 -- tạo bảng thành viên
 create table if not exists thanhVien
@@ -74,31 +94,29 @@ create table if not exists phieuThue
     ngayThue date not null default current_timestamp,
     ngayTra date,
     ngaySua date,
-    idNguoiTao int not null, 
     idNguoiThue int not null,
     soNgayThue int not null,
     foreign key(idNguoiThue) references thanhVien(id)
 );
 --  thêm dữ liệu bảng phieuThue
-insert into phieuThue(idNguoiTao,idNguoiThue,soNgayThue)
-values (1,1,20);
+insert into phieuThue(idNguoiThue,soNgayThue)
+values (1,20);
 
-insert into phieuThue(idNguoiTao,idNguoiThue,soNgayThue)
-values (1,2,20);
+insert into phieuThue(idNguoiThue,soNgayThue)
+values (2,20);
 
-insert into phieuThue(idNguoiTao,idNguoiThue,soNgayThue)
-values (1,3,20);
+insert into phieuThue(idNguoiThue,soNgayThue)
+values (3,20);
 
 
 -- tạo bảng chi tiết phiểu thuê
 create table if not exists chiTietPhieuThue
 (
-    id int auto_increment,
+    id int primary key auto_increment,
     idPhieuThue int not null,
     idBangDia int not null,
     soLuong int not null,
     donGia float not null,
-    primary key(id,idPhieuThue),
     constraint pk_1 foreign key(idPhieuThue) references phieuThue(id),
     constraint pk_2 foreign key(idbangDia) references bangDia(id)
 );

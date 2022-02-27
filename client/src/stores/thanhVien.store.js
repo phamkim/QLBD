@@ -44,7 +44,6 @@ class ThanhVien {
         alert("dang nhap that bai");
       });
   };
-
 }
 
 export default ThanhVien;

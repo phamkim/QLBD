@@ -3,35 +3,50 @@ import { API } from "../common/request";
 
 class ThanhVienStore {
   data = [];
+
   constructor(rootStore) {
     this.rootStore = rootStore;
     makeAutoObservable(this);
   }
 
-  set = (data) => {
+  setData = (data) => {
+    console.log("thanhVienStore.setData()");
     if (data) {
-      this.data = data.reverse();
+      this.data = Array.from(data).reverse();
     }
   };
 
-  get = async () => {
-    await API.get("/thanhVien")
+  clearData = () => {
+    console.log("thanhVienStore.clearData()");
+    this.data = [];
+  };
+
+  getData = async () => {
+    console.log("thanhVienStore.getData()");
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: window.sessionStorage.getItem("token"),
+      },
+    };
+    await API.get("/thanhVien", config)
       .then((result) => {
-        this.set(result.data);
+        this.setData(result.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  insert = async (data) => {
+  insertData = (data) => {
+    console.log("thanhVienStore.insertData()");
     let thanhVien = JSON.stringify({
       hoTen: data.hoTen,
       diaChi: data.diaChi,
       soCMT: data.soCMT,
     });
     let result = null;
-    await API.post("/thanhVien", thanhVien)
+    API.post("/thanhVien", thanhVien)
       .then((data) => {
         result = data;
       })
@@ -41,9 +56,10 @@ class ThanhVienStore {
     return result;
   };
 
-  delete = async (id) => {
+  deleteData = (id) => {
+    console.log("thanhVienStore.deleteData()");
     let result = null;
-    await API.delete("/thanhVien/" + id)
+    API.delete("/thanhVien/" + id)
       .then((data) => {
         result = data;
       })
@@ -53,7 +69,8 @@ class ThanhVienStore {
     return result;
   };
 
-  update = async (data) => {
+  updateData = (data) => {
+    console.log("thanhVienStore.updateData()");
     let thanhVien = JSON.stringify({
       id: data.id,
       hoTen: data.hoTen,
@@ -66,7 +83,7 @@ class ThanhVienStore {
       password: data.password || null,
     });
     let result = null;
-    await API.put("/thanhVien", thanhVien)
+    API.put("/thanhVien", thanhVien)
       .then((data) => {
         result = data;
       })

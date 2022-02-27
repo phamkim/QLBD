@@ -11,12 +11,16 @@ export const ThanhVienPage = observer(() => {
   const [isEditing, setIsEditing] = useState(false);
   const [editingThanhVien, setEditingThanhVien] = useState(null);
   const [dataSource, setDataSource] = useState();
-
+  const [refresh, setRefresh] = useState(false);
   useEffect(() => {
-    thanhVienStore.get().then(() => {
+    console.log("thanhVienPage: useEffect()");
+    thanhVienStore.getData().then(() => {
       setDataSource(toJS(thanhVienStore.data));
     });
-  }, [thanhVienStore.data]);
+    return () => {
+      thanhVienStore.clearData();
+    };
+  }, [refresh]);
 
   const columns = [
     {
@@ -68,9 +72,8 @@ export const ThanhVienPage = observer(() => {
       diaChi: "DiaChi",
       soCMT: "0123456789",
     };
-    thanhVienStore.insert(newThanhVien).then(() => {
-      thanhVienStore.get();
-    });
+    thanhVienStore.insertData(newThanhVien);
+    setRefresh(!refresh);
   };
   const onDeleteThanhVien = (record) => {
     Modal.confirm({
@@ -78,9 +81,8 @@ export const ThanhVienPage = observer(() => {
       okText: "Yes",
       okType: "danger",
       onOk: () => {
-        thanhVienStore.delete(record.id).then(() => {
-          thanhVienStore.get();
-        });
+        thanhVienStore.deleteData(record.id);
+        setRefresh(!refresh);
       },
     });
   };
@@ -117,9 +119,8 @@ export const ThanhVienPage = observer(() => {
           resetEditing();
         }}
         onOk={() => {
-          thanhVienStore.update(editingThanhVien).then(() => {
-            thanhVienStore.get();
-          });
+          thanhVienStore.updateData(editingThanhVien);
+          setRefresh(!refresh);
           resetEditing();
         }}
       >

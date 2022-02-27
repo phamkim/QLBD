@@ -5,7 +5,6 @@ const PhieuThue = (phieuThue) => {
   this.ngayThue = phieuThue.id;
   this.ngayTra = phieuThue.ngayTra;
   this.ngaySua = phieuThue.ngaySua;
-  this.idNguoiTao = phieuThue.idNguoiTao;
   this.idNguoiThue = phieuThue.idNguoiThue;
   this.soNgayThue = phieuThue.soNgayThue;
 };
@@ -50,7 +49,6 @@ PhieuThue.update = (phieuThue, callBack) => {
       phieuThue.ngayThue,
       phieuThue.ngayTra,
       phieuThue.ngaySua,
-      phieuThue.idNguoiTao,
       phieuThue.idNguoiThue,
       phieuThue.soNgayThue,
       phieuThue.id,
