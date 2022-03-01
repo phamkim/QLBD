@@ -41,7 +41,16 @@ export const ThanhVienPage = observer(() => {
     {
       key: "4",
       title: "Phân Quyền",
-      dataIndex: "phanQuyen",
+      render: (record) => {
+        console.log(record.id);
+        if (record.phanQuyen == 2) {
+          return "Admin";
+        } else if (record.phanQuyen == 1) {
+          return "Nhân viên";
+        } else {
+          return "Thành viên";
+        }
+      },
     },
     {
       key: "5",
