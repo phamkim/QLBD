@@ -42,7 +42,8 @@ PhieuThue.insert = (phieuThue, callBack) => {
 
 PhieuThue.update = (phieuThue, callBack) => {
   const sqlString =
-    "UPDATE phieuThue SET ngayThue = ?, ngayTra = ?, ngaySua = ?, idNguoiTao = ?, idNguoiThue = ?, soNgayThue = ?  WHERE id = ?";
+    "UPDATE phieuThue SET ngayThue = ?, ngayTra = ?, ngaySua = ?, idNguoiThue = ?, soNgayThue = ?  WHERE id = ?";
+    console.log(phieuThue);
   db.query(
     sqlString,
     [

@@ -48,7 +48,7 @@ BangDia.update = (bangDia, callBack) => {
   db.query(
     sqlString,
     [
-      bangDia.idtheLoai,
+      bangDia.idTheLoai,
       bangDia.tenBangDia,
       bangDia.idNhaSX,
       bangDia.tinhTrang,
