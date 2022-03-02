@@ -7,7 +7,7 @@ const TheLoai = (theLoai) => {
 };
 
 TheLoai.get = (id, callback) => {
-  const sqlString = "SELECT * FROM theLoai Where id = ? ";
+  const sqlString = "SELECT * FROM theLoai WHERE id = ? ";
   db.query(sqlString, id, (err, result) => {
     if (err) {
       return callback(err);

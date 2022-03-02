@@ -1,6 +1,6 @@
-DROP Database if exists qlbd;
-Create Database qlbd default character set utf8 collate utf8_unicode_ci;
-USE qlbd;
+drop database if exists qlbd;
+create database qlbd default character set utf8 collate utf8_unicode_ci;
+use qlbd;
 
 -- tạo bảng thể loại
 create table if not exists theLoai
@@ -42,8 +42,9 @@ values ('hãng miền bắc','đây là địa chỉ');
 create table if not exists bangDia
 (
     id int primary key auto_increment,
-    idTheLoai int,
+    hinhAnh text,
     tenBangDia varchar(55) not null,
+    idTheLoai int, 
     idNhaSX int,
     tinhTrang varchar(55),
     ngayTao date not null default current_timestamp,
@@ -67,6 +68,7 @@ values (3,'phim chiến tranh giữa các vì sao',3,'mới','đây là mô tả
 create table if not exists thanhVien
 (
     id int primary key auto_increment,
+    maTTV varchar(10),
     hoTen varchar(55) not null,
     diaChi varchar(255),
     soCMT char(11) not null,
@@ -92,6 +94,7 @@ create table if not exists phieuThue
 (
     id int primary key auto_increment,
     ngayThue date not null default current_timestamp,
+    ngayHenTra date,
     ngayTra date,
     ngaySua date,
     idNguoiThue int not null,
@@ -99,14 +102,14 @@ create table if not exists phieuThue
     foreign key(idNguoiThue) references thanhVien(id)
 );
 --  thêm dữ liệu bảng phieuThue
-insert into phieuThue(idNguoiThue,soNgayThue)
-values (1,20);
+insert into phieuThue(idNguoiThue,soNgayThue,ngayHenTra)
+values (1,20,"2022-05-05");
 
-insert into phieuThue(idNguoiThue,soNgayThue)
-values (2,20);
+insert into phieuThue(idNguoiThue,soNgayThue,ngayHenTra)
+values (2,20,"2022-05-05");
 
-insert into phieuThue(idNguoiThue,soNgayThue)
-values (3,20);
+insert into phieuThue(idNguoiThue,soNgayThue,ngayHenTra)
+values (3,20,"2022-05-05");
 
 
 -- tạo bảng chi tiết phiểu thuê

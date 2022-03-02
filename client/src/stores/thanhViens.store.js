@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import { API } from "../common/request";
-
+import { getDateToday } from "../common/index";
 class ThanhVienStore {
   data = [];
 
@@ -44,6 +44,9 @@ class ThanhVienStore {
       hoTen: data.hoTen,
       diaChi: data.diaChi,
       soCMT: data.soCMT,
+      phanQuyen: data.phanQuyen,
+      userName: data.userName,
+      password: data.password,
     });
     let result = null;
     API.post("/thanhVien", thanhVien)
@@ -60,8 +63,11 @@ class ThanhVienStore {
     console.log("thanhVienStore.deleteData()");
     let result = null;
     API.delete("/thanhVien/" + id)
-      .then((data) => {
-        result = data;
+      .then((res) => {
+        if (res.data.code === "ER_ROW_IS_REFERENCED_2") {
+          alert("không thể xóa thành viên này");
+        }
+        result = res;
       })
       .catch((err) => {
         console.log(err);
@@ -74,13 +80,13 @@ class ThanhVienStore {
     let thanhVien = JSON.stringify({
       id: data.id,
       hoTen: data.hoTen,
+      maTTV: data.maTTV,
       diaChi: data.diaChi,
       soCMT: data.soCMT,
-      ngayTao: data.ngayTao || null,
-      ngaySua: data.ngaySua || null,
+      ngaySua: getDateToday(),
       phanQuyen: data.phanQuyen,
-      userName: data.userName || null,
-      password: data.password || null,
+      userName: data.userName,
+      password: data.password,
     });
     let result = null;
     API.put("/thanhVien", thanhVien)

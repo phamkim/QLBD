@@ -2,6 +2,7 @@ const db = require("../common/connect");
 
 const BangDia = (bangDia) => {
   this.id = bangDia.id;
+  this.hinhAnh = bangDia.hinhAnh;
   this.idTheLoai = bangDia.idTheLoai;
   this.tenBangDia = bangDia.tenBangDia;
   this.idNhaSX = bangDia.idNhaSX;
@@ -12,7 +13,7 @@ const BangDia = (bangDia) => {
 };
 
 BangDia.get = (id, callback) => {
-  const sqlString = "SELECT * FROM bangDia Where id = ? ";
+  const sqlString = "SELECT * FROM bangDia WHERE id = ? ";
   db.query(sqlString, id, (err, result) => {
     if (err) {
       return callback(err);
@@ -44,12 +45,13 @@ BangDia.insert = (bangDia, callBack) => {
 
 BangDia.update = (bangDia, callBack) => {
   const sqlString =
-    "UPDATE bangDia SET idTheLoai = ?, tenBangDia = ?, idNhaSX = ?, tinhTrang = ?, ngayTao = ?, ngaySua = ?, ghiChu = ?  WHERE id = ?";
+    "UPDATE bangDia SET hinhAnh = ?,tenBangDia = ?,idTheLoai = ?,  idNhaSX = ?, tinhTrang = ?, ngayTao = ?, ngaySua = ?, ghiChu = ?  WHERE id = ?";
   db.query(
     sqlString,
     [
-      bangDia.idTheLoai,
+      bangDia.hinhAnh,
       bangDia.tenBangDia,
+      bangDia.idTheLoai,
       bangDia.idNhaSX,
       bangDia.tinhTrang,
       bangDia.ngayTao,

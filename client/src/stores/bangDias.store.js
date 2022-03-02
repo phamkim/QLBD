@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import { API } from "../common/request";
-
+import { getDateToday } from "../common/index";
 class BangDiaStore {
     data = [];
 
@@ -40,12 +40,11 @@ class BangDiaStore {
     insertData = (data) => {
         console.log("bangDiaStore.insertData()");
         let bangDia = JSON.stringify({
-            idTheLoai: data.idTheLoai,
+            hinhAnh: data.hinhAnh,
             tenBangDia: data.tenBangDia,
-            idNhaSX: data.idNhaSX,
+            idTheLoai: parseInt(data.idTheLoai),
+            idNhaSX: parseInt(data.idNhaSX),
             tinhTrang: data.tinhTrang,
-            ngayTao: data.ngayTao,
-            ngaySua: data.ngaySua,
             ghiChu: data.ghiChu,
         });
         let result = null;
@@ -63,8 +62,11 @@ class BangDiaStore {
         console.log("bangDiaStore.deleteData()");
         let result = null;
         API.delete("/bangDia/" + id)
-            .then((data) => {
-                result = data;
+            .then((res) => {
+                if (res.data.code === "ER_ROW_IS_REFERENCED_2") {
+                    alert("không thể xóa băng đĩa này");
+                  }
+                result = res.data;
             })
             .catch((err) => {
                 console.log(err);
@@ -77,12 +79,12 @@ class BangDiaStore {
         console.log("bangDiaStore.updateData()");
         let bangDia = JSON.stringify({
             id: data.id,
-            idTheLoai: parseInt(data.idTheLoai),
+            hinhAnh: data.hinhAnh,
             tenBangDia: data.tenBangDia,
+            idTheLoai: parseInt(data.idTheLoai),
             idNhaSX: parseInt(data.idNhaSX),
             tinhTrang: data.tinhTrang,
-            ngayTao: data.ngayTao,
-            ngaySua: data.ngaySua,
+            ngaySua: getDateToday(),
             ghiChu: data.ghiChu,
         });
         

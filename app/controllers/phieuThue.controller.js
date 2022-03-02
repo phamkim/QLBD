@@ -13,6 +13,13 @@ exports.get = (req, res) => {
   });
 };
 
+exports.getDetail = (req, res) => {
+  const id = req.params.id;
+  PhieuThue.get(id, (result) => {
+    res.send(result);
+  });
+};
+
 exports.insert = (req, res) => {
   const phieuThue = req.body;
   PhieuThue.insert(phieuThue, (result) => {

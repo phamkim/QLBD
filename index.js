@@ -22,6 +22,6 @@ require("./app/routers/phieuThue.router")(app);
 require("./app/routers/theLoai.router")(app);
 require("./app/routers/nhaSX.router")(app);
 
-app.listen(3000, function () {
-  console.log("server listening on port 3000");
+app.listen(3001, function () {
+  console.log("server listening on port 3001");
 });

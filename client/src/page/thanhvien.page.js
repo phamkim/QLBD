@@ -26,13 +26,13 @@ export const ThanhVienPage = observer(() => {
   const columns = [
     {
       key: "1",
-      title: "Họ Tên",
-      dataIndex: "hoTen",
+      title: "Mã thẻ thành viên",
+      dataIndex: "maTTV",
     },
     {
       key: "2",
-      title: "Địa chỉ",
-      dataIndex: "diaChi",
+      title: "Họ Tên",
+      dataIndex: "hoTen",
     },
     {
       key: "3",
@@ -41,6 +41,12 @@ export const ThanhVienPage = observer(() => {
     },
     {
       key: "4",
+      title: "Địa chỉ",
+      dataIndex: "diaChi",
+    },
+
+    {
+      key: "5",
       title: "Phân Quyền",
       render: (record) => {
         console.log(record.id);
@@ -54,7 +60,7 @@ export const ThanhVienPage = observer(() => {
       },
     },
     {
-      key: "5",
+      key: "6",
       title: "Actions",
       render: (record) => {
         return (
@@ -78,9 +84,10 @@ export const ThanhVienPage = observer(() => {
 
   const onAddThanhVien = () => {
     const newThanhVien = {
+      maTTV: "maTTV",
       hoTen: "Name 2",
-      diaChi: "DiaChi",
       soCMT: "0123456789",
+      diaChi: "DiaChi",
     };
     thanhVienStore.insertData(newThanhVien);
     setRefresh(!refresh);
@@ -136,21 +143,21 @@ export const ThanhVienPage = observer(() => {
       >
         <Input
           className="input_style"
-          placeholder="Họ tên"
-          value={editingThanhVien?.hoTen}
+          placeholder="Mã thẻ thành viên"
+          value={editingThanhVien?.maTTV}
           onChange={(e) => {
             setEditingThanhVien((pre) => {
-              return { ...pre, hoTen: e.target.value };
+              return { ...pre, maTTV: e.target.value };
             });
           }}
         />
         <Input
           className="input_style"
-          placeholder="Địa chỉ"
-          value={editingThanhVien?.diaChi}
+          placeholder="Họ tên"
+          value={editingThanhVien?.hoTen}
           onChange={(e) => {
             setEditingThanhVien((pre) => {
-              return { ...pre, diaChi: e.target.value };
+              return { ...pre, hoTen: e.target.value };
             });
           }}
         />
@@ -164,6 +171,17 @@ export const ThanhVienPage = observer(() => {
             });
           }}
         />
+        <Input
+          className="input_style"
+          placeholder="Địa chỉ"
+          value={editingThanhVien?.diaChi}
+          onChange={(e) => {
+            setEditingThanhVien((pre) => {
+              return { ...pre, diaChi: e.target.value };
+            });
+          }}
+        />
+
         <Select
           className="input_style"
           defaultValue={editingThanhVien?.phanQuyen}

@@ -59,8 +59,11 @@ class NhaSanXuatStore {
         console.log("nhaSanXuatStore.deleteData()");
         let result = null;
         API.delete("/nhaSX/" +id)
-            .then((data) => {
-                result = data;
+            .then((res) => {
+                if (res.data.code === "ER_ROW_IS_REFERENCED_2") {
+                    alert("không thể xóa nhà sản xuất này");
+                  }
+                result = res.data;
             })
             .catch((err) => {
                 console.log(err);

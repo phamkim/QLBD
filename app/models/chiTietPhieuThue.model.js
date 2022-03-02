@@ -9,7 +9,7 @@ const ChiTietPhieuThue = (chiTietphieuThue) => {
 };
 
 ChiTietPhieuThue.get = (id, callback) => {
-  const sqlString = "SELECT * FROM chiTietphieuThue Where id = ? ";
+  const sqlString = "SELECT * FROM chiTietphieuThue WHERE id = ? ";
   db.query(sqlString, id, (err, result) => {
     if (err) {
       return callback(err);

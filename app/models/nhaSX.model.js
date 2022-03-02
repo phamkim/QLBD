@@ -7,7 +7,7 @@ const NhaSX = (nhaSX) => {
 };
 
 NhaSX.get = (id, callback) => {
-  const sqlString = "SELECT * FROM nhaSX Where id = ? ";
+  const sqlString = "SELECT * FROM nhaSX WHERE id = ? ";
   db.query(sqlString, id, (err, result) => {
     if (err) {
       return callback(err);
