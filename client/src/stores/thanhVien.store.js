@@ -33,6 +33,7 @@ class ThanhVien {
 
     await axios(config)
       .then((response) => {
+        console.log(response);
         if (response.data.token !== null) {
           window.sessionStorage.setItem("token", response.data.token);
         } else {

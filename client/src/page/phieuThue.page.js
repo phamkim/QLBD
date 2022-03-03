@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { useStores } from "../stores";
-import { Button, Table, Modal, DatePicker, InputNumber, Select } from "antd";
+import { Button, Table, Modal, DatePicker, Select } from "antd";
 import { EditOutlined, DeleteOutlined, MoreOutlined } from "@ant-design/icons";
 import "./style.css";
 import { toJS } from "mobx";
-import { convertDMY, convertYMD, getDateToday, toVND } from "../common/index";
+import { convertDMY, convertYMD, getDateToday } from "../common/index";
 import moment from "moment";
 const { Option } = Select;
 
@@ -16,6 +16,7 @@ export const PhieuThuePage = observer(() => {
   const [dataSource, setDataSource] = useState();
   const [thanhViens, setThanhViens] = useState();
   const [refresh, setRefresh] = useState(false);
+  const [chiTietPhieuThue,SetChiTietPhieuThue] = useState();
 
   useEffect(() => {
     console.log("phieuThuePage: useEffect()");
@@ -70,11 +71,11 @@ export const PhieuThuePage = observer(() => {
         return ngayTra ? convertDMY(ngayTra) : null;
       },
     },
-    {
-      key: "5",
-      title: "Số ngày thuê",
-      dataIndex: "soNgayThue",
-    },
+    // {
+    //   key: "5",
+    //   title: "Số ngày thuê",
+    //   dataIndex: "soNgayThue",
+    // },
     {
       key: "6",
       title: "Tổng Tiền(VNĐ)",
@@ -129,8 +130,13 @@ export const PhieuThuePage = observer(() => {
       },
     });
   };
+
   const onEditPhieuThue = (record) => {
-    setIsEditing(true);
+    phieuThueStore.detailData(record.id).then((data) => {
+      console.log(data);
+      setIsEditing(true);
+      SetChiTietPhieuThue(data);
+    })
     setEditingPhieuThue({ ...record });
   };
   const resetEditing = () => {
@@ -215,7 +221,7 @@ export const PhieuThuePage = observer(() => {
             });
           }}
         />
-        <InputNumber
+        {/* <InputNumber
           className="input_style"
           placeholder="Số Ngày Thuê"
           value={editingPhieuThue?.soNgayThue}
@@ -224,7 +230,7 @@ export const PhieuThuePage = observer(() => {
               return { ...pre, soNgayThue: e };
             });
           }}
-        />
+        /> */}
       </Modal>
     </div>
   );

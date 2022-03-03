@@ -15,7 +15,7 @@ exports.get = (req, res) => {
 
 exports.getDetail = (req, res) => {
   const id = req.params.id;
-  PhieuThue.get(id, (result) => {
+  PhieuThue.getDetail(id, (result) => {
     res.send(result);
   });
 };

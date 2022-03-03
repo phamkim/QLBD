@@ -97,13 +97,15 @@ class PhieuThueStore {
 
   detailData = async (id) => {
     console.log("phieuThueStore.detailData");
+    let chiTietPhieuThue = [];
     await API.get("/phieuThue/detail/" + id)
       .then((result) => {
-        this.setData(result.data);
+        chiTietPhieuThue = result.data;
       })
       .catch((err) => {
         console.log(err);
       });
+    return chiTietPhieuThue;
   };
 }
 
