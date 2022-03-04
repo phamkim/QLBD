@@ -1,22 +1,49 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { useStores } from "../stores";
-import { Button, Table, Modal, DatePicker, Select } from "antd";
-import { EditOutlined, DeleteOutlined, MoreOutlined } from "@ant-design/icons";
+import {
+  Button,
+  Table,
+  Modal,
+  DatePicker,
+  Select,
+  Form,
+  Input,
+  Space,
+  Divider,
+  InputNumber,
+} from "antd";
+import {
+  EditOutlined,
+  DeleteOutlined,
+  MoreOutlined,
+  MinusCircleOutlined,
+} from "@ant-design/icons";
 import "./style.css";
 import { toJS } from "mobx";
-import { convertDMY, convertYMD, getDateToday } from "../common/index";
+import { convertDMY, getDateToday } from "../common/index";
 import moment from "moment";
 const { Option } = Select;
+const dateFormat = "DD/MM/YYYY";
+const layout = {
+  labelCol: {
+    span: 9,
+  },
+  wrapperCol: {
+    span: 10,
+  },
+};
 
 export const PhieuThuePage = observer(() => {
-  const { phieuThueStore, thanhVienStore } = useStores();
-  const [isEditing, setIsEditing] = useState(false);
-  const [editingPhieuThue, setEditingPhieuThue] = useState(null);
+  const [form] = Form.useForm();
+  const { phieuThueStore, thanhVienStore, bangDiaStore } = useStores();
+  const [isOpenAdd, setIsOpenAdd] = useState(false);
+  const [isOpenEdit, setIsOpenEdit] = useState(false);
   const [dataSource, setDataSource] = useState();
   const [thanhViens, setThanhViens] = useState();
+  const [bangDias, setBangDias] = useState();
   const [refresh, setRefresh] = useState(false);
-  const [chiTietPhieuThue,SetChiTietPhieuThue] = useState();
+  const [chiTietPhieuThue, setChiTietPhieuThue] = useState([]);
 
   useEffect(() => {
     console.log("phieuThuePage: useEffect()");
@@ -26,11 +53,28 @@ export const PhieuThuePage = observer(() => {
     thanhVienStore.getData().then(() => {
       setThanhViens(toJS(thanhVienStore.data));
     });
+    bangDiaStore.getData().then(() => {
+      setBangDias(toJS(bangDiaStore.data));
+    });
     return () => {
       phieuThueStore.clearData();
       thanhVienStore.clearData();
+      bangDiaStore.clearData();
     };
   }, [refresh]);
+
+  useEffect(() => {
+    console.log(chiTietPhieuThue);
+    var tongTien = 0;
+    chiTietPhieuThue?.forEach((element) => {
+      console.log(element);
+      tongTien = tongTien + element.soLuong * element.donGia;
+      console.log(tongTien);
+      form.setFieldsValue({
+        tongTien: tongTien.toFixed(2),
+      });
+    });
+  }, [chiTietPhieuThue]);
 
   const columns = [
     {
@@ -71,13 +115,8 @@ export const PhieuThuePage = observer(() => {
         return ngayTra ? convertDMY(ngayTra) : null;
       },
     },
-    // {
-    //   key: "5",
-    //   title: "Số ngày thuê",
-    //   dataIndex: "soNgayThue",
-    // },
     {
-      key: "6",
+      key: "5",
       title: "Tổng Tiền(VNĐ)",
       dataIndex: "tongTien",
       render: (tongTien) => {
@@ -85,7 +124,7 @@ export const PhieuThuePage = observer(() => {
       },
     },
     {
-      key: "7",
+      key: "6",
       title: "Actions",
       render: (record) => {
         return (
@@ -109,24 +148,29 @@ export const PhieuThuePage = observer(() => {
   ];
 
   const onAddPhieuThue = () => {
-    const newPhieuThue = {
-      ngayThue: getDateToday(),
-      ngayHenTra: getDateToday(),
-      ngayTra: null,
-      idNguoiThue: 1,
-      soNgayThue: 12,
-    };
-    phieuThueStore.insertData(newPhieuThue);
-    setRefresh(!refresh);
+    form.setFieldsValue({
+      ngayThue: moment(convertDMY(getDateToday()), dateFormat),
+    });
+    setIsOpenAdd(true);
   };
+
   const onDeletePhieuThue = (record) => {
     Modal.confirm({
       title: "Bạn có chắc chắn xóa phiếu này?",
       okText: "Yes",
       okType: "danger",
       onOk: () => {
-        phieuThueStore.deleteData(record.id);
-        setRefresh(!refresh);
+        phieuThueStore
+          .detailData(record.id)
+          .then((ctpt) => {
+            ctpt.map((e) => {
+              phieuThueStore.deleteDetailData(e.id);
+            });
+          })
+          .finally(() => {
+            phieuThueStore.deleteData(record.id);
+            setRefresh(!refresh);
+          });
       },
     });
   };
@@ -134,15 +178,72 @@ export const PhieuThuePage = observer(() => {
   const onEditPhieuThue = (record) => {
     phieuThueStore.detailData(record.id).then((data) => {
       console.log(data);
-      setIsEditing(true);
-      SetChiTietPhieuThue(data);
-    })
-    setEditingPhieuThue({ ...record });
+      setIsOpenEdit(true);
+      setChiTietPhieuThue(data);
+      form.setFieldsValue({
+        id: record.id,
+        idNguoiThue: record.idNguoiThue,
+        ngayThue: record.ngayThue
+          ? moment(convertDMY(record.ngayThue), dateFormat)
+          : null,
+        ngayHenTra: record.ngayHenTra
+          ? moment(convertDMY(record.ngayHenTra), dateFormat)
+          : null,
+        ngayTra: record.ngayTra
+          ? moment(convertDMY(record.ngayTra), dateFormat)
+          : null,
+        chiTietPhieuThue: data,
+        tongTien: record.tongTien.toFixed(2),
+      });
+    });
   };
+
+  const onEditFinish = (values) => {
+    console.log(values);
+    let ctpt = [];
+    ctpt = values.chiTietPhieuThue;
+    console.log("thong tin phieu thue", values);
+    phieuThueStore
+      .updateData(values)
+      .then(() => {
+        ctpt.map((e) => {
+          e.idPhieuThue = values.id;
+          if (e.id) {
+            phieuThueStore.updateDetailData(e);
+          } else {
+            phieuThueStore.insertDetailData(e);
+          }
+        });
+      })
+      .finally(() => {
+        setRefresh(!refresh);
+        resetEditing();
+      });
+  };
+
+  const onAddFinished = (values) => {
+    phieuThueStore
+      .insertData(values)
+      .then((data) => {
+        let ctpt = [];
+        ctpt = values.chiTietPhieuThue;
+        ctpt.map((e) => {
+          e.idPhieuThue = data.id;
+          phieuThueStore.insertDetailData(e);
+        });
+      })
+      .finally(() => {
+        setRefresh(!refresh);
+        resetEditing();
+      });
+  };
+
   const resetEditing = () => {
-    setIsEditing(false);
-    setEditingPhieuThue(null);
+    setIsOpenEdit(false);
+    setIsOpenAdd(false);
+    setChiTietPhieuThue(null);
   };
+
   return (
     <div className="container-fluid">
       <Button
@@ -160,77 +261,291 @@ export const PhieuThuePage = observer(() => {
         scroll={{ x: 800, y: 400 }}
         bordered
       ></Table>
+
       <Modal
-        title="Edit Phiếu thuê"
-        visible={isEditing}
+        title="Sửa Phiếu thuê"
+        visible={isOpenEdit}
+        width={740}
+        footer={null}
         okText="Save"
         onCancel={() => {
           resetEditing();
         }}
-        onOk={() => {
-          phieuThueStore.updateData(editingPhieuThue);
-          setRefresh(!refresh);
+      >
+        <Form
+          form={form}
+          {...layout}
+          name="form_sua_phieu_thue"
+          onFinish={onEditFinish}
+        >
+          <Form.Item name="id" hidden={true} />
+          <Form.Item
+            name="idNguoiThue"
+            label="Người Thuê"
+            rules={[{ required: true, message: "Missing area" }]}
+          >
+            <Select style={{ width: 149.2 }}>
+              {thanhVienStore.data.map((thanhVien, index) => {
+                return (
+                  <Option value={thanhVien.id} key={index}>
+                    {thanhVien.hoTen}
+                  </Option>
+                );
+              })}
+            </Select>
+          </Form.Item>
+          <Form.Item
+            name="ngayThue"
+            label="Ngày Thuê"
+            rules={[{ required: true, message: "Bạn chưa nhập ngày thuê" }]}
+          >
+            <DatePicker format={dateFormat} />
+          </Form.Item>
+          <Form.Item
+            name="ngayHenTra"
+            label="Ngày hẹn trả"
+            rules={[{ required: true, message: "Bạn chưa nhập ngày hẹn trả" }]}
+          >
+            <DatePicker format={dateFormat} />
+          </Form.Item>
+          <Form.Item name="ngayTra" label="Ngày trả">
+            <DatePicker format={dateFormat} />
+          </Form.Item>
+          <Divider />
+          <Form.List name="chiTietPhieuThue">
+            {(fields, { add, remove }) => (
+              <>
+                {fields.map(({ key, name, ...restField }) => (
+                  <Space key={key} align="baseline">
+                    <Form.Item
+                      {...restField}
+                      name={[name, "id"]}
+                      hidden={true}
+                    />
+                    <Form.Item
+                      {...restField}
+                      name={[name, "idPhieuThue"]}
+                      hidden={true}
+                    />
+                    <Form.Item
+                      {...restField}
+                      label="Băng đĩa"
+                      name={[name, "idBangDia"]}
+                      rules={[
+                        {
+                          required: true,
+                          message: "Bạn chưa nhập băng đĩa",
+                        },
+                      ]}
+                    >
+                      <Select style={{ width: 130 }}>
+                        {(bangDiaStore.data || []).map((item) => (
+                          <Option key={item.id} value={item.id}>
+                            {item.tenBangDia}
+                          </Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
+                    <Form.Item
+                      {...restField}
+                      label="Số lượng"
+                      name={[name, "soLuong"]}
+                      rules={[
+                        { required: true, message: "Bạn chưa nhập số lượng" },
+                      ]}
+                    >
+                      <InputNumber
+                        style={{ width: 136 }}
+                        onChange={(e) => {
+                          setChiTietPhieuThue(
+                            form.getFieldValue("chiTietPhieuThue")
+                          );
+                        }}
+                      />
+                    </Form.Item>
+                    <Form.Item
+                      {...restField}
+                      label="Đơn giá"
+                      name={[name, "donGia"]}
+                      rules={[
+                        { required: true, message: "Bạn chưa nhập đơn giá" },
+                      ]}
+                    >
+                      <InputNumber
+                        style={{ width: 127 }}
+                        onChange={(e) => {
+                          setChiTietPhieuThue(
+                            form.getFieldValue("chiTietPhieuThue")
+                          );
+                        }}
+                      />
+                    </Form.Item>
+                    <MinusCircleOutlined onClick={() => remove(name)} />
+                  </Space>
+                ))}
+
+                <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
+                  <Button type="dashed" onClick={() => add()}>
+                    Thêm băng đĩa
+                  </Button>
+                </Form.Item>
+              </>
+            )}
+          </Form.List>
+          <Divider />
+          <Form.Item label="Tổng tiền" name="tongTien">
+            <Input width={500} bordered={false} />
+          </Form.Item>
+          <Divider />
+          <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </Modal>
+
+      <Modal
+        title="Thêm Phiếu thuê"
+        visible={isOpenAdd}
+        width={740}
+        footer={null}
+        okText="Save"
+        onCancel={() => {
           resetEditing();
         }}
       >
-        <Select
-          className="input_style"
-          placeholder="Người Thuê"
-          value={editingPhieuThue?.idNguoiThue}
-          onChange={(e) => {
-            setEditingPhieuThue((pre) => {
-              return { ...pre, idNguoiThue: e };
-            });
-          }}
+        <Form
+          form={form}
+          {...layout}
+          name="form_thêm_phieu_thue"
+          onFinish={onAddFinished}
         >
-          {thanhVienStore.data.map((thanhVien, index) => {
-            return (
-              <Option value={thanhVien.id} key={index}>
-                {thanhVien.hoTen}
-              </Option>
-            );
-          })}
-        </Select>
-        <DatePicker
-          className="input_style"
-          placeholder="Ngày Thuê"
-          defaultValue={moment(convertYMD(editingPhieuThue?.ngayThue))}
-          onChange={(e) => {
-            setEditingPhieuThue((pre) => {
-              return { ...pre, ngayThue: e };
-            });
-          }}
-        />
-        <DatePicker
-          className="input_style"
-          placeholder="Ngày Hẹn Trả"
-          defaultValue={moment(convertYMD(editingPhieuThue?.ngayHenTra))}
-          onChange={(e) => {
-            setEditingPhieuThue((pre) => {
-              return { ...pre, ngayHenTra: e };
-            });
-          }}
-        />
-        <DatePicker
-          className="input_style"
-          placeholder="Ngày Trả"
-          defaultValue={moment(convertYMD(editingPhieuThue?.ngayTra))}
-          onChange={(e) => {
-            setEditingPhieuThue((pre) => {
-              return { ...pre, ngayTra: e };
-            });
-          }}
-        />
-        {/* <InputNumber
-          className="input_style"
-          placeholder="Số Ngày Thuê"
-          value={editingPhieuThue?.soNgayThue}
-          onChange={(e) => {
-            setEditingPhieuThue((pre) => {
-              return { ...pre, soNgayThue: e };
-            });
-          }}
-        /> */}
+          <Form.Item name="id" hidden={true} />
+          <Form.Item
+            name="idNguoiThue"
+            label="Người Thuê"
+            rules={[{ required: true, message: "Bạn chưa chọn người thuê" }]}
+          >
+            <Select style={{ width: 149.2 }}>
+              {thanhVienStore.data.map((thanhVien, index) => {
+                return (
+                  <Option value={thanhVien.id} key={index}>
+                    {thanhVien.hoTen}
+                  </Option>
+                );
+              })}
+            </Select>
+          </Form.Item>
+          <Form.Item
+            name="ngayThue"
+            label="Ngày Thuê"
+            rules={[{ required: true, message: "Bạn chưa nhập ngày thuê" }]}
+          >
+            <DatePicker format={dateFormat} />
+          </Form.Item>
+          <Form.Item
+            name="ngayHenTra"
+            label="Ngày hẹn trả"
+            rules={[{ required: true, message: "Bạn chưa nhập ngày hẹn trả" }]}
+          >
+            <DatePicker format={dateFormat} />
+          </Form.Item>
+          <Form.Item name="ngayTra" hidden={true} label="Ngày trả">
+            <DatePicker format={dateFormat} />
+          </Form.Item>
+          <Divider />
+          <Form.List name="chiTietPhieuThue">
+            {(fields, { add, remove }) => (
+              <>
+                {fields.map(({ key, name, ...restField }) => (
+                  <Space key={key} align="baseline">
+                    <Form.Item
+                      {...restField}
+                      name={[name, "id"]}
+                      hidden={true}
+                    />
+                    <Form.Item
+                      {...restField}
+                      name={[name, "idPhieuThue"]}
+                      hidden={true}
+                    />
+                    <Form.Item
+                      {...restField}
+                      label="Băng đĩa"
+                      name={[name, "idBangDia"]}
+                      rules={[
+                        {
+                          required: true,
+                          message: "Bạn chưa nhập băng đĩa",
+                        },
+                      ]}
+                    >
+                      <Select style={{ width: 130 }}>
+                        {(bangDiaStore.data || []).map((item) => (
+                          <Option key={item.id} value={item.id}>
+                            {item.tenBangDia}
+                          </Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
+                    <Form.Item
+                      {...restField}
+                      label="Số lượng"
+                      name={[name, "soLuong"]}
+                      rules={[
+                        { required: true, message: "Bạn chưa nhập số lượng" },
+                      ]}
+                    >
+                      <InputNumber
+                        style={{ width: 136 }}
+                        onChange={(e) => {
+                          setChiTietPhieuThue(
+                            form.getFieldValue("chiTietPhieuThue")
+                          );
+                        }}
+                      />
+                    </Form.Item>
+                    <Form.Item
+                      {...restField}
+                      label="Đơn giá"
+                      name={[name, "donGia"]}
+                      rules={[
+                        { required: true, message: "Bạn chưa nhập đơn giá" },
+                      ]}
+                    >
+                      <InputNumber
+                        style={{ width: 127 }}
+                        onChange={(e) => {
+                          setChiTietPhieuThue(
+                            form.getFieldValue("chiTietPhieuThue")
+                          );
+                        }}
+                      />
+                    </Form.Item>
+                    <MinusCircleOutlined onClick={() => remove(name)} />
+                  </Space>
+                ))}
+
+                <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
+                  <Button type="dashed" onClick={() => add()}>
+                    Thêm băng đĩa
+                  </Button>
+                </Form.Item>
+              </>
+            )}
+          </Form.List>
+          <Divider />
+          <Form.Item label="Tổng tiền" name="tongTien">
+            <Input width={500} bordered={false} />
+          </Form.Item>
+          <Divider />
+          <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
       </Modal>
     </div>
   );

@@ -9,19 +9,16 @@ class PhieuThueStore {
   }
 
   setData = (data) => {
-    console.log("phieuThueStore.setData()");
     if (data) {
       this.data = Array.from(data).reverse();
     }
   };
 
   clearData = () => {
-    console.log("phieuThueStore.clearData()");
     this.data = [];
   };
 
   getData = async () => {
-    console.log("phieuThueStore.getData");
     let config = {
       headers: {
         "Content-Type": "application/json",
@@ -37,8 +34,7 @@ class PhieuThueStore {
       });
   };
 
-  insertData = (data) => {
-    console.log("phieuThueStore.insertData()");
+  insertData = async (data) => {
     let phieuThue = JSON.stringify({
       ngayThue: convertYMD(data.ngayThue),
       ngayHenTra: convertYMD(data.ngayHenTra),
@@ -46,9 +42,9 @@ class PhieuThueStore {
       soNgayThue: data.soNgayThue,
     });
     let result = null;
-    API.post("/phieuThue", phieuThue)
-      .then((data) => {
-        result = data;
+    await API.post("/phieuThue", phieuThue)
+      .then((res) => {
+        result = res.data;
       })
       .catch((err) => {
         console.log(err);
@@ -56,10 +52,9 @@ class PhieuThueStore {
     return result;
   };
 
-  deleteData = (id) => {
-    console.log("phieuThueStore.deleteData()");
+  deleteData = async (id) => {
     let result = null;
-    API.delete("/phieuThue/" + id)
+    await API.delete("/phieuThue/" + id)
       .then((res) => {
         if (res.data.code === "ER_ROW_IS_REFERENCED_2") {
           alert("không thể xóa phiếu thuê này");
@@ -72,8 +67,7 @@ class PhieuThueStore {
     return result;
   };
 
-  updateData = (data) => {
-    console.log("phieuThueStore.updateData()");
+  updateData = async (data) => {
     let phieuThue = JSON.stringify({
       id: data.id,
       ngayThue: convertYMD(data.ngayThue),
@@ -85,7 +79,7 @@ class PhieuThueStore {
     });
     console.log(phieuThue);
     let result = null;
-    API.put("/phieuThue", phieuThue)
+    await API.put("/phieuThue", phieuThue)
       .then((data) => {
         result = data;
       })
@@ -96,7 +90,6 @@ class PhieuThueStore {
   };
 
   detailData = async (id) => {
-    console.log("phieuThueStore.detailData");
     let chiTietPhieuThue = [];
     await API.get("/phieuThue/detail/" + id)
       .then((result) => {
@@ -106,6 +99,55 @@ class PhieuThueStore {
         console.log(err);
       });
     return chiTietPhieuThue;
+  };
+
+  insertDetailData = async (data) => {
+    let ctpt = JSON.stringify({
+      idPhieuThue: data.idPhieuThue,
+      idBangDia: data.idBangDia,
+      soLuong: data.soLuong,
+      donGia: data.donGia,
+    });
+    let result = null;
+    await API.post("/chiTietPhieuThue", ctpt)
+      .then((res) => {
+        result = res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    return result;
+  };
+
+  updateDetailData = async (data) => {
+    let ctpt = JSON.stringify({
+      id: data.id,
+      idPhieuThue: data.idPhieuThue,
+      idBangDia: data.idBangDia,
+      soLuong: data.soLuong,
+      donGia: data.donGia,
+    });
+    let result = null;
+    await API.put("/chiTietPhieuThue", ctpt)
+      .then((data) => {
+        result = data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    return result;
+  };
+
+  deleteDetailData = async (id) => {
+    let result = null;
+    await API.delete("/chiTietPhieuThue/" + id)
+      .then((res) => {
+        result = res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    return result;
   };
 }
 
