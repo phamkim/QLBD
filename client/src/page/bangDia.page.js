@@ -1,20 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Button, Table, Modal, Input, Select } from "antd";
+import { Button, Table, Modal, Input, Select, Form } from "antd";
 import "./style.css";
 import { toJS } from "mobx";
 import { useStores } from "../stores";
 const { TextArea } = Input;
 const { Option } = Select;
 export const BangDiaPage = observer(() => {
+  const layout = {
+    labelCol: {
+      span: 9,
+    },
+    wrapperCol: {
+      span: 10,
+    },
+  };
+  const [form] = Form.useForm();
   const { bangDiaStore, theLoaiStore, nhaSanXuatStore } = useStores();
-  const [isEditing, setIsEditing] = useState(false);
-  const [editingBangDia, setEditingBangDia] = useState(null);
+  const [isOpenEdit, setIsOpenEdit] = useState(false);
   const [dataSource, setDataSource] = useState();
   const [refresh, setRefresh] = useState(false);
   const [theLoais, setTheLoais] = useState();
   const [nhaSanXuats, setNhaSanXuats] = useState();
+  const [isOpenAdd, setIsOpenAdd] = useState(false);
   useEffect(() => {
     console.log("bangDiaPage: useEffect()");
     bangDiaStore.getData().then(() => {
@@ -101,17 +110,8 @@ export const BangDiaPage = observer(() => {
   ];
 
   const onAddBangDia = () => {
-    const newBangDia = {
-      idTheLoai: "1",
-      tenBangDia: "Băng đĩa",
-      idNhaSX: "1",
-      tinhTrang: "new",
-      ngayTao: "...",
-      ngaySua: "...",
-      ghiChu: "...",
-    };
-    bangDiaStore.insertData(newBangDia);
-    setRefresh(!refresh);
+    form.setFieldsValue();
+    setIsOpenAdd(true);
   };
   const onDeleteBangDia = (record) => {
     Modal.confirm({
@@ -125,12 +125,35 @@ export const BangDiaPage = observer(() => {
     });
   };
   const onEditBangDia = (record) => {
-    setIsEditing(true);
-    setEditingBangDia({ ...record });
+    setIsOpenEdit(true);
+    form.setFieldsValue({
+      id: record.id,
+      tenBangDia: record.tenBangDia,
+      idTheLoai: record.idTheLoai,
+      idNhaSX: record.idNhaSX,
+      tinhTrang: record.tinhTrang,
+      ghiChu: record.ghiChu,
+    })
   };
   const resetEditing = () => {
-    setIsEditing(false);
-    setEditingBangDia(null);
+    setIsOpenEdit(false);
+    setIsOpenAdd(false);
+  };
+  const onAddFinish = (values) => {
+    bangDiaStore
+      .insertData(values)
+      .then(() => {
+        setRefresh(!refresh);
+        resetEditing();
+      })
+  };
+  const onEditFinish = (values) => {
+    bangDiaStore
+      .updateData(values)
+      .then(() => {
+        setRefresh(!refresh);
+        resetEditing();
+      })
   };
   return (
     <div className="container-fluid">
@@ -147,7 +170,157 @@ export const BangDiaPage = observer(() => {
         scroll={{ x: 800, y: 400 }}
         bordered
       ></Table>
+
       <Modal
+        title="Thêm băng đĩa"
+        visible={isOpenAdd}
+        width={740}
+        footer={null}
+        okText="Save"
+        onCancel={() => {
+          resetEditing();
+        }}
+      >
+        <Form
+          form={form}
+          {...layout}
+          name="form_them_bang_dia"
+          onFinish={onAddFinish}
+        >
+          <Form.Item
+            name="tenBangDia"
+            label="Tên băng đĩa"
+            rules={[{ required: true }]}
+          >
+            <Input placeholder="Tên băng đĩa" />
+          </Form.Item>
+          <Form.Item
+            name="idTheLoai"
+            label="Tên thể loại"
+            rules={[{ required: true }]}
+          >
+            <Select style={{ width: 210 }}>
+              {(theLoaiStore.data || []).map((item) => (
+                <Option key={item.id} value={item.id}>
+                  {item.tenTheLoai}
+                </Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item
+            name="idNhaSX"
+            label="Tên nhà sản xuất"
+            rules={[{ required: true }]}
+          >
+            <Select style={{ width: 210 }}>
+              {(nhaSanXuatStore.data || []).map((item) => (
+                <Option key={item.id} value={item.id}>
+                  {item.tenNhaSX}
+                </Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item
+            name="tinhTrang"
+            label="Tình Trạng"
+            rules={[{ required: true }]}
+          >
+            <Select style={{ width: 210 }}>
+              <Option value="Mới">Mới</Option>
+              <Option value="Mới 99%">Mới 99%</Option>
+              <Option value="Mới 89%">Mới 89%</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item
+            name="ghiChu"
+            label="Ghi chú"
+          >
+            <TextArea rows={4} />
+          </Form.Item>
+          <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+
+      </Modal>
+
+      <Modal
+        title="Sửa băng đĩa"
+        visible={isOpenEdit}
+        width={740}
+        footer={null}
+        okText="Save"
+        onCancel={() => {
+          resetEditing();
+        }}
+      >
+        <Form
+          form={form}
+          {...layout}
+          name="form_sua_bang_dia"
+          onFinish={onEditFinish}
+        >
+          <Form.Item name="id" hidden={true} />
+          <Form.Item
+            name="tenBangDia"
+            label="Tên băng đĩa"
+            rules={[{ required: true }]}
+          >
+            <Input placeholder="Tên băng đĩa" />
+          </Form.Item>
+          <Form.Item
+            name="idTheLoai"
+            label="Tên thể loại"
+            rules={[{ required: true }]}
+          >
+            <Select style={{ width: 210 }}>
+              {(theLoaiStore.data || []).map((item) => (
+                <Option key={item.id} value={item.id}>
+                  {item.tenTheLoai}
+                </Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item
+            name="idNhaSX"
+            label="Tên nhà sản xuất"
+            rules={[{ required: true }]}
+          >
+            <Select style={{ width: 210 }}>
+              {(nhaSanXuatStore.data || []).map((item) => (
+                <Option key={item.id} value={item.id}>
+                  {item.tenNhaSX}
+                </Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item
+            name="tinhTrang"
+            label="Tình Trạng"
+            rules={[{ required: true }]}
+          >
+            <Select style={{ width: 210 }}>
+              <Option value="Mới">Mới</Option>
+              <Option value="Mới 99%">Mới 99%</Option>
+              <Option value="Mới 89%">Mới 89%</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item
+            name="ghiChu"
+            label="Ghi chú"
+          >
+            <TextArea rows={4} />
+          </Form.Item>
+          <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </Modal>
+      {/* <Modal
         title="Edit Băng đĩa"
         visible={isEditing}
         okText="Save"
@@ -231,7 +404,7 @@ export const BangDiaPage = observer(() => {
             });
           }}
         />
-      </Modal>
+      </Modal> */}
     </div>
   );
 });

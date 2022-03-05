@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { useStores } from "../stores";
-import { Button, Table, Modal, Input, Select } from "antd";
+import { Button, Table, Modal, Input, Select, Form } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import "./style.css";
 import { toJS } from "mobx";
 const { Option } = Select;
 
 export const ThanhVienPage = observer(() => {
+  const layout = {
+    labelCol: {
+      span: 9,
+    },
+    wrapperCol: {
+      span: 10,
+    },
+  };
+  const [form] = Form.useForm();
   const { thanhVienStore } = useStores();
-  const [isEditing, setIsEditing] = useState(false);
-  const [editingThanhVien, setEditingThanhVien] = useState(null);
+  const [isOpenEdit, setIsOpenEdit] = useState(false);
+  const [isOpenAdd, setIsOpenAdd] = useState(false);
   const [dataSource, setDataSource] = useState();
   const [refresh, setRefresh] = useState(false);
   useEffect(() => {
@@ -49,7 +58,7 @@ export const ThanhVienPage = observer(() => {
       key: "5",
       title: "Phân Quyền",
       render: (record) => {
-        console.log(record.id);
+
         if (record.phanQuyen == 2) {
           return "Admin";
         } else if (record.phanQuyen == 1) {
@@ -82,16 +91,19 @@ export const ThanhVienPage = observer(() => {
     },
   ];
 
-  const onAddThanhVien = () => {
-    const newThanhVien = {
-      maTTV: "maTTV",
-      hoTen: "Name 2",
-      soCMT: "0123456789",
-      diaChi: "DiaChi",
-    };
-    thanhVienStore.insertData(newThanhVien);
-    setRefresh(!refresh);
+  const onAddFinish = (values) => {
+    thanhVienStore
+      .insertData(values)
+      .then(() => {
+        setRefresh(!refresh);
+        resetEditing();
+      })
   };
+
+  const onAddThanhVien = () => {
+    form.setFieldsValue();
+    setIsOpenAdd(true);
+  }
   const onDeleteThanhVien = (record) => {
     Modal.confirm({
       title: "Bạn có chắc chắn xóa thành viên này?",
@@ -104,13 +116,29 @@ export const ThanhVienPage = observer(() => {
     });
   };
   const onEditThanhVien = (record) => {
-    setIsEditing(true);
-    setEditingThanhVien({ ...record });
+      setIsOpenEdit(true);
+      form.setFieldsValue({
+        id: record.id,
+        maTTV: record.maTTV,
+        hoTen: record.hoTen,
+        soCMT: record.soCMT,
+        diaChi: record.diaChi, 
+        phanQuyen: record.phanQuyen,
+      })
+  };
+  const onEditFinish = (values) => {
+    thanhVienStore
+      .updateData(values)
+      .then(() =>{
+        setRefresh(!refresh);
+        resetEditing();
+      })
   };
   const resetEditing = () => {
-    setIsEditing(false);
-    setEditingThanhVien(null);
+    setIsOpenAdd(false);
+    setIsOpenEdit(false);
   };
+
   return (
     <div className="container-fluid">
       <Button
@@ -128,7 +156,134 @@ export const ThanhVienPage = observer(() => {
         scroll={{ x: 800, y: 400 }}
         bordered
       ></Table>
+
       <Modal
+        title="Thêm thành viên"
+        visible={isOpenAdd}
+        width={740}
+        footer={null}
+        okText="Save"
+        onCancel={() => {
+          resetEditing();
+        }}
+      >
+        <Form
+          form={form}
+          {...layout}
+          name="form_them_thanh_vien"
+          onFinish={onAddFinish}
+        >
+          <Form.Item
+            name="maTTV"
+            label="Mã thẻ thành viên"
+            rules={[{ required: true }]}
+          >
+            <Input placeholder="Mã thẻ thành viên" />
+          </Form.Item>
+          <Form.Item
+            name="hoTen"
+            label="Họ tên"
+            rules={[{ required: true }]}
+          >
+            <Input placeholder="Họ tên" />
+          </Form.Item>
+          <Form.Item
+            name="soCMT"
+            label="Số CMT/CC"
+            rules={[{ required: true }]}
+          >
+            <Input placeholder="Số CMT/CC" />
+          </Form.Item>
+          <Form.Item
+            name="diaChi"
+            label="Địa chỉ"
+            rules={[{ required: true }]}
+          >
+            <Input placeholder="Địa chỉ" />
+          </Form.Item>
+          <Form.Item
+            name="phanQuyen"
+            label="Phân quyền"
+            rules={[{ required: true }]}
+          >
+            <Select>
+              <Option value={0}>Thành viên</Option>
+              <Option value={1}>Nhân Viên</Option>
+              <Option value={2}>Admin</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </Modal>
+
+      <Modal
+        title="Sửa thành viên"
+        visible={isOpenEdit}
+        width={740}
+        footer={null}
+        okText="Save"
+        onCancel={() => {
+          resetEditing();
+        }}
+      >
+        <Form
+          form={form}
+          {...layout}
+          name="form_them_thanh_vien"
+          onFinish={onEditFinish}
+        >
+          <Form.Item name="id" hidden={true} />
+          <Form.Item
+            name="maTTV"
+            label="Mã thẻ thành viên"
+            rules={[{ required: true }]}
+          >
+            <Input placeholder="Mã thẻ thành viên" />
+          </Form.Item>
+          <Form.Item
+            name="hoTen"
+            label="Họ tên"
+            rules={[{ required: true }]}
+          >
+            <Input placeholder="Họ tên" />
+          </Form.Item>
+          <Form.Item
+            name="soCMT"
+            label="Số CMT/CC"
+            rules={[{ required: true }]}
+          >
+            <Input placeholder="Số CMT/CC" />
+          </Form.Item>
+          <Form.Item
+            name="diaChi"
+            label="Địa chỉ"
+            rules={[{ required: true }]}
+          >
+            <Input placeholder="Địa chỉ" />
+          </Form.Item>
+          <Form.Item
+            name="phanQuyen"
+            label="Phân quyền"
+            rules={[{ required: true }]}
+          >
+            <Select>
+              <Option value={0}>Thành viên</Option>
+              <Option value={1}>Nhân Viên</Option>
+              <Option value={2}>Admin</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </Modal>
+      {/* <Modal
         title="Edit ThanhVien"
         visible={isEditing}
         okText="Save"
@@ -195,7 +350,7 @@ export const ThanhVienPage = observer(() => {
           <Option value={1}>Nhân Viên</Option>
           <Option value={2}>Admin</Option>
         </Select>
-      </Modal>
+      </Modal> */}
     </div>
   );
 });
