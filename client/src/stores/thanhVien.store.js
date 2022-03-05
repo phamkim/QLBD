@@ -6,18 +6,19 @@ class ThanhVien {
   userName = "";
   passW = "";
   token = window.sessionStorage.getItem("token");
-
+  tokenFailed = false;
+  
   constructor(rootStore) {
     this.rootStore = rootStore;
     makeAutoObservable(this);
   }
 
-  refreshToken = () => {
+  refreshToken() {
     this.token = window.sessionStorage.getItem("token");
     console.log(this.token);
-  };
+  }
 
-  logIn = async (userName, passW) => {
+  async logIn(userName, passW) {
     let data = JSON.stringify({
       userName: userName,
       passW: passW,
@@ -44,7 +45,7 @@ class ThanhVien {
         console.log(err);
         alert("dang nhap that bai");
       });
-  };
+  }
 }
 
 export default ThanhVien;

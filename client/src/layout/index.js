@@ -74,14 +74,10 @@ export const MyLayout = observer(() => {
           </Menu>
         </Sider>
         <Layout>
-          <Header
-            className="site-layout-sub-header-background"
-            style={{ padding: 0 }}
-          />
-          <Content style={{ margin: "24px 16px 0", minHeight: "78vh" }}>
+          <Content style={{ margin: "14px 16px 0", minHeight: "90vh" }}>
             <div
               className="site-layout-background"
-              style={{ padding: 24, minHeight: "78vh", textAlign: "start" }}
+              style={{ padding: 14, minHeight: "90vh", textAlign: "start" }}
             >
               <Switch>
                 {MyRouter.map((e, index) => (
@@ -96,7 +92,7 @@ export const MyLayout = observer(() => {
             </div>
           </Content>
           <Footer style={{ textAlign: "center" }}>
-            Design ©2022 Created by kim
+            Hệ thống quản lý cho thuê băng đĩa - thành viên thực hiện : Kim + Nam
           </Footer>
         </Layout>
       </Layout>

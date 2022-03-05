@@ -7,7 +7,6 @@ const PhieuThue = (phieuThue) => {
   this.ngayTra = phieuThue.ngayTra;
   this.ngaySua = phieuThue.ngaySua;
   this.idNguoiThue = phieuThue.idNguoiThue;
-  this.soNgayThue = phieuThue.soNgayThue;
 };
 
 PhieuThue.get = (id, callback) => {
@@ -32,7 +31,7 @@ PhieuThue.getDetail = (id, callback) => {
 };
 
 PhieuThue.getAll = (callback) => {
-  const sqlString = `SELECT phieuthue.id,phieuthue.idNguoiThue,phieuthue.ngayThue,phieuthue.ngayHenTra,phieuthue.ngayTra,phieuthue.soNgayThue,SUM(chitietphieuthue.soLuong*chitietphieuthue.donGia)as tongTien
+  const sqlString = `SELECT phieuthue.id,phieuthue.idNguoiThue,phieuthue.ngayThue,phieuthue.ngayHenTra,phieuthue.ngayTra,SUM(chitietphieuthue.soLuong*chitietphieuthue.donGia)as tongTien
   FROM phieuthue,chitietphieuthue
   WHERE phieuthue.id = chitietphieuthue.idPhieuThue
   GROUP BY phieuthue.id`;

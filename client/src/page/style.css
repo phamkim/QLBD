@@ -1,3 +1,10 @@
-.input_style {
-  margin: 2px;
+.powerbi-page {
+  margin: 0 0 0 0;
+  display: block;
+  text-align: center;
+}
+.report-style-class {
+  height: 80vh;
+  margin: 1% auto;
+  width: 90%;
 }

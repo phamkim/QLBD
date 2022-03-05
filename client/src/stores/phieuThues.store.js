@@ -39,7 +39,6 @@ class PhieuThueStore {
       ngayThue: convertYMD(data.ngayThue),
       ngayHenTra: convertYMD(data.ngayHenTra),
       idNguoiThue: parseInt(data.idNguoiThue),
-      soNgayThue: data.soNgayThue,
     });
     let result = null;
     await API.post("/phieuThue", phieuThue)
@@ -75,7 +74,6 @@ class PhieuThueStore {
       ngayTra: convertYMD(data.ngayTra),
       ngaySua: getDateToday(),
       idNguoiThue: parseInt(data.idNguoiThue),
-      soNgayThue: data.soNgayThue,
     });
     console.log(phieuThue);
     let result = null;

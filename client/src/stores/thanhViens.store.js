@@ -42,6 +42,7 @@ class ThanhVienStore {
     console.log("thanhVienStore.insertData()");
     let thanhVien = JSON.stringify({
       hoTen: data.hoTen,
+      maTTV: data.maTTV,
       diaChi: data.diaChi,
       soCMT: data.soCMT,
       phanQuyen: data.phanQuyen,
