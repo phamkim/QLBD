@@ -242,6 +242,15 @@ export const PhieuThuePage = observer(() => {
     setIsOpenEdit(false);
     setIsOpenAdd(false);
     setChiTietPhieuThue(null);
+    form.setFieldsValue({
+      id: null,
+      idNguoiThue: null,
+      ngayThue: null,
+      ngayHenTra: null,
+      ngayTra: null,
+      chiTietPhieuThue: null,
+      tongTien: null,
+    });
   };
 
   return (
