@@ -138,6 +138,14 @@ export const BangDiaPage = observer(() => {
   const resetEditing = () => {
     setIsOpenEdit(false);
     setIsOpenAdd(false);
+    form.setFieldsValue({
+      id: null,
+      tenBangDia: null,
+      idTheLoai: null,
+      idNhaSX: null,
+      tinhTrang: null,
+      ghiChu: null,
+    })
   };
   const onAddFinish = (values) => {
     bangDiaStore

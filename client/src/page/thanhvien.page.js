@@ -137,6 +137,14 @@ export const ThanhVienPage = observer(() => {
   const resetEditing = () => {
     setIsOpenAdd(false);
     setIsOpenEdit(false);
+    form.setFieldsValue({
+      id: null,
+      maTTV: null,
+      hoTen: null,
+      soCMT: null,
+      diaChi: null, 
+      phanQuyen: null,
+    })
   };
 
   return (
