@@ -2,17 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import NhaSanXuatStore from '../stores/nhaSanXuats.store';
-import { Button, Table, Modal, Input} from "antd";
+import { Button, Table, Modal, Input, Form } from "antd";
 import "./style.css";
 import { toJS } from "mobx";
 import { useStores } from "../stores";
 
 export const NhaSanXuatPage = observer(() => {
+    const layout = {
+        labelCol: {
+            span: 9,
+        },
+        wrapperCol: {
+            span: 10,
+        },
+    };
+    const [form] = Form.useForm();
     const { nhaSanXuatStore } = useStores();
-    const [isEditing, setIsEditing] = useState(false);
+    const [isOpenEdit, setIsOpenEdit] = useState(false);
     const [editingNhaSanXuat, setEditingNhaSanXuat] = useState(null);
     const [dataSource, setDataSource] = useState();
     const [refresh, setRefresh] = useState(false);
+    const [isOpenAdd, setIsOpenAdd] = useState(false);
     useEffect(() => {
         console.log("nhaSanXuatPage: useEffect()");
         nhaSanXuatStore.getData().then(() => {
@@ -58,12 +68,8 @@ export const NhaSanXuatPage = observer(() => {
     ];
 
     const onAddNhaSanXuat = () => {
-        const newNhaSanXuat = {
-            tenNhaSX: "Name Producer",
-            diaChi: "Address",
-        };
-        nhaSanXuatStore.insertData(newNhaSanXuat);
-        setRefresh(!refresh);
+        form.setFieldsValue();
+        setIsOpenAdd(true);
     };
     const onDeleteNhaSanXuat = (record) => {
         Modal.confirm({
@@ -77,13 +83,34 @@ export const NhaSanXuatPage = observer(() => {
         });
     };
     const onEditNhaSanXuat = (record) => {
-        setIsEditing(true);
-        setEditingNhaSanXuat({ ...record });
+        setIsOpenEdit(true);
+        form.setFieldsValue({
+            id: record.id,
+            tenNhaSX: record.tenNhaSX,
+            diaChi: record.diaChi,
+          });
     };
     const resetEditing = () => {
-        setIsEditing(false);
-        setEditingNhaSanXuat(null);
+        setIsOpenEdit(false);
+        setIsOpenAdd(false);
     };
+    const onAddFinish = (values) => {
+        nhaSanXuatStore
+            .insertData(values)
+            .then(() => {
+                setRefresh(!refresh);
+                resetEditing();
+            })
+    };
+    const onEditFinish = (values) => {
+        nhaSanXuatStore
+          .updateData(values)
+          .then(() => {
+            setRefresh(!refresh);
+            resetEditing();
+          })
+    };
+
     return (
         <div className='container-fluid'>
             <Button
@@ -100,7 +127,84 @@ export const NhaSanXuatPage = observer(() => {
                 bordered
             >
             </Table>
+
             <Modal
+                title="Thêm Nhà sản xuất"
+                visible={isOpenAdd}
+                width={740}
+                footer={null}
+                okText="Save"
+                onCancel={() => {
+                    resetEditing();
+                }}
+            >
+                <Form
+                    form={form}
+                    {...layout}
+                    name="form_them_nhaSX"
+                    onFinish={onAddFinish}
+                >
+                    <Form.Item
+                        name="tenNhaSX"
+                        label="Tên nhà sản xuất"
+                        rules={[{ required: true }]}
+                    >
+                        <Input placeholder="Tên nhà sản xuất" />
+                    </Form.Item>
+                    <Form.Item
+                        name="diaChi"
+                        label="Địa chỉ"
+                        rules={[{ required: true }]}
+                    >
+                        <Input placeholder="Địa chỉ" />
+                    </Form.Item>
+                    <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
+                        <Button type="primary" htmlType="submit">
+                            Submit
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </Modal>
+
+            <Modal
+                title="Sửa Nhà sản xuất"
+                visible={isOpenEdit}
+                width={740}
+                footer={null}
+                okText="Save"
+                onCancel={() => {
+                    resetEditing();
+                }}
+            >
+                <Form
+                    form={form}
+                    {...layout}
+                    name="form_sua_nhaSX"
+                    onFinish={onEditFinish}
+                >
+                    <Form.Item name="id" hidden={true} />
+                    <Form.Item
+                        name="tenNhaSX"
+                        label="Tên nhà sản xuất"
+                        rules={[{ required: true }]}
+                    >
+                        <Input placeholder="Tên nhà sản xuất" />
+                    </Form.Item>
+                    <Form.Item
+                        name="diaChi"
+                        label="Địa chỉ"
+                        rules={[{ required: true }]}
+                    >
+                        <Input placeholder="Địa chỉ" />
+                    </Form.Item>
+                    <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
+                        <Button type="primary" htmlType="submit">
+                            Submit
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </Modal>
+            {/* <Modal
                 title="Edit Nhà sản xuất"
                 visible={isEditing}
                 okText="Save"
@@ -133,7 +237,7 @@ export const NhaSanXuatPage = observer(() => {
                         });
                     }}
                 />
-            </Modal>
+            </Modal> */}
         </div>
     )
 });

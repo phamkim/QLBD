@@ -38,14 +38,14 @@ class NhaSanXuatStore {
                console.log(err); 
             });
     };
-    insertData = (data) => {
+    insertData =  async (data) => {
         console.log("nhaSanXuatStore.insertData()");
         let nhaSanXuat = JSON.stringify({
             tenNhaSX: data.tenNhaSX,
             diaChi: data.diaChi
         });
         let result = null;
-        API.post("/nhaSX", nhaSanXuat)
+        await API.post("/nhaSX", nhaSanXuat)
             .then((data) => {
                 result = data;
             })
@@ -70,7 +70,7 @@ class NhaSanXuatStore {
             });
         return result;
     };
-    updateData = (data) => {
+    updateData = async (data) => {
         console.log("nhaSanXuatStore.updateData()");
         let nhaSanXuat = JSON.stringify({
             id: data.id,
@@ -78,7 +78,7 @@ class NhaSanXuatStore {
             diaChi: data.diaChi
         });
         let result = null;
-        API.put("/nhaSX", nhaSanXuat)
+        await API.put("/nhaSX", nhaSanXuat)
             .then((data) => {
                 result = data;
             })
