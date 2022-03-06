@@ -38,9 +38,10 @@ class ThanhVienStore {
       });
   };
 
-  insertData = (data) => {
+  insertData = async(data) => {
     console.log("thanhVienStore.insertData()");
     let thanhVien = JSON.stringify({
+      maTTV: data.maTTV,
       hoTen: data.hoTen,
       maTTV: data.maTTV,
       diaChi: data.diaChi,
@@ -50,7 +51,7 @@ class ThanhVienStore {
       password: data.password,
     });
     let result = null;
-    API.post("/thanhVien", thanhVien)
+    await API.post("/thanhVien", thanhVien)
       .then((data) => {
         result = data;
       })
@@ -76,7 +77,7 @@ class ThanhVienStore {
     return result;
   };
 
-  updateData = (data) => {
+  updateData = async(data) => {
     console.log("thanhVienStore.updateData()");
     let thanhVien = JSON.stringify({
       id: data.id,
@@ -90,7 +91,7 @@ class ThanhVienStore {
       password: data.password,
     });
     let result = null;
-    API.put("/thanhVien", thanhVien)
+    await API.put("/thanhVien", thanhVien)
       .then((data) => {
         result = data;
       })

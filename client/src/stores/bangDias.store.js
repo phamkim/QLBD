@@ -37,7 +37,7 @@ class BangDiaStore {
                 console.log(err);
             });
     };
-    insertData = (data) => {
+    insertData = async (data) => {
         console.log("bangDiaStore.insertData()");
         let bangDia = JSON.stringify({
             hinhAnh: data.hinhAnh,
@@ -48,7 +48,7 @@ class BangDiaStore {
             ghiChu: data.ghiChu,
         });
         let result = null;
-        API.post("/bangDia", bangDia)
+        await API.post("/bangDia", bangDia)
             .then((data) => {
                 result = data;
             })
@@ -74,7 +74,7 @@ class BangDiaStore {
         return result;
     };
     
-    updateData = (data) => {
+    updateData = async (data) => {
         console.log(data);
         console.log("bangDiaStore.updateData()");
         let bangDia = JSON.stringify({
@@ -89,7 +89,7 @@ class BangDiaStore {
         });
         
         let result = null;
-        API.put("/bangDia", bangDia)
+        await API.put("/bangDia", bangDia)
             .then((data) => {
                 result = data;
             })
