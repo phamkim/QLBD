@@ -38,14 +38,14 @@ class TheLoaiStore {
       });
   };
 
-  insertData = (data) => {
+  insertData = async (data) => {
     console.log("theLoaiStore.insertData()");
     let theLoai = JSON.stringify({
       tenTheLoai: data.tenTheLoai,
       ghiChu: data.ghiChu,
     });
     let result = null;
-    API.post("/theLoai", theLoai)
+    await API.post("/theLoai", theLoai)
       .then((data) => {
         result = data;
       })
@@ -71,7 +71,7 @@ class TheLoaiStore {
     return result;
   };
 
-  updateData = (data) => {
+  updateData = async (data) => {
     console.log("theLoaiStore.updateData()");
     let theLoai = JSON.stringify({
       id: data.id,
@@ -79,7 +79,7 @@ class TheLoaiStore {
       ghiChu: data.ghiChu,
     });
     let result = null;
-    API.put("/theLoai", theLoai)
+    await API.put("/theLoai", theLoai)
       .then((data) => {
         result = data;
       })

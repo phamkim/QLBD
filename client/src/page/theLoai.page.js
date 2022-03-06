@@ -1,17 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Button, Table, Modal, Input } from "antd";
+import { Button, Table, Modal, Input, Form } from "antd";
 import "./style.css";
 import { toJS } from "mobx";
 import { useStores } from "../stores";
 const { TextArea } = Input;
 export const TheLoaiPage = observer(() => {
+  const layout = {
+    labelCol: {
+      span: 9,
+    },
+    wrapperCol: {
+      span: 10,
+    },
+  };
+  const [form] = Form.useForm();
   const { theLoaiStore } = useStores();
-  const [isEditing, setIsEditing] = useState(false);
+  const [isOpenEdit, setIsOpenEdit] = useState(false);
   const [editingTheLoai, setEditingTheLoai] = useState(null);
   const [dataSource, setDataSource] = useState();
   const [refresh, setRefresh] = useState(false);
+  const [isOpenAdd, setIsOpenAdd] = useState(false);
+
   useEffect(() => {
     console.log("theLoaiPage: useEffect()");
     theLoaiStore.getData().then(() => {
@@ -57,12 +68,8 @@ export const TheLoaiPage = observer(() => {
   ];
 
   const onAddTheLoai = () => {
-    const newTheLoai = {
-      tenTheLoai: "...",
-      GhiChu: "blabla",
-    };
-    theLoaiStore.insertData(newTheLoai);
-    setRefresh(!refresh);
+    form.setFieldsValue();
+    setIsOpenAdd(true);
   };
   const onDeleteTheLoai = (record) => {
     Modal.confirm({
@@ -76,13 +83,34 @@ export const TheLoaiPage = observer(() => {
     });
   };
   const onEditTheLoai = (record) => {
-    setIsEditing(true);
-    setEditingTheLoai({ ...record });
+    setIsOpenEdit(true);
+    form.setFieldsValue({
+      id: record.id,
+      tenTheLoai: record.tenTheLoai,
+      ghiChu: record.ghiChu,
+    });
   };
   const resetEditing = () => {
-    setIsEditing(false);
+    setIsOpenEdit(false);
     setEditingTheLoai(null);
+    setIsOpenAdd(false);
   };
+  const onAddFinish = (values) => {
+    theLoaiStore
+      .insertData(values)
+      .then(() => {
+        setRefresh(!refresh);
+        resetEditing();
+      })
+  };
+  const onEditFinish = (values) => {
+    theLoaiStore
+      .updateData(values)
+      .then(() => {
+        setRefresh(!refresh);
+        resetEditing();
+      })
+  }
   return (
     <div className="container-fluid">
       <Button
@@ -98,7 +126,84 @@ export const TheLoaiPage = observer(() => {
         scroll={{ x: 800, y: 400 }}
         bordered
       ></Table>
+
       <Modal
+        title="Thêm thể loại"
+        visible={isOpenAdd}
+        width={740}
+        footer={null}
+        okText="Save"
+        onCancel={() => {
+          resetEditing();
+        }}
+      >
+        <Form
+          form={form}
+          {...layout}
+          name="form_them_the_loai"
+          onFinish={onAddFinish}
+        >
+          <Form.Item
+            name="tenTheLoai"
+            label="Tên thể loại"
+            rules={[{ required: true }]}
+          >
+            <Input placeholder="Tên thể loại" />
+          </Form.Item>
+          <Form.Item
+            name="ghiChu"
+            label="Ghi chú"
+            rules={[{ required: true }]}
+          >
+            <TextArea rows={4} />
+          </Form.Item>
+          <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </Modal>
+
+      <Modal
+        title="Sửa thể loại"
+        visible={isOpenEdit}
+        width={740}
+        footer={null}
+        okText="Save"
+        onCancel={() => {
+          resetEditing();
+        }}
+      >
+        <Form
+          form={form}
+          {...layout}
+          name="form_sua_the_loai"
+          onFinish={onEditFinish}
+        >
+          <Form.Item name="id" hidden={true} />
+          <Form.Item
+            name="tenTheLoai"
+            label="Tên thể loại"
+            rules={[{ required: true }]}
+          >
+            <Input placeholder="Tên thể loại" />
+          </Form.Item>
+          <Form.Item
+            name="ghiChu"
+            label="Ghi chú"
+            rules={[{ required: true }]}
+          >
+            <TextArea rows={4} />
+          </Form.Item>
+          <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </Modal>
+      {/* <Modal
         title="Edit Thể loại"
         visible={isEditing}
         okText="Save"
@@ -132,7 +237,7 @@ export const TheLoaiPage = observer(() => {
             });
           }}
         />
-      </Modal>
+      </Modal> */}
     </div>
   );
 });
