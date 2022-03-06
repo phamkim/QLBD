@@ -8,3 +8,15 @@
   margin: 1% auto;
   width: 90%;
 }
+
+.card_body {
+  height: 300px;
+  display: inline-block;
+  text-align: center;
+}
+
+.card_content {
+  border: 1px solid;
+  height: 300px;
+  width: 300px;
+}

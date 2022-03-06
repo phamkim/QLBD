@@ -147,6 +147,18 @@ class PhieuThueStore {
       });
     return result;
   };
+
+  getStatistic = async () => {
+    let result = null;
+    await API.get("/phieuThue/statistics")
+      .then((res) => {
+        result = res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    return result;
+  };
 }
 
 export default PhieuThueStore;

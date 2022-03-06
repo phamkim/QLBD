@@ -43,7 +43,6 @@ class ThanhVienStore {
     let thanhVien = JSON.stringify({
       maTTV: data.maTTV,
       hoTen: data.hoTen,
-      maTTV: data.maTTV,
       diaChi: data.diaChi,
       soCMT: data.soCMT,
       phanQuyen: data.phanQuyen,
@@ -94,6 +93,18 @@ class ThanhVienStore {
     await API.put("/thanhVien", thanhVien)
       .then((data) => {
         result = data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    return result;
+  };
+
+  getStatistic = async () => {
+    let result = null;
+    await API.get("/thanhVien/statistics")
+      .then((res) => {
+        result = res.data;
       })
       .catch((err) => {
         console.log(err);

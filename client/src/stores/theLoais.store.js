@@ -3,7 +3,6 @@ import { API } from "../common/request";
 
 class TheLoaiStore {
   data = [];
-
   constructor(rootStore) {
     this.rootStore = rootStore;
     makeAutoObservable(this);
@@ -83,6 +82,18 @@ class TheLoaiStore {
     API.put("/theLoai", theLoai)
       .then((data) => {
         result = data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    return result;
+  };
+
+  getStatistic = async () => {
+    let result = null;
+    await API.get("/theLoai/statistics")
+      .then((res) => {
+        result = res.data;
       })
       .catch((err) => {
         console.log(err);

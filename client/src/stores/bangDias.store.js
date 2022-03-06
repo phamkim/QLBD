@@ -98,6 +98,18 @@ class BangDiaStore {
             });
         return result;
     };
+
+    getStatistic = async () => {
+        let result = null;
+        await API.get("/bangDia/statistics")
+          .then((res) => {
+            result = res.data;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        return result;
+      };
 }
 
 export default BangDiaStore;
