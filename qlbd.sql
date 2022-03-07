@@ -337,192 +337,192 @@ create table if not exists phieuThue
 --  thêm dữ liệu bảng phieuThue
 -- tháng 1/2021
 -- id=1
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (1,"2021-01-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (1,"2021-01-01","2021-05-05","2021-05-05");
 -- id=2
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (1,"2021-01-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (1,"2021-01-01","2021-05-05","2021-05-05");
 -- id=3
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (1,"2021-01-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (1,"2021-01-01","2021-05-05","2021-05-05");
 -- id=4
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (2,"2021-01-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (2,"2021-01-01","2021-05-05","2021-05-05");
 -- id=5
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (2,"2021-01-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (2,"2021-01-01","2021-05-05","2021-05-05");
 -- id=6
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (2,"2021-01-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (2,"2021-01-01","2021-05-05","2021-05-05");
 -- id=7
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (3,"2021-01-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (3,"2021-01-01","2021-05-05","2021-05-05");
 -- id=8
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (4,"2021-01-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (4,"2021-01-01","2021-05-05","2021-05-05");
 -- id=9
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (5,"2021-01-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (5,"2021-01-01","2021-05-05","2021-05-05");
 -- id=10
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (2,"2021-01-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (2,"2021-01-01","2021-05-05","2021-05-05");
 
 -- tháng 2/2021
 -- id=11
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (3,"2021-02-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (3,"2021-02-01","2021-05-05","2021-05-05");
 -- id=12
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (2,"2021-02-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (2,"2021-02-01","2021-05-05","2021-05-05");
 -- id=13
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (5,"2021-02-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (5,"2021-02-01","2021-05-05","2021-05-05");
 -- id=14
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (7,"2021-02-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (7,"2021-02-01","2021-05-05","2021-05-05");
 -- id=15
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (2,"2021-02-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (2,"2021-02-01","2021-05-05","2021-05-05");
 -- id=16
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (9,"2021-02-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (9,"2021-02-01","2021-05-05","2021-05-05");
 
 -- tháng 3/2021
 -- id=17
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (2,"2021-03-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (2,"2021-03-01","2021-05-05","2021-05-05");
 -- id=18
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (1,"2021-03-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (1,"2021-03-01","2021-05-05","2021-05-05");
 -- id=19
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (2,"2021-03-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (2,"2021-03-01","2021-05-05","2021-05-05");
 -- id=20
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (5,"2021-03-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (5,"2021-03-01","2021-05-05","2021-05-05");
 -- id=21
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (9,"2021-03-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (9,"2021-03-01","2021-05-05","2021-05-05");
 
 -- tháng 4/2021
 -- id=22
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (10,"2021-04-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (10,"2021-04-01","2021-05-05","2021-05-05");
 -- id=23
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (3,"2021-04-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (3,"2021-04-01","2021-05-05","2021-05-05");
 -- id=24
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (1,"2021-04-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (1,"2021-04-01","2021-05-05","2021-05-05");
 -- id=25
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (4,"2021-04-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (4,"2021-04-01","2021-05-05","2021-05-05");
 -- id=26
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (3,"2021-04-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (3,"2021-04-01","2021-05-05","2021-05-05");
 
 -- tháng 5/2021
 -- id=27
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (8,"2021-05-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (8,"2021-05-01","2021-05-05","2021-05-05");
 -- id=28
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (3,"2021-05-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (3,"2021-05-01","2021-05-05","2021-05-05");
 -- id=29
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (10,"2021-05-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (10,"2021-05-01","2021-05-05","2021-05-05");
 -- id=30
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (2,"2021-05-01","2021-05-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (2,"2021-05-01","2021-05-05","2021-05-05");
 
 -- tháng 6/2021
 -- id=31
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (6,"2021-06-01","2021-06-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (6,"2021-06-01","2021-06-05","2021-06-05");
 -- id=32
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (5,"2021-06-01","2021-06-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (5,"2021-06-01","2021-06-05","2021-06-05");
 -- id=33
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (4,"2021-06-01","2021-06-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (4,"2021-06-01","2021-06-05","2021-06-05");
 -- id=34
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (9,"2021-06-01","2021-06-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (9,"2021-06-01","2021-06-05","2021-06-05");
 
 -- tháng 7/2021
 -- id=35
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (6,"2021-07-01","2021-07-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (6,"2021-07-01","2021-07-05","2021-07-05");
 -- id=36
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (7,"2021-07-01","2021-07-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (7,"2021-07-01","2021-07-05","2021-07-05");
 -- id=37
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (9,"2021-07-01","2021-07-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (9,"2021-07-01","2021-07-05","2021-07-05");
 -- id=38
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (6,"2021-07-01","2021-07-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (6,"2021-07-01","2021-07-05","2021-07-05");
 
 -- tháng 8/2021
 -- id=39
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (6,"2021-08-01","2021-08-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (6,"2021-08-01","2021-08-05","2021-08-05");
 -- id=40
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (6,"2021-08-01","2021-08-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (6,"2021-08-01","2021-08-05","2021-08-05");
 -- id=41
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (4,"2021-08-01","2021-08-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (4,"2021-08-01","2021-08-05","2021-08-05");
 -- id=42
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (6,"2021-08-01","2021-08-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (6,"2021-08-01","2021-08-05","2021-08-05");
 -- id=43
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (4,"2021-08-01","2021-08-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (4,"2021-08-01","2021-08-05","2021-08-05");
 -- id=44
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (6,"2021-08-01","2021-08-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (6,"2021-08-01","2021-08-05","2021-08-05");
 -- id=45
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (7,"2021-08-01","2021-08-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (7,"2021-08-01","2021-08-05","2021-08-05");
 
 -- tháng 9/2021
 -- id=46
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (7,"2021-09-01","2021-09-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (7,"2021-09-01","2021-09-05","2021-09-05");
 -- id=47
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (6,"2021-09-01","2021-09-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (6,"2021-09-01","2021-09-05","2021-09-05");
 -- id=48
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (10,"2021-09-01","2021-09-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (10,"2021-09-01","2021-09-05","2021-09-05");
 -- id=49
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (6,"2021-09-01","2021-09-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (6,"2021-09-01","2021-09-05","2021-09-05");
 -- id=50
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (10,"2021-09-01","2021-09-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (10,"2021-09-01","2021-09-05","2021-09-05");
 -- id=51
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (6,"2021-09-01","2021-09-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (6,"2021-09-01","2021-09-05","2021-09-05");
 -- id=52
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (9,"2021-09-01","2021-09-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (9,"2021-09-01","2021-09-05","2021-09-05");
 -- id=53
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (6,"2021-09-01","2021-09-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (6,"2021-09-01","2021-09-05","2021-09-05");
 -- id=54
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (10,"2021-09-01","2021-09-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (10,"2021-09-01","2021-09-05","2021-09-05");
 -- id=55
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (6,"2021-09-01","2021-09-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (6,"2021-09-01","2021-09-05","2021-09-05");
 -- id=56
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (6,"2021-09-01","2021-09-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (6,"2021-09-01","2021-09-05","2021-09-05");
 -- id=57
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra)
-values (1,"2021-09-01","2021-09-05");
+insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
+values (1,"2021-09-01","2021-09-05","2021-09-05");
 
 -- tạo bảng chi tiết phiểu thuê
 create table if not exists chiTietPhieuThue

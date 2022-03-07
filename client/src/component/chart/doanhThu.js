@@ -2,8 +2,20 @@ import React from "react";
 import { Column } from "@ant-design/plots";
 import { Divider } from "antd";
 export const DoanhThuTheoThang = ({ data: data }) => {
+  const filterData = (data) => {
+    var newData = [];
+    var count = 6;
+    for (let index = data.length - 1; index >= 0; index--) {
+      if (count > 0) {
+        const element = data[index];
+        newData.push(element);
+      }
+      count--;
+    }
+    return newData.reverse();
+  };
+
   const config = {
-    data,
     xField: "monthYear",
     yField: "tongTien",
 
@@ -35,7 +47,7 @@ export const DoanhThuTheoThang = ({ data: data }) => {
   return (
     <div>
       <Divider orientation="left">Doanh thu hàng tháng</Divider>
-      <Column {...config} />
+      <Column {...config} data={filterData(data)} />
     </div>
   );
 };
