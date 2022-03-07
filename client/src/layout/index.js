@@ -35,19 +35,27 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 export const MyLayout = observer(() => {
   return (
     <Router>
-      <Layout>
+      <Layout hasSider>
         <Sider
-          breakpoint="lg"
-          collapsedWidth="0"
-          onBreakpoint={(broken) => {
-            console.log(broken);
+          style={{
+            overflow: "auto",
+            height: "100vh",
+            position: "fixed",
+            left: 0,
+            top: 0,
+            bottom: 0,
           }}
-          onCollapse={(collapsed, type) => {
-            console.log(collapsed, type);
-          }}
+          // breakpoint="lg"
+          // collapsedWidth="0"
+          // onBreakpoint={(broken) => {
+          //   console.log(broken);
+          // }}
+          // onCollapse={(collapsed, type) => {
+          //   console.log(collapsed, type);
+          // }}
         >
           <Link to="/">
-            <div className="logo" />{" "}
+            <div className="logo" />
           </Link>
 
           <Menu theme="dark" mode="inline">
@@ -73,11 +81,17 @@ export const MyLayout = observer(() => {
             </SubMenu>
           </Menu>
         </Sider>
-        <Layout>
-          <Content style={{ margin: "14px 16px 0", minHeight: "90vh" }}>
+        <Layout style={{ marginLeft: 200 }}>
+          <Content
+            style={{
+              margin: "14px 16px 0",
+              minHeight: "80vh",
+              overflow: "initial",
+            }}
+          >
             <div
               className="site-layout-background"
-              style={{ padding: 14, minHeight: "90vh", textAlign: "start" }}
+              style={{ padding: 14, minHeight: "80vh", textAlign: "start" }}
             >
               <Switch>
                 {MyRouter.map((e, index) => (
@@ -92,7 +106,8 @@ export const MyLayout = observer(() => {
             </div>
           </Content>
           <Footer style={{ textAlign: "center" }}>
-            Hệ thống quản lý cho thuê băng đĩa - thành viên thực hiện : Kim + Nam
+            Hệ thống quản lý cho thuê băng đĩa - thành viên thực hiện : Kim +
+            Nam
           </Footer>
         </Layout>
       </Layout>

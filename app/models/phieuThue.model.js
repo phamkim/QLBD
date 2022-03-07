@@ -56,8 +56,7 @@ PhieuThue.insert = (phieuThue, callBack) => {
 
 PhieuThue.update = (phieuThue, callBack) => {
   const sqlString =
-    "UPDATE phieuThue SET ngayThue = ?,ngayHenTra = ?, ngayTra = ?, ngaySua = ?, idNguoiThue = ?, soNgayThue = ?  WHERE id = ?";
-  console.log(phieuThue);
+    "UPDATE phieuThue SET ngayThue = ?,ngayHenTra = ?, ngayTra = ?, ngaySua = ?, idNguoiThue = ? WHERE id = ?";
   db.query(
     sqlString,
     [
@@ -66,7 +65,6 @@ PhieuThue.update = (phieuThue, callBack) => {
       phieuThue.ngayTra,
       phieuThue.ngaySua,
       phieuThue.idNguoiThue,
-      phieuThue.soNgayThue,
       phieuThue.id,
     ],
     (err, res) => {
@@ -88,5 +86,15 @@ PhieuThue.delete = (id, callBack) => {
     callBack("xóa thành công!");
   });
 };
+
+PhieuThue.statistics =(callBack)=>{
+  db.query(`SELECT * FROM viewDoanhThuTheoThang`, (err, res) => {
+    if (err) {
+      callBack(err);
+      return;
+    }
+    callBack(res);
+  });
+}
 
 module.exports = PhieuThue;

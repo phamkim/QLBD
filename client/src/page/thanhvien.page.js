@@ -3,27 +3,27 @@ import { observer } from "mobx-react";
 import { useStores } from "../stores";
 import { Button, Table, Modal, Input, Select, Form } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+
 import "./style.css";
 import { toJS } from "mobx";
 const { Option } = Select;
-
+const layout = {
+  labelCol: {
+    span: 9,
+  },
+  wrapperCol: {
+    span: 10,
+  },
+};
 export const ThanhVienPage = observer(() => {
-  const layout = {
-    labelCol: {
-      span: 9,
-    },
-    wrapperCol: {
-      span: 10,
-    },
-  };
   const [form] = Form.useForm();
   const { thanhVienStore } = useStores();
   const [isOpenEdit, setIsOpenEdit] = useState(false);
   const [isOpenAdd, setIsOpenAdd] = useState(false);
   const [dataSource, setDataSource] = useState();
   const [refresh, setRefresh] = useState(false);
+
   useEffect(() => {
-    console.log("thanhVienPage: useEffect()");
     thanhVienStore.getData().then(() => {
       setDataSource(toJS(thanhVienStore.data));
     });
@@ -37,16 +37,33 @@ export const ThanhVienPage = observer(() => {
       key: "1",
       title: "Mã thẻ thành viên",
       dataIndex: "maTTV",
+      filterSearch: true,
+      filters: dataSource
+        ? dataSource.map((e) => ({ text: e.maTTV, value: e.maTTV }))
+        : null,
+      onFilter: (value, record) => record.hoTen.includes(value),
     },
     {
       key: "2",
       title: "Họ Tên",
       dataIndex: "hoTen",
+      filterSearch: true,
+      filters: dataSource
+        ? dataSource.map((e) => ({ text: e.hoTen, value: e.hoTen }))
+        : null,
+      onFilter: (value, record) => record.hoTen.includes(value),
+      sorter: (a, b) => a.hoTen.length - b.hoTen.length,
+      sortDirections: ['descend'],
     },
     {
       key: "3",
       title: "Số CMT",
       dataIndex: "soCMT",
+      filterSearch: true,
+      filters: dataSource
+        ? dataSource.map((e) => ({ text: e.soCMT, value: e.soCMT }))
+        : null,
+      onFilter: (value, record) => record.soCMT.includes(value),
     },
     {
       key: "4",
@@ -58,7 +75,6 @@ export const ThanhVienPage = observer(() => {
       key: "5",
       title: "Phân Quyền",
       render: (record) => {
-
         if (record.phanQuyen == 2) {
           return "Admin";
         } else if (record.phanQuyen == 1) {
@@ -71,6 +87,8 @@ export const ThanhVienPage = observer(() => {
     {
       key: "6",
       title: "Actions",
+      fixed: "right",
+      width: 90,
       render: (record) => {
         return (
           <>
@@ -91,19 +109,18 @@ export const ThanhVienPage = observer(() => {
     },
   ];
 
+
   const onAddFinish = (values) => {
-    thanhVienStore
-      .insertData(values)
-      .then(() => {
-        setRefresh(!refresh);
-        resetEditing();
-      })
+    thanhVienStore.insertData(values).then(() => {
+      setRefresh(!refresh);
+      resetEditing();
+    });
   };
 
   const onAddThanhVien = () => {
     form.setFieldsValue();
     setIsOpenAdd(true);
-  }
+  };
   const onDeleteThanhVien = (record) => {
     Modal.confirm({
       title: "Bạn có chắc chắn xóa thành viên này?",
@@ -116,23 +133,21 @@ export const ThanhVienPage = observer(() => {
     });
   };
   const onEditThanhVien = (record) => {
-      setIsOpenEdit(true);
-      form.setFieldsValue({
-        id: record.id,
-        maTTV: record.maTTV,
-        hoTen: record.hoTen,
-        soCMT: record.soCMT,
-        diaChi: record.diaChi, 
-        phanQuyen: record.phanQuyen,
-      })
+    setIsOpenEdit(true);
+    form.setFieldsValue({
+      id: record.id,
+      maTTV: record.maTTV,
+      hoTen: record.hoTen,
+      soCMT: record.soCMT,
+      diaChi: record.diaChi,
+      phanQuyen: record.phanQuyen,
+    });
   };
   const onEditFinish = (values) => {
-    thanhVienStore
-      .updateData(values)
-      .then(() =>{
-        setRefresh(!refresh);
-        resetEditing();
-      })
+    thanhVienStore.updateData(values).then(() => {
+      setRefresh(!refresh);
+      resetEditing();
+    });
   };
   const resetEditing = () => {
     setIsOpenAdd(false);
@@ -142,9 +157,9 @@ export const ThanhVienPage = observer(() => {
       maTTV: null,
       hoTen: null,
       soCMT: null,
-      diaChi: null, 
+      diaChi: null,
       phanQuyen: null,
-    })
+    });
   };
 
   return (
@@ -163,6 +178,8 @@ export const ThanhVienPage = observer(() => {
         dataSource={dataSource}
         scroll={{ x: 800, y: 400 }}
         bordered
+        style={{textAlign: 'center'}}
+        title={() => <h5>Bảng danh sách thành viên của của hàng</h5>}
       ></Table>
 
       <Modal
@@ -188,11 +205,7 @@ export const ThanhVienPage = observer(() => {
           >
             <Input placeholder="Mã thẻ thành viên" />
           </Form.Item>
-          <Form.Item
-            name="hoTen"
-            label="Họ tên"
-            rules={[{ required: true }]}
-          >
+          <Form.Item name="hoTen" label="Họ tên" rules={[{ required: true }]}>
             <Input placeholder="Họ tên" />
           </Form.Item>
           <Form.Item
@@ -202,11 +215,7 @@ export const ThanhVienPage = observer(() => {
           >
             <Input placeholder="Số CMT/CC" />
           </Form.Item>
-          <Form.Item
-            name="diaChi"
-            label="Địa chỉ"
-            rules={[{ required: true }]}
-          >
+          <Form.Item name="diaChi" label="Địa chỉ" rules={[{ required: true }]}>
             <Input placeholder="Địa chỉ" />
           </Form.Item>
           <Form.Item
@@ -252,11 +261,7 @@ export const ThanhVienPage = observer(() => {
           >
             <Input placeholder="Mã thẻ thành viên" />
           </Form.Item>
-          <Form.Item
-            name="hoTen"
-            label="Họ tên"
-            rules={[{ required: true }]}
-          >
+          <Form.Item name="hoTen" label="Họ tên" rules={[{ required: true }]}>
             <Input placeholder="Họ tên" />
           </Form.Item>
           <Form.Item
@@ -266,11 +271,7 @@ export const ThanhVienPage = observer(() => {
           >
             <Input placeholder="Số CMT/CC" />
           </Form.Item>
-          <Form.Item
-            name="diaChi"
-            label="Địa chỉ"
-            rules={[{ required: true }]}
-          >
+          <Form.Item name="diaChi" label="Địa chỉ" rules={[{ required: true }]}>
             <Input placeholder="Địa chỉ" />
           </Form.Item>
           <Form.Item
@@ -291,74 +292,6 @@ export const ThanhVienPage = observer(() => {
           </Form.Item>
         </Form>
       </Modal>
-      {/* <Modal
-        title="Edit ThanhVien"
-        visible={isEditing}
-        okText="Save"
-        onCancel={() => {
-          resetEditing();
-        }}
-        onOk={() => {
-          thanhVienStore.updateData(editingThanhVien);
-          setRefresh(!refresh);
-          resetEditing();
-        }}
-      >
-        <Input
-          className="input_style"
-          placeholder="Mã thẻ thành viên"
-          value={editingThanhVien?.maTTV}
-          onChange={(e) => {
-            setEditingThanhVien((pre) => {
-              return { ...pre, maTTV: e.target.value };
-            });
-          }}
-        />
-        <Input
-          className="input_style"
-          placeholder="Họ tên"
-          value={editingThanhVien?.hoTen}
-          onChange={(e) => {
-            setEditingThanhVien((pre) => {
-              return { ...pre, hoTen: e.target.value };
-            });
-          }}
-        />
-        <Input
-          className="input_style"
-          placeholder="Số cmt hoặc số căn cước"
-          value={editingThanhVien?.soCMT}
-          onChange={(e) => {
-            setEditingThanhVien((pre) => {
-              return { ...pre, soCMT: e.target.value };
-            });
-          }}
-        />
-        <Input
-          className="input_style"
-          placeholder="Địa chỉ"
-          value={editingThanhVien?.diaChi}
-          onChange={(e) => {
-            setEditingThanhVien((pre) => {
-              return { ...pre, diaChi: e.target.value };
-            });
-          }}
-        />
-
-        <Select
-          className="input_style"
-          defaultValue={editingThanhVien?.phanQuyen}
-          onChange={(e) => {
-            setEditingThanhVien((pre) => {
-              return { ...pre, phanQuyen: e };
-            });
-          }}
-        >
-          <Option value={0}>Thành viên</Option>
-          <Option value={1}>Nhân Viên</Option>
-          <Option value={2}>Admin</Option>
-        </Select>
-      </Modal> */}
     </div>
   );
 });

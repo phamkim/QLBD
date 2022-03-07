@@ -33,3 +33,9 @@ exports.delete = (req, res) => {
     res.send(result);
   });
 };
+
+exports.statistics = (req, res) => {
+  ThanhVien.statistics((result) => {
+    res.send(result);
+  });
+};

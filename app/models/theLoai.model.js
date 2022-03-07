@@ -63,4 +63,15 @@ TheLoai.delete = (id, callBack) => {
   });
 };
 
+TheLoai.statistics = (callBack) => {
+  db.query(`SELECT * FROM toptheloai`, (err, res) => {
+    if (err) {
+      callBack(err);
+      return;
+    }
+    callBack(res);
+  });
+};
+
+
 module.exports = TheLoai;

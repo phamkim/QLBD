@@ -12,11 +12,11 @@ import {
   Space,
   Divider,
   InputNumber,
+  Typography,
 } from "antd";
 import {
   EditOutlined,
   DeleteOutlined,
-  MoreOutlined,
   MinusCircleOutlined,
 } from "@ant-design/icons";
 import "./style.css";
@@ -24,6 +24,7 @@ import { toJS } from "mobx";
 import { convertDMY, getDateToday } from "../common/index";
 import moment from "moment";
 const { Option } = Select;
+const { Text } = Typography;
 const dateFormat = "DD/MM/YYYY";
 const layout = {
   labelCol: {
@@ -46,7 +47,6 @@ export const PhieuThuePage = observer(() => {
   const [chiTietPhieuThue, setChiTietPhieuThue] = useState([]);
 
   useEffect(() => {
-    console.log("phieuThuePage: useEffect()");
     phieuThueStore.getData().then(() => {
       setDataSource(toJS(phieuThueStore.data));
     });
@@ -64,12 +64,9 @@ export const PhieuThuePage = observer(() => {
   }, [refresh]);
 
   useEffect(() => {
-    console.log(chiTietPhieuThue);
     var tongTien = 0;
     chiTietPhieuThue?.forEach((element) => {
-      console.log(element);
       tongTien = tongTien + element.soLuong * element.donGia;
-      console.log(tongTien);
       form.setFieldsValue({
         tongTien: tongTien.toFixed(2),
       });
@@ -81,6 +78,11 @@ export const PhieuThuePage = observer(() => {
       key: "1",
       title: "Người Thuê",
       dataIndex: "idNguoiThue",
+      filterSearch: true,
+      filters: thanhVienStore.data
+        ? thanhVienStore.data.map((e) => ({ text: e.hoTen, value: e.id }))
+        : null,
+      onFilter: (value, record) => record.idNguoiThue == value,
       render: (idNguoiThue) => {
         let hoTen = "";
         thanhVienStore.data.map((data) => {
@@ -122,10 +124,13 @@ export const PhieuThuePage = observer(() => {
       render: (tongTien) => {
         return tongTien.toFixed(2);
       },
+      sorter: (a, b) => a.tongTien - b.tongTien,
     },
     {
       key: "6",
       title: "Actions",
+      fixed: "right",
+      width: 90,
       render: (record) => {
         return (
           <>
@@ -140,7 +145,6 @@ export const PhieuThuePage = observer(() => {
               }}
               style={{ color: "red", marginLeft: 12 }}
             />
-            <MoreOutlined style={{ color: "blue", marginLeft: 12 }} />
           </>
         );
       },
@@ -269,6 +273,8 @@ export const PhieuThuePage = observer(() => {
         dataSource={dataSource}
         scroll={{ x: 800, y: 400 }}
         bordered
+        style={{textAlign: 'center'}}
+        title={() => <h5>Bảng danh sách phiếu thuê băng đĩa của cửa hàng</h5>}
       ></Table>
 
       <Modal

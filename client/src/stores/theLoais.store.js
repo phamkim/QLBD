@@ -9,19 +9,16 @@ class TheLoaiStore {
   }
 
   setData = (data) => {
-    console.log("theLoaiStore.setData()");
     if (data) {
       this.data = Array.from(data).reverse();
     }
   };
 
   clearData = () => {
-    console.log("theLoaiStore.clearData()");
     this.data = [];
   };
 
   getData = async () => {
-    console.log("theLoaiStore.getData()");
     let config = {
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +27,6 @@ class TheLoaiStore {
     };
     await API.get("/theLoai", config)
       .then((result) => {
-        console.log(result.data);
         this.setData(result.data);
       })
       .catch((err) => {
@@ -39,7 +35,6 @@ class TheLoaiStore {
   };
 
   insertData = async (data) => {
-    console.log("theLoaiStore.insertData()");
     let theLoai = JSON.stringify({
       tenTheLoai: data.tenTheLoai,
       ghiChu: data.ghiChu,
@@ -56,7 +51,6 @@ class TheLoaiStore {
   };
 
   deleteData = (id) => {
-    console.log("theLoaiStore.deleteData()");
     let result = null;
     API.delete("/theLoai/" + id)
       .then((res) => {
@@ -72,7 +66,6 @@ class TheLoaiStore {
   };
 
   updateData = async (data) => {
-    console.log("theLoaiStore.updateData()");
     let theLoai = JSON.stringify({
       id: data.id,
       tenTheLoai: data.tenTheLoai,

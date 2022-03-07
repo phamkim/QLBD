@@ -6,25 +6,23 @@ import "./style.css";
 import { toJS } from "mobx";
 import { useStores } from "../stores";
 const { TextArea } = Input;
+const layout = {
+  labelCol: {
+    span: 9,
+  },
+  wrapperCol: {
+    span: 10,
+  },
+};
 export const TheLoaiPage = observer(() => {
-  const layout = {
-    labelCol: {
-      span: 9,
-    },
-    wrapperCol: {
-      span: 10,
-    },
-  };
   const [form] = Form.useForm();
   const { theLoaiStore } = useStores();
   const [isOpenEdit, setIsOpenEdit] = useState(false);
-  const [editingTheLoai, setEditingTheLoai] = useState(null);
   const [dataSource, setDataSource] = useState();
   const [refresh, setRefresh] = useState(false);
   const [isOpenAdd, setIsOpenAdd] = useState(false);
 
   useEffect(() => {
-    console.log("theLoaiPage: useEffect()");
     theLoaiStore.getData().then(() => {
       setDataSource(toJS(theLoaiStore.data));
     });
@@ -38,6 +36,12 @@ export const TheLoaiPage = observer(() => {
       key: "1",
       title: "Tên Thể loại",
       dataIndex: "tenTheLoai",
+      width: 150,
+      filterSearch: true,
+      filters: dataSource
+        ? dataSource.map((e) => ({ text: e.tenTheLoai, value: e.tenTheLoai }))
+        : null,
+      onFilter: (value, record) => record.tenTheLoai.includes(value),
     },
     {
       key: "2",
@@ -46,7 +50,9 @@ export const TheLoaiPage = observer(() => {
     },
     {
       key: "3",
-      title: "Action",
+      title: "Actions",
+      fixed: "right",
+      width: 90,
       render: (record) => {
         return (
           <>
@@ -92,25 +98,25 @@ export const TheLoaiPage = observer(() => {
   };
   const resetEditing = () => {
     setIsOpenEdit(false);
-    setEditingTheLoai(null);
     setIsOpenAdd(false);
+    form.setFieldsValue({
+      id: null,
+      tenTheLoai: null,
+      ghiChu: null,
+    });
   };
   const onAddFinish = (values) => {
-    theLoaiStore
-      .insertData(values)
-      .then(() => {
-        setRefresh(!refresh);
-        resetEditing();
-      })
+    theLoaiStore.insertData(values).then(() => {
+      setRefresh(!refresh);
+      resetEditing();
+    });
   };
   const onEditFinish = (values) => {
-    theLoaiStore
-      .updateData(values)
-      .then(() => {
-        setRefresh(!refresh);
-        resetEditing();
-      })
-  }
+    theLoaiStore.updateData(values).then(() => {
+      setRefresh(!refresh);
+      resetEditing();
+    });
+  };
   return (
     <div className="container-fluid">
       <Button
@@ -125,6 +131,8 @@ export const TheLoaiPage = observer(() => {
         dataSource={dataSource}
         scroll={{ x: 800, y: 400 }}
         bordered
+        style={{textAlign: 'center'}}
+        title={() => <h5>Bảng danh sách thể loại băng đĩa</h5>}
       ></Table>
 
       <Modal
@@ -150,11 +158,7 @@ export const TheLoaiPage = observer(() => {
           >
             <Input placeholder="Tên thể loại" />
           </Form.Item>
-          <Form.Item
-            name="ghiChu"
-            label="Ghi chú"
-            rules={[{ required: true }]}
-          >
+          <Form.Item name="ghiChu" label="Ghi chú" rules={[{ required: true }]}>
             <TextArea rows={4} />
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
@@ -189,11 +193,7 @@ export const TheLoaiPage = observer(() => {
           >
             <Input placeholder="Tên thể loại" />
           </Form.Item>
-          <Form.Item
-            name="ghiChu"
-            label="Ghi chú"
-            rules={[{ required: true }]}
-          >
+          <Form.Item name="ghiChu" label="Ghi chú" rules={[{ required: true }]}>
             <TextArea rows={4} />
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 9, span: 14 }}>

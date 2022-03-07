@@ -10,19 +10,16 @@ class ThanhVienStore {
   }
 
   setData = (data) => {
-    console.log("thanhVienStore.setData()");
     if (data) {
       this.data = Array.from(data).reverse();
     }
   };
 
   clearData = () => {
-    console.log("thanhVienStore.clearData()");
     this.data = [];
   };
 
   getData = async () => {
-    console.log("thanhVienStore.getData()");
     let config = {
       headers: {
         "Content-Type": "application/json",
@@ -38,8 +35,7 @@ class ThanhVienStore {
       });
   };
 
-  insertData = async(data) => {
-    console.log("thanhVienStore.insertData()");
+  insertData = async (data) => {
     let thanhVien = JSON.stringify({
       maTTV: data.maTTV,
       hoTen: data.hoTen,
@@ -61,7 +57,6 @@ class ThanhVienStore {
   };
 
   deleteData = (id) => {
-    console.log("thanhVienStore.deleteData()");
     let result = null;
     API.delete("/thanhVien/" + id)
       .then((res) => {
@@ -76,8 +71,7 @@ class ThanhVienStore {
     return result;
   };
 
-  updateData = async(data) => {
-    console.log("thanhVienStore.updateData()");
+  updateData = async (data) => {
     let thanhVien = JSON.stringify({
       id: data.id,
       hoTen: data.hoTen,

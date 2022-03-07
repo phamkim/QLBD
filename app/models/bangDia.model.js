@@ -79,4 +79,14 @@ BangDia.delete = (id, callBack) => {
   });
 };
 
+BangDia.statistics = (callBack) => {
+  db.query(`SELECT * FROM luotthuebangdiafull`, (err, res) => {
+    if (err) {
+      callBack(err);
+      return;
+    }
+    callBack(res);
+  });
+};
+
 module.exports = BangDia;

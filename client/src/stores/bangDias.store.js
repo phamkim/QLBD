@@ -2,114 +2,107 @@ import { makeAutoObservable } from "mobx";
 import { API } from "../common/request";
 import { getDateToday } from "../common/index";
 class BangDiaStore {
-    data = [];
+  data = [];
 
-    constructor(rootStore) {
-        this.rootStore = rootStore;
-        makeAutoObservable(this);
+  constructor(rootStore) {
+    this.rootStore = rootStore;
+    makeAutoObservable(this);
+  }
+
+  setData = (data) => {
+    if (data) {
+      this.data = Array.from(data).reverse();
     }
+  };
 
-    setData = (data) => {
-        console.log("bangDiaStore.setData()");
-        if (data) {
-            this.data = Array.from(data).reverse();
+  clearData = () => {
+    this.data = [];
+  };
+
+  getData = async () => {
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: window.sessionStorage.getItem("token"),
+      },
+    };
+    await API.get("/bangDia", config)
+      .then((result) => {
+        this.setData(result.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  insertData = async (data) => {
+    let bangDia = JSON.stringify({
+      hinhAnh: data.hinhAnh,
+      tenBangDia: data.tenBangDia,
+      idTheLoai: parseInt(data.idTheLoai),
+      idNhaSX: parseInt(data.idNhaSX),
+      tinhTrang: data.tinhTrang,
+      ghiChu: data.ghiChu,
+    });
+    let result = null;
+    await API.post("/bangDia", bangDia)
+      .then((data) => {
+        result = data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    return result;
+  };
+
+  deleteData = (id) => {
+    let result = null;
+    API.delete("/bangDia/" + id)
+      .then((res) => {
+        if (res.data.code === "ER_ROW_IS_REFERENCED_2") {
+          alert("không thể xóa băng đĩa này");
         }
-    };
+        result = res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    return result;
+  };
 
-    clearData = () => {
-        console.log("bangDiaStore.getData()");
-        this.data = [];
-    };
+  updateData = async (data) => {
+    let bangDia = JSON.stringify({
+      id: data.id,
+      hinhAnh: data.hinhAnh,
+      tenBangDia: data.tenBangDia,
+      idTheLoai: parseInt(data.idTheLoai),
+      idNhaSX: parseInt(data.idNhaSX),
+      tinhTrang: data.tinhTrang,
+      ngaySua: getDateToday(),
+      ghiChu: data.ghiChu,
+    });
 
-    getData = async () => {
-        console.log("bangDiaStore.getData()");
-        let config = {
-            headers: {
-                "Content-Type": "application/json",
-                authorization: window.sessionStorage.getItem("token"),
-            },
-        };
-        await API.get("/bangDia", config)
-            .then((result) => {
-                this.setData(result.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
-    insertData = async (data) => {
-        console.log("bangDiaStore.insertData()");
-        let bangDia = JSON.stringify({
-            hinhAnh: data.hinhAnh,
-            tenBangDia: data.tenBangDia,
-            idTheLoai: parseInt(data.idTheLoai),
-            idNhaSX: parseInt(data.idNhaSX),
-            tinhTrang: data.tinhTrang,
-            ghiChu: data.ghiChu,
-        });
-        let result = null;
-        await API.post("/bangDia", bangDia)
-            .then((data) => {
-                result = data;
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        return result;
-    };
+    let result = null;
+    await API.put("/bangDia", bangDia)
+      .then((data) => {
+        result = data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    return result;
+  };
 
-    deleteData = (id) => {
-        console.log("bangDiaStore.deleteData()");
-        let result = null;
-        API.delete("/bangDia/" + id)
-            .then((res) => {
-                if (res.data.code === "ER_ROW_IS_REFERENCED_2") {
-                    alert("không thể xóa băng đĩa này");
-                  }
-                result = res.data;
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        return result;
-    };
-    
-    updateData = async (data) => {
-        console.log(data);
-        console.log("bangDiaStore.updateData()");
-        let bangDia = JSON.stringify({
-            id: data.id,
-            hinhAnh: data.hinhAnh,
-            tenBangDia: data.tenBangDia,
-            idTheLoai: parseInt(data.idTheLoai),
-            idNhaSX: parseInt(data.idNhaSX),
-            tinhTrang: data.tinhTrang,
-            ngaySua: getDateToday(),
-            ghiChu: data.ghiChu,
-        });
-        
-        let result = null;
-        await API.put("/bangDia", bangDia)
-            .then((data) => {
-                result = data;
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        return result;
-    };
-
-    getStatistic = async () => {
-        let result = null;
-        await API.get("/bangDia/statistics")
-          .then((res) => {
-            result = res.data;
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-        return result;
-      };
+  getStatistic = async () => {
+    let result = null;
+    await API.get("/bangDia/statistics")
+      .then((res) => {
+        result = res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    return result;
+  };
 }
 
 export default BangDiaStore;

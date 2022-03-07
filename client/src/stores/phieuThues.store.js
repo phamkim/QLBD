@@ -73,7 +73,7 @@ class PhieuThueStore {
       ngayHenTra: convertYMD(data.ngayHenTra),
       ngayTra: convertYMD(data.ngayTra),
       ngaySua: getDateToday(),
-      idNguoiThue: parseInt(data.idNguoiThue),
+      idNguoiThue: data.idNguoiThue,
     });
     console.log(phieuThue);
     let result = null;

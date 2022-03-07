@@ -95,4 +95,14 @@ ThanhVien.checkLogin = (data, callBack) => {
   );
 };
 
+ThanhVien.statistics = (callBack) => {
+  db.query(`SELECT * FROM topthanhvien`, (err, res) => {
+    if (err) {
+      callBack(err);
+      return;
+    }
+    callBack(res);
+  });
+};
+
 module.exports = ThanhVien;

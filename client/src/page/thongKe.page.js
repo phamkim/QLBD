@@ -16,8 +16,8 @@ export const ThongKePage = observer(() => {
 
   const tongDoanhThu = (doanhThu) => {
     var result = 0;
-    doanhThu.forEach((element) => {
-      result += element.tongTien;
+    doanhThu.forEach(({ tongTien }) => {
+      result += tongTien;
     });
     return result;
   };
@@ -29,22 +29,15 @@ export const ThongKePage = observer(() => {
 
     theLoaiStore.getStatistic().then((data) => {
       setTopTheLoai(data);
-      console.log(data);
     });
-
     phieuThueStore.getStatistic().then((data) => {
       setDoanhThu(data);
-      console.log(data);
     });
-
     bangDiaStore.getStatistic().then((data) => {
       setTopBangDia(data);
-      console.log(data);
     });
-
     thanhVienStore.getStatistic().then((data) => {
       setTopThanhVien(data);
-      console.log(data);
     });
   }, []);
 

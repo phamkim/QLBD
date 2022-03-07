@@ -7,7 +7,7 @@ export const TopThanhVien = ({ data: data }) => {
     data,
     xField: "luotThue",
     yField: "hoTen",
-    seriesField: "hoTen",
+    seriesField: "luotThue",
     legend: {
       position: "top-left",
     },

@@ -7,7 +7,7 @@ class ThanhVien {
   passW = "";
   token = window.sessionStorage.getItem("token");
   tokenFailed = false;
-  
+
   constructor(rootStore) {
     this.rootStore = rootStore;
     makeAutoObservable(this);
@@ -15,7 +15,6 @@ class ThanhVien {
 
   refreshToken() {
     this.token = window.sessionStorage.getItem("token");
-    console.log(this.token);
   }
 
   async logIn(userName, passW) {

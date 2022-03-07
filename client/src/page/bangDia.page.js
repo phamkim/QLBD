@@ -25,7 +25,6 @@ export const BangDiaPage = observer(() => {
   const [nhaSanXuats, setNhaSanXuats] = useState();
   const [isOpenAdd, setIsOpenAdd] = useState(false);
   useEffect(() => {
-    console.log("bangDiaPage: useEffect()");
     bangDiaStore.getData().then(() => {
       setDataSource(toJS(bangDiaStore.data));
     });
@@ -47,11 +46,24 @@ export const BangDiaPage = observer(() => {
       key: "1",
       title: "Tên Băng Đĩa",
       dataIndex: "tenBangDia",
+      filterSearch: true,
+      filters: dataSource
+        ? dataSource.map((e) => ({ text: e.tenBangDia, value: e.tenBangDia }))
+        : null,
+      onFilter: (value, record) => record.tenBangDia.includes(value),
     },
     {
       key: "2",
       title: "Thể loại",
       dataIndex: "idTheLoai",
+      filterSearch: true,
+      filters: theLoaiStore.data
+        ? theLoaiStore.data.map((e) => ({
+            text: e.tenTheLoai,
+            value: e.id,
+          }))
+        : null,
+      onFilter: (value, record) => record.idTheLoai == value,
       render: (idTheLoai) => {
         let tenTheLoai = "";
         theLoaiStore.data.map((data) => {
@@ -66,6 +78,14 @@ export const BangDiaPage = observer(() => {
       key: "3",
       title: "Nhà sản xuất",
       dataIndex: "idNhaSX",
+      filterSearch: true,
+      filters: nhaSanXuatStore.data
+        ? nhaSanXuatStore.data.map((e) => ({
+            text: e.tenNhaSX,
+            value: e.id,
+          }))
+        : null,
+      onFilter: (value, record) => record.idNhaSX == value,
       render: (idNhaSX) => {
         let tenNhaSX = "";
         nhaSanXuatStore.data.map((data) => {
@@ -80,15 +100,34 @@ export const BangDiaPage = observer(() => {
       key: "4",
       title: "Tình trạng",
       dataIndex: "tinhTrang",
+      filters: [
+        {
+          text: "Mới",
+          value: "Mới",
+        },
+        {
+          text: "Mới 99%",
+          value: "Mới 99%",
+        },
+        {
+          text: "Mới 89%",
+          value: "Mới 89%",
+        },
+      ],
+      onFilter: (value, record) => record.tinhTrang.startsWith(value),
+      width: "10%",
     },
     {
       key: "5",
       title: "Ghi chú",
       dataIndex: "ghiChu",
+      width: "30%",
     },
     {
       key: "6",
-      title: "Action",
+      title: "Actions",
+      fixed: "right",
+      width: 90,
       render: (record) => {
         return (
           <>
@@ -133,7 +172,7 @@ export const BangDiaPage = observer(() => {
       idNhaSX: record.idNhaSX,
       tinhTrang: record.tinhTrang,
       ghiChu: record.ghiChu,
-    })
+    });
   };
   const resetEditing = () => {
     setIsOpenEdit(false);
@@ -145,23 +184,19 @@ export const BangDiaPage = observer(() => {
       idNhaSX: null,
       tinhTrang: null,
       ghiChu: null,
-    })
+    });
   };
   const onAddFinish = (values) => {
-    bangDiaStore
-      .insertData(values)
-      .then(() => {
-        setRefresh(!refresh);
-        resetEditing();
-      })
+    bangDiaStore.insertData(values).then(() => {
+      setRefresh(!refresh);
+      resetEditing();
+    });
   };
   const onEditFinish = (values) => {
-    bangDiaStore
-      .updateData(values)
-      .then(() => {
-        setRefresh(!refresh);
-        resetEditing();
-      })
+    bangDiaStore.updateData(values).then(() => {
+      setRefresh(!refresh);
+      resetEditing();
+    });
   };
   return (
     <div className="container-fluid">
@@ -177,6 +212,8 @@ export const BangDiaPage = observer(() => {
         dataSource={dataSource}
         scroll={{ x: 800, y: 400 }}
         bordered
+        style={{ textAlign: "center" }}
+        title={() => <h5>Bảng danh sách băng đĩa của cửa hàng</h5>}
       ></Table>
 
       <Modal
@@ -239,10 +276,7 @@ export const BangDiaPage = observer(() => {
               <Option value="Mới 89%">Mới 89%</Option>
             </Select>
           </Form.Item>
-          <Form.Item
-            name="ghiChu"
-            label="Ghi chú"
-          >
+          <Form.Item name="ghiChu" label="Ghi chú">
             <TextArea rows={4} />
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
@@ -251,7 +285,6 @@ export const BangDiaPage = observer(() => {
             </Button>
           </Form.Item>
         </Form>
-
       </Modal>
 
       <Modal
@@ -315,10 +348,7 @@ export const BangDiaPage = observer(() => {
               <Option value="Mới 89%">Mới 89%</Option>
             </Select>
           </Form.Item>
-          <Form.Item
-            name="ghiChu"
-            label="Ghi chú"
-          >
+          <Form.Item name="ghiChu" label="Ghi chú">
             <TextArea rows={4} />
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 9, span: 14 }}>

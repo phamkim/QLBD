@@ -33,3 +33,9 @@ exports.delete = (req, res) => {
     res.send(result);
   });
 };
+
+exports.statistics = (req, res) => {
+  TheLoai.statistics((result) => {
+    res.send(result);
+  });
+};
