@@ -6,6 +6,7 @@ import { DoanhThuTheoThang } from "../component/chart/doanhThu";
 import { TopBangDia } from "../component/chart/topBangDia";
 import { TopThanhVien } from "../component/chart/TopThanhVien";
 import { Row, Col, Statistic } from "antd";
+import "./style.css"
 export const ThongKePage = observer(() => {
   const { theLoaiStore, phieuThueStore, bangDiaStore, thanhVienStore } =
     useStores();
@@ -43,49 +44,55 @@ export const ThongKePage = observer(() => {
 
   return (
     <div className="powerbi-page site-layout-background">
-      <Row justify="space-around">
-        <Col span={4}>
+      <Row className="row-quantity" justify="space-around">
+        <Col span={5}>
           <Statistic
-            title="Số lượng băng đĩa"
-            valueStyle={{ color: "#3f8600" }}
+            className="sta tag1"
+            title="SỐ LƯỢNG BĂNG ĐĨA"
+            valueStyle={{ color: "#feffff" }}
             value={bangDiaStore.data.length}
           />
         </Col>
-        <Col span={4}>
+        <Col span={5}>
           <Statistic
-            title="Số lượng thành viên"
-            valueStyle={{ color: "#3f8600" }}
+            className="sta tag2"
+            title="SỐ LƯỢNG THÀNH VIÊN"
+            valueStyle={{ color: "#feffff" }}
             value={thanhVienStore.data.length}
           />
         </Col>
-        <Col span={4}>
+        <Col span={5}>
           <Statistic
-            title="Số lượt thuê băng đĩa"
-            valueStyle={{ color: "#3f8600" }}
+            className="sta tag3"
+            title="SỐ LƯỢT THUÊ BĂNG ĐĨA"
+            valueStyle={{ color: "#feffff" }}
             value={phieuThueStore.data.length}
           />
         </Col>
-        <Col span={4}>
+        <Col span={5}>
           <Statistic
-            title="Tổng doanhThu"
-            valueStyle={{ color: "#3f8600" }}
+            className="sta tag4"
+            title="TỔNG DOANH THU"
+            valueStyle={{ color: "#feffff" }}
             value={doanhThu ? tongDoanhThu(doanhThu) : 0}
+            suffix="VND"
           />
         </Col>
       </Row>
-      <Row justify="space-around" align="middle" style={{ height: "75vh" }}>
-        <Col span={10}>
+  
+      <Row className="row-chart" justify="space-around" align="middle" style={{ height: 500 }}>
+        <Col span={11} className="col-chart">
           {topBangDia ? <TopBangDia data={topBangDia} /> : null}
         </Col>
-        <Col span={10}>
+        <Col span={11} className="col-chart">
           {doanhThu ? <DoanhThuTheoThang data={doanhThu} /> : null}
         </Col>
       </Row>
-      <Row justify="space-around" align="middle" style={{ height: "75vh" }}>
-        <Col span={10}>
+      <Row className="row-chart" justify="space-around" align="middle" style={{ height: 500 }}>
+        <Col span={11} className="col-chart">
           {topTheLoai ? <TopTheLoai data={topTheLoai} /> : null}
         </Col>
-        <Col span={10}>
+        <Col span={11} className="col-chart">
           {topThanhVien ? <TopThanhVien data={topThanhVien} /> : null}
         </Col>
       </Row>
