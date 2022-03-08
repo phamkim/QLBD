@@ -66,7 +66,9 @@ export const PhieuThuePage = observer(() => {
   useEffect(() => {
     var tongTien = 0;
     chiTietPhieuThue?.forEach((element) => {
-      tongTien = tongTien + element.soLuong * element.donGia;
+      if (element.soLuong && element.donGia) {
+        tongTien = tongTien + element.soLuong * element.donGia;
+      }
       form.setFieldsValue({
         tongTien: tongTien.toFixed(2),
       });
@@ -273,7 +275,7 @@ export const PhieuThuePage = observer(() => {
         dataSource={dataSource}
         scroll={{ x: 800, y: 400 }}
         bordered
-        style={{textAlign: 'center'}}
+        style={{ textAlign: "center" }}
         title={() => <h5>Bảng danh sách phiếu thuê băng đĩa của cửa hàng</h5>}
       ></Table>
 

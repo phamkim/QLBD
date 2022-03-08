@@ -55,7 +55,9 @@ export const MyLayout = observer(() => {
           // }}
         >
           <Link to="/">
-            <div className="logo" />
+            <div className="logo" style={{ background:"#001529", color:"#FFFFFF", fontStyle:"bold" }}>
+              QUẢN LÝ BĂNG ĐĨA  
+            </div>
           </Link>
 
           <Menu theme="dark" mode="inline">
