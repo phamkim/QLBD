@@ -44,28 +44,28 @@ export const ThongKePage = observer(() => {
   return (
     <div className="powerbi-page site-layout-background">
       <Row justify="space-around">
-        <Col span={4}>
+        <Col span={5}>
           <Statistic
             title="Số lượng băng đĩa"
             valueStyle={{ color: "#3f8600" }}
             value={bangDiaStore.data.length}
           />
         </Col>
-        <Col span={4}>
+        <Col span={5}>
           <Statistic
             title="Số lượng thành viên"
             valueStyle={{ color: "#3f8600" }}
             value={thanhVienStore.data.length}
           />
         </Col>
-        <Col span={4}>
+        <Col span={5}>
           <Statistic
             title="Số lượt thuê băng đĩa"
             valueStyle={{ color: "#3f8600" }}
             value={phieuThueStore.data.length}
           />
         </Col>
-        <Col span={4}>
+        <Col span={5}>
           <Statistic
             title="Tổng doanhThu"
             valueStyle={{ color: "#3f8600" }}
