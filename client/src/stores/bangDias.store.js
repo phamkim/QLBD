@@ -93,8 +93,14 @@ class BangDiaStore {
   };
 
   getStatistic = async () => {
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: window.sessionStorage.getItem("token"),
+      },
+    };
     let result = null;
-    await API.get("/bangDia/statistics")
+    await API.get("/bangDia/statistics", config)
       .then((res) => {
         result = res.data;
       })

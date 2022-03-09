@@ -34,7 +34,7 @@ class ThanhVien {
     await axios(config)
       .then((response) => {
         console.log(response);
-        if (response.data.token !== null) {
+        if (response.data.token != null) {
           window.sessionStorage.setItem("token", response.data.token);
         } else {
           alert("sai tai khoan hoac mat khau");
@@ -44,6 +44,10 @@ class ThanhVien {
         console.log(err);
         alert("dang nhap that bai");
       });
+  }
+  LogOut() {
+    window.sessionStorage.setItem("token", null);
+    this.token = null;
   }
 }
 

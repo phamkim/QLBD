@@ -149,8 +149,14 @@ class PhieuThueStore {
   };
 
   getStatistic = async () => {
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: window.sessionStorage.getItem("token"),
+      },
+    };
     let result = null;
-    await API.get("/phieuThue/statistics")
+    await API.get("/phieuThue/statistics",config)
       .then((res) => {
         result = res.data;
       })

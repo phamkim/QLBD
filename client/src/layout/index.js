@@ -17,13 +17,15 @@ import {
   PlaySquareOutlined,
   NumberOutlined,
 } from "@ant-design/icons";
-const { Header, Content, Footer, Sider } = Layout;
+import { useStores } from "../stores";
+const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={(props) =>
-      window.sessionStorage.getItem("token") ? (
+      window.sessionStorage.getItem("token") !== null &&
+      window.sessionStorage.getItem("token") !== "null" ? (
         <Component {...props} />
       ) : (
         <Redirect to="/login" />
@@ -33,6 +35,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 );
 
 export const MyLayout = observer(() => {
+  const { thanhVien } = useStores();
   return (
     <Router>
       <Layout hasSider>
@@ -45,18 +48,17 @@ export const MyLayout = observer(() => {
             top: 0,
             bottom: 0,
           }}
-          // breakpoint="lg"
-          // collapsedWidth="0"
-          // onBreakpoint={(broken) => {
-          //   console.log(broken);
-          // }}
-          // onCollapse={(collapsed, type) => {
-          //   console.log(collapsed, type);
-          // }}
         >
           <Link to="/">
-            <div className="logo" style={{ background:"#001529", color:"#FFFFFF", fontStyle:"bold" }}>
-              QUẢN LÝ BĂNG ĐĨA  
+            <div
+              className="logo"
+              style={{
+                background: "#001529",
+                color: "#FFFFFF",
+                fontStyle: "bold",
+              }}
+            >
+              QUẢN LÝ BĂNG ĐĨA
             </div>
           </Link>
 
@@ -79,6 +81,14 @@ export const MyLayout = observer(() => {
               </Menu.Item>
               <Menu.Item key="nav6">
                 <Link to="/nhaSanXuat">Nhà Sản Xuất</Link>
+              </Menu.Item>
+              <Menu.Item
+                key="nav7"
+                onClick={() => {
+                  thanhVien.LogOut();
+                }}
+              >
+                Đăng xuất
               </Menu.Item>
             </SubMenu>
           </Menu>

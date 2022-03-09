@@ -7,7 +7,11 @@ const App = observer(() => {
   const { thanhVien } = useStores();
   return (
     <div className="App">
-      {thanhVien.token != null ? <MyLayout /> : <LogIn />}
+      {thanhVien.token !== null && thanhVien.token !== "null" ? (
+        <MyLayout />
+      ) : (
+        <LogIn />
+      )}
     </div>
   );
 });
