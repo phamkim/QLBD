@@ -65,14 +65,16 @@ export const PhieuThuePage = observer(() => {
 
   useEffect(() => {
     var tongTien = 0;
-    chiTietPhieuThue?.forEach((element) => {
-      if (element.soLuong && element.donGia) {
-        tongTien = tongTien + element.soLuong * element.donGia;
-      }
-      form.setFieldsValue({
-        tongTien: tongTien.toFixed(2),
+    try {
+      chiTietPhieuThue.forEach((element) => {
+        if (element.soLuong && element.donGia) {
+          tongTien = tongTien + element.soLuong * element.donGia;
+        }
+        form.setFieldsValue({
+          tongTien: tongTien.toFixed(2),
+        });
       });
-    });
+    } catch (error) {}
   }, [chiTietPhieuThue]);
 
   const columns = [
