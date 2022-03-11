@@ -41,6 +41,7 @@ class BangDiaStore {
       idTheLoai: parseInt(data.idTheLoai),
       idNhaSX: parseInt(data.idNhaSX),
       tinhTrang: data.tinhTrang,
+      giaThue: data.giaThue,
       ghiChu: data.ghiChu,
     });
     let result = null;
@@ -77,6 +78,7 @@ class BangDiaStore {
       idTheLoai: parseInt(data.idTheLoai),
       idNhaSX: parseInt(data.idNhaSX),
       tinhTrang: data.tinhTrang,
+      giaThue: data.giaThue,
       ngaySua: getDateToday(),
       ghiChu: data.ghiChu,
     });

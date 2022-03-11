@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Button, Table, Modal, Input, Select, Form } from "antd";
+import { Button, Table, Modal, Input, Select, Form, InputNumber } from "antd";
 import "./style.css";
 import { toJS } from "mobx";
 import { useStores } from "../stores";
@@ -117,14 +117,22 @@ export const BangDiaPage = observer(() => {
       onFilter: (value, record) => record.tinhTrang.startsWith(value),
       width: "10%",
     },
+
     {
       key: "5",
+      title: "Giá Thuê",
+      dataIndex: "giaThue",
+      sorter: (a, b) => a.giaThue - b.giaThue,
+      width: "10%",
+    },
+    {
+      key: "6",
       title: "Ghi chú",
       dataIndex: "ghiChu",
       width: "30%",
     },
     {
-      key: "6",
+      key: "7",
       title: "Actions",
       fixed: "right",
       width: 90,
@@ -171,6 +179,7 @@ export const BangDiaPage = observer(() => {
       idTheLoai: record.idTheLoai,
       idNhaSX: record.idNhaSX,
       tinhTrang: record.tinhTrang,
+      giaThue: record.giaThue,
       ghiChu: record.ghiChu,
     });
   };
@@ -183,6 +192,7 @@ export const BangDiaPage = observer(() => {
       idTheLoai: null,
       idNhaSX: null,
       tinhTrang: null,
+      giaThue: null,
       ghiChu: null,
     });
   };
@@ -237,7 +247,7 @@ export const BangDiaPage = observer(() => {
             label="Tên băng đĩa"
             rules={[{ required: true }]}
           >
-            <Input placeholder="Tên băng đĩa" />
+            <Input />
           </Form.Item>
           <Form.Item
             name="idTheLoai"
@@ -276,7 +286,10 @@ export const BangDiaPage = observer(() => {
               <Option value="Mới 89%">Mới 89%</Option>
             </Select>
           </Form.Item>
-          <Form.Item name="ghiChu" label="Ghi chú">
+          <Form.Item name="giaThue" label="Giá Thuê">
+            <InputNumber />
+          </Form.Item>
+          <Form.Item name="ghiChu" label="Ghi Chú" rules={[{ required: true }]}>
             <TextArea rows={4} />
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
@@ -309,7 +322,7 @@ export const BangDiaPage = observer(() => {
             label="Tên băng đĩa"
             rules={[{ required: true }]}
           >
-            <Input placeholder="Tên băng đĩa" />
+            <Input />
           </Form.Item>
           <Form.Item
             name="idTheLoai"
@@ -348,6 +361,9 @@ export const BangDiaPage = observer(() => {
               <Option value="Mới 89%">Mới 89%</Option>
             </Select>
           </Form.Item>
+          <Form.Item name="giaThue" label="Giá Thuê">
+            <InputNumber />
+          </Form.Item>
           <Form.Item name="ghiChu" label="Ghi chú">
             <TextArea rows={4} />
           </Form.Item>
@@ -358,91 +374,6 @@ export const BangDiaPage = observer(() => {
           </Form.Item>
         </Form>
       </Modal>
-      {/* <Modal
-        title="Edit Băng đĩa"
-        visible={isEditing}
-        okText="Save"
-        onCancel={() => {
-          resetEditing();
-        }}
-        onOk={() => {
-          bangDiaStore.updateData(editingBangDia);
-          setRefresh(!refresh);
-          resetEditing();
-        }}
-      >
-        <Input
-          className="input_style"
-          placeholder="Tên băng đĩa"
-          value={editingBangDia?.tenBangDia}
-          onChange={(e) => {
-            setEditingBangDia((pre) => {
-              return { ...pre, tenBangDia: e.target.value };
-            });
-          }}
-        />
-        <Select
-          className="input_style"
-          placeholder="ID Thể loại"
-          value={editingBangDia?.idTheLoai}
-          onChange={(e) => {
-            setEditingBangDia((pre) => {
-              return { ...pre, idTheLoai: e };
-            });
-          }}
-        >
-          {theLoaiStore.data.map((theLoai, index) => {
-            return (
-              <Option value={theLoai.id} key={index}>
-                {theLoai.tenTheLoai}
-              </Option>
-            );
-          })}
-        </Select>
-        <Select
-          className="input_style"
-          placeholder="Id Nhà sản xuất"
-          value={editingBangDia?.idNhaSX}
-          onChange={(e) => {
-            setEditingBangDia((pre) => {
-              return { ...pre, idNhaSX: e };
-            });
-          }}
-        >
-          {nhaSanXuatStore.data.map((nhaSanXuat, index) => {
-            return (
-              <Option value={nhaSanXuat.id} key={index}>
-                {nhaSanXuat.tenNhaSX}
-              </Option>
-            );
-          })}
-        </Select>
-        <Select
-          className="input_style"
-          placeholder="Tình trạng"
-          value={editingBangDia?.tinhTrang}
-          onChange={(e) => {
-            setEditingBangDia((pre) => {
-              return { ...pre, tinhTrang: e };
-            });
-          }}
-        >
-          <Option value="Mới">Mới</Option>
-          <Option value="Mới 99%">Mới 99%</Option>
-          <Option value="Mới 89%">Mới 89%</Option>
-        </Select>
-        <TextArea
-          rows={4}
-          className="input_style"
-          placeholder="Ghi chú"
-          value={editingBangDia?.ghiChu}
-          onChange={(e) => {
-            setEditingBangDia((pre) => {
-              return { ...pre, ghiChu: e.target.value };
-            });
-          }}
-        />
-      </Modal> */}
     </div>
   );
 });

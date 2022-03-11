@@ -9,6 +9,7 @@ const BangDia = (bangDia) => {
   this.tinhTrang = bangDia.tinhTrang;
   this.ngayTao = bangDia.ngayTao;
   this.ngaySua = bangDia.ngaySua;
+  this.giaThue = bangDia.giaThue;
   this.ghiChu = bangDia.ghiChu;
 };
 
@@ -45,7 +46,7 @@ BangDia.insert = (bangDia, callBack) => {
 
 BangDia.update = (bangDia, callBack) => {
   const sqlString =
-    "UPDATE bangDia SET hinhAnh = ?,tenBangDia = ?,idTheLoai = ?,  idNhaSX = ?, tinhTrang = ?, ngayTao = ?, ngaySua = ?, ghiChu = ?  WHERE id = ?";
+    "UPDATE bangDia SET hinhAnh = ?,tenBangDia = ?,idTheLoai = ?,  idNhaSX = ?, tinhTrang = ?, ngayTao = ?, ngaySua = ?,giaThue =?, ghiChu = ?  WHERE id = ?";
   db.query(
     sqlString,
     [
@@ -56,6 +57,7 @@ BangDia.update = (bangDia, callBack) => {
       bangDia.tinhTrang,
       bangDia.ngayTao,
       bangDia.ngaySua,
+      bangDia.giaThue,
       bangDia.ghiChu,
       bangDia.id,
     ],
