@@ -24,8 +24,8 @@
   height: 300px;
   width: 300px;
 }
-.space-around{
-  color: #e6d0d0
+.space-around {
+  color: #e6d0d0;
 }
 
 .sta {
@@ -33,30 +33,31 @@
   padding-top: 28px;
 }
 .tag1 {
-  background: linear-gradient(to right,#f59a74,#feb798);
+  background: linear-gradient(to right, #f59a74, #feb798);
   border-radius: 5px;
 }
 
 .tag2 {
-  background: linear-gradient(to right,#4bebb3,#88f0cc);
+  background: linear-gradient(to right, #4bebb3, #88f0cc);
   border-radius: 5px;
 }
 .tag3 {
-  background: linear-gradient(to right,#fa808f,#faadb6);
+  background: linear-gradient(to right, #fa808f, #faadb6);
   border-radius: 5px;
 }
 .tag4 {
-  background: linear-gradient(to right,#5b92f7,#96b0f8);
+  background: linear-gradient(to right, #5b92f7, #96b0f8);
   border-radius: 5px;
 }
-.col-chart{
+.col-chart {
   background-color: #ffff;
   border-radius: 8px;
   padding: 24px;
+  min-height: 500px;
 }
-.row-chart{
+.row-chart {
   margin-top: 33px;
 }
-.row-quantity{
+.row-quantity {
   margin-bottom: 24px;
 }

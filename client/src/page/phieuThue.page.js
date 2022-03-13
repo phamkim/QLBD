@@ -13,6 +13,8 @@ import {
   Divider,
   InputNumber,
   Typography,
+  Row,
+  Col
 } from "antd";
 import {
   EditOutlined,
@@ -65,12 +67,16 @@ export const PhieuThuePage = observer(() => {
 
   useEffect(() => {
     var tongTien = 0;
-    chiTietPhieuThue?.forEach((element) => {
-      tongTien = tongTien + element.soLuong * element.donGia;
-      form.setFieldsValue({
-        tongTien: tongTien.toFixed(2),
+    try {
+      chiTietPhieuThue.forEach((element) => {
+        if (element.soLuong && element.donGia) {
+          tongTien = tongTien + element.soLuong * element.donGia;
+        }
+        form.setFieldsValue({
+          tongTien: tongTien.toFixed(2),
+        });
       });
-    });
+    } catch (error) { }
   }, [chiTietPhieuThue]);
 
   const columns = [
@@ -273,7 +279,7 @@ export const PhieuThuePage = observer(() => {
         dataSource={dataSource}
         scroll={{ x: 800, y: 400 }}
         bordered
-        style={{textAlign: 'center'}}
+        style={{ textAlign: "center" }}
         title={() => <h5>Bảng danh sách phiếu thuê băng đĩa của cửa hàng</h5>}
       ></Table>
 
@@ -293,40 +299,47 @@ export const PhieuThuePage = observer(() => {
           name="form_sua_phieu_thue"
           onFinish={onEditFinish}
         >
-          <Form.Item name="id" hidden={true} />
-          <Form.Item
-            name="idNguoiThue"
-            label="Người Thuê"
-            rules={[{ required: true, message: "Missing area" }]}
-          >
-            <Select style={{ width: 149.2 }}>
-              {thanhVienStore.data.map((thanhVien, index) => {
-                return (
-                  <Option value={thanhVien.id} key={index}>
-                    {thanhVien.hoTen}
-                  </Option>
-                );
-              })}
-            </Select>
-          </Form.Item>
-          <Form.Item
-            name="ngayThue"
-            label="Ngày Thuê"
-            rules={[{ required: true, message: "Bạn chưa nhập ngày thuê" }]}
-          >
-            <DatePicker format={dateFormat} />
-          </Form.Item>
-          <Form.Item
-            name="ngayHenTra"
-            label="Ngày hẹn trả"
-            rules={[{ required: true, message: "Bạn chưa nhập ngày hẹn trả" }]}
-          >
-            <DatePicker format={dateFormat} />
-          </Form.Item>
-          <Form.Item name="ngayTra" label="Ngày trả">
-            <DatePicker format={dateFormat} />
-          </Form.Item>
-          <Divider />
+          <Row>
+            <Col span="12">
+              <Form.Item name="id" hidden={true} />
+              <Form.Item
+                name="idNguoiThue"
+                label="Người Thuê"
+                rules={[{ required: true, message: "Missing area" }]}
+              >
+                <Select style={{ width: 149.2 }}>
+                  {thanhVienStore.data.map((thanhVien, index) => {
+                    return (
+                      <Option value={thanhVien.id} key={index}>
+                        {thanhVien.hoTen}
+                      </Option>
+                    );
+                  })}
+                </Select>
+              </Form.Item>
+              <Form.Item
+                name="ngayThue"
+                label="Ngày Thuê"
+                rules={[{ required: true, message: "Bạn chưa nhập ngày thuê" }]}
+              >
+                <DatePicker format={dateFormat} />
+              </Form.Item>
+            </Col>
+            <Col span="12">
+              <Form.Item
+                name="ngayHenTra"
+                label="Ngày hẹn trả"
+                rules={[{ required: true, message: "Bạn chưa nhập ngày hẹn trả" }]}
+              >
+                <DatePicker format={dateFormat} />
+              </Form.Item>
+              <Form.Item name="ngayTra" label="Ngày trả">
+                <DatePicker format={dateFormat} />
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Divider/>
           <Form.List name="chiTietPhieuThue">
             {(fields, { add, remove }) => (
               <>
@@ -408,6 +421,7 @@ export const PhieuThuePage = observer(() => {
             )}
           </Form.List>
           <Divider />
+
           <Form.Item label="Tổng tiền" name="tongTien">
             <Input width={500} bordered={false} />
           </Form.Item>
@@ -436,39 +450,45 @@ export const PhieuThuePage = observer(() => {
           name="form_thêm_phieu_thue"
           onFinish={onAddFinished}
         >
-          <Form.Item name="id" hidden={true} />
-          <Form.Item
-            name="idNguoiThue"
-            label="Người Thuê"
-            rules={[{ required: true, message: "Bạn chưa chọn người thuê" }]}
-          >
-            <Select style={{ width: 149.2 }}>
-              {thanhVienStore.data.map((thanhVien, index) => {
-                return (
-                  <Option value={thanhVien.id} key={index}>
-                    {thanhVien.hoTen}
-                  </Option>
-                );
-              })}
-            </Select>
-          </Form.Item>
-          <Form.Item
-            name="ngayThue"
-            label="Ngày Thuê"
-            rules={[{ required: true, message: "Bạn chưa nhập ngày thuê" }]}
-          >
-            <DatePicker format={dateFormat} />
-          </Form.Item>
-          <Form.Item
-            name="ngayHenTra"
-            label="Ngày hẹn trả"
-            rules={[{ required: true, message: "Bạn chưa nhập ngày hẹn trả" }]}
-          >
-            <DatePicker format={dateFormat} />
-          </Form.Item>
-          <Form.Item name="ngayTra" hidden={true} label="Ngày trả">
-            <DatePicker format={dateFormat} />
-          </Form.Item>
+          <Row>
+            <Col span="12">
+              <Form.Item name="id" hidden={true} />
+              <Form.Item
+                name="idNguoiThue"
+                label="Người Thuê"
+                rules={[{ required: true, message: "Bạn chưa chọn người thuê" }]}
+              >
+                <Select style={{ width: 149.2 }}>
+                  {thanhVienStore.data.map((thanhVien, index) => {
+                    return (
+                      <Option value={thanhVien.id} key={index}>
+                        {thanhVien.hoTen}
+                      </Option>
+                    );
+                  })}
+                </Select>
+              </Form.Item>
+              <Form.Item
+                name="ngayThue"
+                label="Ngày Thuê"
+                rules={[{ required: true, message: "Bạn chưa nhập ngày thuê" }]}
+              >
+                <DatePicker format={dateFormat} />
+              </Form.Item>
+            </Col>
+            <Col span="12">
+              <Form.Item
+                name="ngayHenTra"
+                label="Ngày hẹn trả"
+                rules={[{ required: true, message: "Bạn chưa nhập ngày hẹn trả" }]}
+              >
+                <DatePicker format={dateFormat} />
+              </Form.Item>
+              <Form.Item name="ngayTra" hidden={true} label="Ngày trả">
+                <DatePicker format={dateFormat} />
+              </Form.Item>
+            </Col>
+          </Row>
           <Divider />
           <Form.List name="chiTietPhieuThue">
             {(fields, { add, remove }) => (

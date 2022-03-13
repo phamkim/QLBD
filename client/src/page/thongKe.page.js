@@ -6,33 +6,38 @@ import { DoanhThuTheoThang } from "../component/chart/doanhThu";
 import { TopBangDia } from "../component/chart/topBangDia";
 import { TopThanhVien } from "../component/chart/TopThanhVien";
 import { Row, Col, Statistic } from "antd";
-import "./style.css"
+import "./style.css";
+
+const tinhTong = (data) => {
+  var sum = 0;
+  var arr = [];
+  arr = data;
+  arr.forEach((e) => {
+    sum += e.tongTien;
+  });
+  return sum;
+};
+
 export const ThongKePage = observer(() => {
   const { theLoaiStore, phieuThueStore, bangDiaStore, thanhVienStore } =
     useStores();
-  const [topTheLoai, setTopTheLoai] = useState(null);
-  const [doanhThu, setDoanhThu] = useState(null);
-  const [topBangDia, setTopBangDia] = useState(null);
-  const [topThanhVien, setTopThanhVien] = useState(null);
-
-  const tongDoanhThu = (doanhThu) => {
-    var result = 0;
-    doanhThu.forEach(({ tongTien }) => {
-      result += tongTien;
-    });
-    return result;
-  };
+  const [topTheLoai, setTopTheLoai] = useState([]);
+  const [doanhThu, setDoanhThu] = useState([]);
+  const [topBangDia, setTopBangDia] = useState([]);
+  const [topThanhVien, setTopThanhVien] = useState([]);
+  const [tongDoanhThu, setTongDoanhThu] = useState(0);
 
   useEffect(() => {
     bangDiaStore.getData();
     phieuThueStore.getData();
     thanhVienStore.getData();
-
     theLoaiStore.getStatistic().then((data) => {
       setTopTheLoai(data);
+      console.log(data);
     });
     phieuThueStore.getStatistic().then((data) => {
       setDoanhThu(data);
+      setTongDoanhThu(tinhTong(data));
     });
     bangDiaStore.getStatistic().then((data) => {
       setTopBangDia(data);
@@ -50,7 +55,7 @@ export const ThongKePage = observer(() => {
             className="sta tag1"
             title="SỐ LƯỢNG BĂNG ĐĨA"
             valueStyle={{ color: "#feffff" }}
-            value={bangDiaStore.data.length}
+            value={bangDiaStore.data ? bangDiaStore.data.length : 0}
           />
         </Col>
         <Col span={5}>
@@ -58,7 +63,7 @@ export const ThongKePage = observer(() => {
             className="sta tag2"
             title="SỐ LƯỢNG THÀNH VIÊN"
             valueStyle={{ color: "#feffff" }}
-            value={thanhVienStore.data.length}
+            value={thanhVienStore.data ? thanhVienStore.data.length : 0}
           />
         </Col>
         <Col span={5}>
@@ -66,7 +71,7 @@ export const ThongKePage = observer(() => {
             className="sta tag3"
             title="SỐ LƯỢT THUÊ BĂNG ĐĨA"
             valueStyle={{ color: "#feffff" }}
-            value={phieuThueStore.data.length}
+            value={phieuThueStore.data ? phieuThueStore.data.length : 0}
           />
         </Col>
         <Col span={5}>
@@ -74,26 +79,38 @@ export const ThongKePage = observer(() => {
             className="sta tag4"
             title="TỔNG DOANH THU"
             valueStyle={{ color: "#feffff" }}
-            value={doanhThu ? tongDoanhThu(doanhThu) : 0}
+            value={tongDoanhThu}
             suffix="VND"
           />
         </Col>
       </Row>
-  
-      <Row className="row-chart" justify="space-around" align="middle" style={{ height: 500 }}>
+
+      <Row
+        className="row-chart"
+        justify="space-around"
+        align="middle"
+        style={{ height: 500 }}
+      >
         <Col span={11} className="col-chart">
-          {topBangDia ? <TopBangDia data={topBangDia} /> : null}
+          {topBangDia.length > 0 ? <TopBangDia data={topBangDia} /> : null}
         </Col>
         <Col span={11} className="col-chart">
-          {doanhThu ? <DoanhThuTheoThang data={doanhThu} /> : null}
+          {doanhThu.length > 0 ? <DoanhThuTheoThang data={doanhThu} /> : null}
         </Col>
       </Row>
-      <Row className="row-chart" justify="space-around" align="middle" style={{ height: 500 }}>
+      <Row
+        className="row-chart"
+        justify="space-around"
+        align="middle"
+        style={{ height: 500 }}
+      >
         <Col span={11} className="col-chart">
-          {topTheLoai ? <TopTheLoai data={topTheLoai} /> : null}
+          {topTheLoai.length > 0 ? <TopTheLoai data={topTheLoai} /> : null}
         </Col>
         <Col span={11} className="col-chart">
-          {topThanhVien ? <TopThanhVien data={topThanhVien} /> : null}
+          {topThanhVien.length > 0 ? (
+            <TopThanhVien data={topThanhVien} />
+          ) : null}
         </Col>
       </Row>
     </div>

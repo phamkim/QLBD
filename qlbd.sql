@@ -87,6 +87,7 @@ create table if not exists bangDia
     tinhTrang varchar(55),
     ngayTao date not null default current_timestamp,
     ngaySua date,
+    giaThue float,
     ghiChu varchar(255),
     constraint pk_bd_1 foreign key(idTheLoai) references theLoai(id),
     constraint pk_bd_2 foreign key(idNhaSX) references nhaSX(id)
@@ -95,184 +96,184 @@ create table if not exists bangDia
 -- thêm dữ liệu bảng băng đĩa
 
 -- id=1
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Some Like It Hot',1,4,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Some Like It Hot',1,4,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=2
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Man Of The Year',1,2,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Man Of The Year',1,2,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=3
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Dr. Strangelove',1,1,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Dr. Strangelove',1,1,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=4
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('City Lights',1,3,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('City Lights',1,3,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=5
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('The Pink Panther',1,4,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('The Pink Panther',1,4,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=6
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('A Space Odyssey',2,4,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('A Space Odyssey',2,4,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=7
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Back To The Future',2,4,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Back To The Future',2,4,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=8
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Man In Black ',2,5,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Man In Black ',2,5,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=9
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Spiderman',2,1,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Spiderman',2,1,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=10
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Superman',2,1,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Superman',2,1,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=11
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('A Clcokwork Orange ',2,6,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('A Clcokwork Orange ',2,6,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=12
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Psycho',3,6,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Psycho',3,6,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=13
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('The Silence Of The Lamb',3,6,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('The Silence Of The Lamb',3,6,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=14
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('The Exorcist',3,5,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('The Exorcist',3,5,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=15
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Head Spin',3,6,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Head Spin',3,6,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=16
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Paranatural',3,2,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Paranatural',3,2,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=17
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('The Magnificent Seven',4,7,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('The Magnificent Seven',4,7,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=18
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('The Searchers',4,6,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('The Searchers',4,6,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=19
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('High Noon ',4,8,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('High Noon ',4,8,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=20
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('The Quiet Man ',4,5,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('The Quiet Man ',4,5,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=21
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('How The West Was Won',4,3,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('How The West Was Won',4,3,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=22
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Shane',4,3,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Shane',4,3,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=23
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Saving Private Ryan',5,3,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Saving Private Ryan',5,3,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=24
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('SSchindlers List',5,4,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('SSchindlers List',5,4,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=25
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('The Dirty Dozen',5,4,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('The Dirty Dozen',5,4,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=26
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('MacArthur',5,7,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('MacArthur',5,7,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=28
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Tommy',6,7,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Tommy',6,7,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=29
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Don Lockwood',6,7,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Don Lockwood',6,7,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=30
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('The Big Combo',7,5,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('The Big Combo',7,5,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=30
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Rebecca',7,7,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Rebecca',7,7,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=31
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Double Indemnity',7,2,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Double Indemnity',7,2,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=32
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Snow White and the Seven Dwarfs',8,7,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Snow White and the Seven Dwarfs',8,7,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=33
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Snow White and the Seven Dwarfs',8,3,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Snow White and the Seven Dwarfs',8,3,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=34
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Ratatouille',8,3,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Ratatouille',8,3,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=35
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Finding Nemo',8,3,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Finding Nemo',8,3,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=36
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Sleeping Beauty',8,3,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Sleeping Beauty',8,3,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=37
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('The Freshman',9,3,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('The Freshman',9,3,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=38
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Stock and Two Smoking Barrels ',9,2,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Stock and Two Smoking Barrels ',9,2,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=39
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Double Indemnity ',9,2,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Double Indemnity ',9,2,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=40
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('The Sting',9,2,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('The Sting',9,2,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=41
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Courtroom Drama',9,2,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Courtroom Drama',9,2,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=42
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('The Godfather',10,2,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('The Godfather',10,2,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=43
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Scarface',10,5,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Scarface',10,5,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=44
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('Once Upon a Time in America',10,5,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('Once Upon a Time in America',10,5,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 -- id=45
-insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,ghiChu)
-values ('To Kill A Mockingbird',10,5,'Mới','phim được công nhận là một trong những phim hài hay nhất.');
+insert into bangDia(tenBangDia,idTheLoai,idNhaSX,tinhTrang,giaThue,ghiChu)
+values ('To Kill A Mockingbird',10,5,'Mới',12000,'phim được công nhận là một trong những phim hài hay nhất.');
 
 
 -- tạo bảng thành viên

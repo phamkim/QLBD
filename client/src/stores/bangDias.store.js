@@ -41,6 +41,7 @@ class BangDiaStore {
       idTheLoai: parseInt(data.idTheLoai),
       idNhaSX: parseInt(data.idNhaSX),
       tinhTrang: data.tinhTrang,
+      giaThue: data.giaThue,
       ghiChu: data.ghiChu,
     });
     let result = null;
@@ -77,6 +78,7 @@ class BangDiaStore {
       idTheLoai: parseInt(data.idTheLoai),
       idNhaSX: parseInt(data.idNhaSX),
       tinhTrang: data.tinhTrang,
+      giaThue: data.giaThue,
       ngaySua: getDateToday(),
       ghiChu: data.ghiChu,
     });
@@ -93,8 +95,14 @@ class BangDiaStore {
   };
 
   getStatistic = async () => {
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: window.sessionStorage.getItem("token"),
+      },
+    };
     let result = null;
-    await API.get("/bangDia/statistics")
+    await API.get("/bangDia/statistics", config)
       .then((res) => {
         result = res.data;
       })

@@ -95,8 +95,14 @@ class ThanhVienStore {
   };
 
   getStatistic = async () => {
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: window.sessionStorage.getItem("token"),
+      },
+    };
     let result = null;
-    await API.get("/thanhVien/statistics")
+    await API.get("/thanhVien/statistics",config)
       .then((res) => {
         result = res.data;
       })

@@ -86,7 +86,6 @@ ThanhVien.checkLogin = (data, callBack) => {
     `SELECT * FROM thanhVien WHERE userName = ? AND passW = ?`,
     [data.userName, data.passW],
     (err, result) => {
-      console.log(result);
       if (err || result.length === 0) {
         callBack(null);
       }
