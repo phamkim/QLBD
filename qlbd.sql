@@ -532,428 +532,427 @@ create table if not exists chiTietPhieuThue
     idPhieuThue int not null,
     idBangDia int not null,
     soLuong int not null,
-    donGia float not null,
     constraint pk_1 foreign key(idPhieuThue) references phieuThue(id),
     constraint pk_2 foreign key(idbangDia) references bangDia(id)
 );
 -- thêm dữ liệu bảng chiTietPhieuThue
 -- idphieuThue = 1 
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(1,13,20,20000),
-(1,33,2,20000),
-(1,23,2,20000),
-(1,43,2,20000),
-(1,43,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(1,13,20),
+(1,33,2),
+(1,23,2),
+(1,43,2),
+(1,43,2);
 
 -- idphieuThue = 2
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(2,15,20,20000),
-(2,16,2,20000),
-(2,27,2,20000),
-(2,38,2,20000),
-(2,19,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(2,15,20),
+(2,16,2),
+(2,27,2),
+(2,38,2),
+(2,19,2);
 
 -- idphieuThue = 3
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(3,1,20,20000),
-(3,10,2,20000),
-(3,9,2,20000),
-(3,8,2,20000),
-(3,5,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(3,1,20),
+(3,10,2),
+(3,9,2),
+(3,8,2),
+(3,5,2);
 
 -- idphieuThue = 4
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(4,1,20,20000),
-(4,5,2,20000),
-(4,2,2,20000),
-(4,7,2,20000),
-(4,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(4,1,20),
+(4,5,2),
+(4,2,2),
+(4,7,2),
+(4,9,2);
 -- idphieuThue = 5
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(5,18,20,20000),
-(5,41,2,20000),
-(5,43,2,20000),
-(5,10,2,20000),
-(5,39,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(5,18,2),
+(5,41,2),
+(5,43,2),
+(5,10,2),
+(5,39,2);
 -- idphieuThue = 6
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(6,1,20,20000),
-(6,6,2,20000),
-(6,2,2,20000),
-(6,8,2,20000),
-(6,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(6,1,20),
+(6,6,2),
+(6,2,2),
+(6,8,2),
+(6,9,2);
 -- idphieuThue = 7
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(7,1,20,20000),
-(7,36,2,20000),
-(7,23,2,20000),
-(7,38,2,20000),
-(7,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(7,1,20),
+(7,36,2),
+(7,23,2),
+(7,38,2),
+(7,9,2);
 -- idphieuThue = 8
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(8,1,20,20000),
-(8,17,2,20000),
-(8,27,2,20000),
-(8,5,2,20000),
-(8,4,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(8,1,20),
+(8,17,2),
+(8,27,2),
+(8,5,2),
+(8,4,2);
 -- idphieuThue = 9
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(9,13,20,20000),
-(9,6,2,20000),
-(9,25,2,70000),
-(9,7,2,20000),
-(9,41,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(9,13,20),
+(9,6,2),
+(9,25,2),
+(9,7,2),
+(9,41,2);
 -- idphieuThue = 10
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(10,1,20,20000),
-(10,6,2,20000),
-(10,2,2,50000),
-(10,45,2,20000),
-(10,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(10,1,20),
+(10,6,2),
+(10,2,2),
+(10,45,2),
+(10,9,2);
 -- idphieuThue = 11
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(11,1,20,20000),
-(11,6,2,20000),
-(11,10,2,20000),
-(11,8,2,20000),
-(11,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(11,1,20),
+(11,6,2),
+(11,10,2),
+(11,8,2),
+(11,9,2);
 -- idphieuThue = 12
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(12,41,20,20000),
-(12,6,2,20000),
-(12,42,2,40000),
-(12,8,2,20000),
-(12,25,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(12,41,20),
+(12,6,2),
+(12,42,2),
+(12,8,2),
+(12,25,2);
 -- idphieuThue = 13
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(13,1,20,20000),
-(13,6,2,20000),
-(13,2,2,20000),
-(13,8,2,20000),
-(13,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(13,1,20),
+(13,6,2),
+(13,2,2),
+(13,8,2),
+(13,9,2);
 -- idphieuThue = 14
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(14,1,20,20000),
-(14,6,2,50000),
-(14,2,2,20000),
-(14,8,2,20000),
-(14,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(14,1,20),
+(14,6,2),
+(14,2,2),
+(14,8,2),
+(14,9,2);
 -- idphieuThue = 15
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(15,16,20,20000),
-(15,6,2,20000),
-(15,2,2,120000),
-(15,38,2,20000),
-(15,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(15,16,20),
+(15,6,2),
+(15,2,2),
+(15,38,2),
+(15,9,2);
 -- idphieuThue = 16
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(16,1,20,20000),
-(16,6,2,20000),
-(16,2,2,20000),
-(16,8,2,20000),
-(16,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(16,1,20),
+(16,6,2),
+(16,2,2),
+(16,8,2),
+(16,9,2);
 -- idphieuThue = 17
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(17,1,20,20000),
-(17,6,2,20000),
-(17,22,2,20000),
-(17,8,2,120000),
-(17,39,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(17,1,20),
+(17,6,2),
+(17,22,2),
+(17,8,2),
+(17,39,2);
 -- idphieuThue = 18
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(18,1,20,20000),
-(18,6,2,20000),
-(18,2,2,20000),
-(18,8,2,20000),
-(18,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(18,1,20),
+(18,6,2),
+(18,2,2),
+(18,8,2),
+(18,9,2);
 -- idphieuThue = 19
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(19,1,20,20000),
-(19,6,2,20000),
-(19,2,2,20000),
-(19,8,2,20000),
-(19,10,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(19,1,20),
+(19,6,2),
+(19,2,2),
+(19,8,2),
+(19,10,2);
 -- idphieuThue = 20
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(20,1,20,20000),
-(20,6,2,20000),
-(20,2,2,20000),
-(20,8,2,20000),
-(20,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(20,1,20),
+(20,6,2),
+(20,2,2),
+(20,8,2),
+(20,9,2);
 -- idphieuThue = 21
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(21,1,20,20000),
-(21,36,2,20000),
-(21,2,2,20000),
-(21,38,2,20000),
-(21,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(21,1,20),
+(21,36,2),
+(21,2,2),
+(21,38,2),
+(21,9,2);
 -- idphieuThue = 22
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(22,1,20,20000),
-(22,6,2,20000),
-(22,2,2,20000),
-(22,8,2,20000),
-(22,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(22,1,20),
+(22,6,2),
+(22,2,2),
+(22,8,2),
+(22,9,2);
 -- idphieuThue = 23
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(23,1,20,20000),
-(23,6,2,20000),
-(23,32,2,20000),
-(23,38,2,20000),
-(23,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(23,1,20),
+(23,6,2),
+(23,32,2),
+(23,38,2),
+(23,9,2);
 -- idphieuThue = 24
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(24,1,20,20000),
-(24,6,2,20000),
-(24,32,2,20000),
-(24,18,2,20000),
-(24,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(24,1,20),
+(24,6,2),
+(24,32,2),
+(24,18,2),
+(24,9,2);
 -- idphieuThue = 25
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(25,11,20,20000),
-(25,16,2,20000),
-(25,42,2,20000),
-(25,8,2,20000),
-(25,29,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(25,11,20),
+(25,16,2),
+(25,42,2),
+(25,8,2),
+(25,29,2);
 -- idphieuThue = 26
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(26,1,20,20000),
-(26,6,2,20000),
-(26,2,2,20000),
-(26,8,2,20000),
-(26,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(26,1,20),
+(26,6,2),
+(26,2,2),
+(26,8,2),
+(26,9,2);
 -- idphieuThue = 27
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(27,21,20,20000),
-(27,6,2,20000),
-(27,25,2,420000),
-(27,28,2,20000),
-(27,39,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(27,21,20),
+(27,6,2),
+(27,25,2),
+(27,28,2),
+(27,39,2);
 -- idphieuThue = 28
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(28,21,20,20000),
-(28,6,2,20000),
-(28,32,2,20000),
-(28,8,2,20000),
-(28,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(28,21,20),
+(28,6,2),
+(28,32,2),
+(28,8,2),
+(28,9,2);
 -- idphieuThue = 29
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(29,1,20,20000),
-(29,6,2,20000),
-(29,2,2,20000),
-(29,8,2,20000),
-(29,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(29,1,20),
+(29,6,2),
+(29,2,2),
+(29,8,2),
+(29,9,2);
 -- idphieuThue = 30
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(30,1,20,20000),
-(30,10,2,20000),
-(30,32,2,520000),
-(30,8,2,20000),
-(30,29,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(30,1,20),
+(30,10,2),
+(30,32,2),
+(30,8,2),
+(30,29,2);
 -- idphieuThue = 31
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(31,31,20,20000),
-(31,7,2,250000),
-(31,32,2,20000),
-(31,8,2,20000),
-(31,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(31,31,20),
+(31,7,2),
+(31,32,2),
+(31,8,2),
+(31,9,2);
 -- idphieuThue = 32
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(32,1,20,20000),
-(32,6,2,20000),
-(32,2,2,240000),
-(32,4,2,20000),
-(32,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(32,1,20),
+(32,6,2),
+(32,2,2),
+(32,4,2),
+(32,9,2);
 -- idphieuThue = 33
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(33,1,20,20000),
-(33,6,2,20000),
-(33,32,2,20000),
-(33,8,2,20000),
-(33,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(33,1,20),
+(33,6,2),
+(33,32,2),
+(33,8,2),
+(33,9,2);
 -- idphieuThue = 34
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(34,21,20,20000),
-(34,25,2,20000),
-(34,22,2,20000),
-(43,28,2,20000),
-(43,29,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(34,21,20),
+(34,25,2),
+(34,22,2),
+(43,28,2),
+(43,29,2);
 
 -- idphieuThue = 35
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(35,1,20,20000),
-(35,6,2,20000),
-(35,2,2,120000),
-(35,8,2,20000),
-(35,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(35,1,20),
+(35,6,2),
+(35,2,2),
+(35,8,2),
+(35,9,2);
 -- idphieuThue = 36
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(36,1,20,20000),
-(36,25,2,20000),
-(36,42,2,20000),
-(36,8,2,20000),
-(36,19,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(36,1,20),
+(36,25,2),
+(36,42,2),
+(36,8,2),
+(36,19,2);
 -- idphieuThue = 37
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(37,1,20,20000),
-(37,6,2,220000),
-(37,2,2,20000),
-(37,8,2,20000),
-(37,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(37,1,20),
+(37,6,2),
+(37,2,2),
+(37,8,2),
+(37,9,2);
 -- idphieuThue = 38
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(38,16,20,20000),
-(38,6,2,20000),
-(38,25,2,20000),
-(38,8,2,20000),
-(38,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(38,16,20),
+(38,6,2),
+(38,25,2),
+(38,8,2),
+(38,9,2);
 -- idphieuThue = 39
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(39,1,20,20000),
-(39,6,2,20000),
-(39,32,2,20000),
-(39,8,2,420000),
-(39,39,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(39,1,20),
+(39,6,2),
+(39,32,2),
+(39,8,2),
+(39,39,2);
 -- idphieuThue = 40
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(40,1,20,20000),
-(40,6,2,20000),
-(40,32,2,20000),
-(40,8,2,20000),
-(40,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(40,1,20),
+(40,6,2),
+(40,32,2),
+(40,8,2),
+(40,9,2);
 -- idphieuThue = 41
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(41,11,20,20000),
-(41,6,2,20000),
-(41,12,2,20000),
-(41,8,2,20000),
-(41,19,2,920000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(41,11,20),
+(41,6,2),
+(41,12,2),
+(41,8,2),
+(41,19,2);
 -- idphieuThue = 42
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(42,1,20,20000),
-(42,26,2,20000),
-(42,23,2,20000),
-(42,34,2,20000),
-(42,19,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(42,1,20),
+(42,26,2),
+(42,23,2),
+(42,34,2),
+(42,19,2);
 -- idphieuThue = 43
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(43,1,20,20000),
-(43,16,2,20000),
-(43,2,2,20000),
-(43,8,2,20000),
-(43,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(43,1,20),
+(43,16,2),
+(43,2,2),
+(43,8,2),
+(43,9,2);
 -- idphieuThue = 44
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(44,1,20,620000),
-(44,6,2,20000),
-(44,2,2,20000),
-(44,8,2,20000),
-(44,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(44,1,20),
+(44,6,2),
+(44,2,2),
+(44,8,2),
+(44,9,2);
 -- idphieuThue = 45
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(45,1,20,20000),
-(45,3,2,20000),
-(45,22,2,20000),
-(45,8,2,20000),
-(45,39,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(45,1,20),
+(45,3,2),
+(45,22,2),
+(45,8,2),
+(45,39,2);
 -- idphieuThue = 46
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(46,11,20,20000),
-(46,6,2,20000),
-(46,5,2,20000),
-(46,8,2,20000),
-(46,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(46,11,20),
+(46,6,2),
+(46,5,2),
+(46,8,2),
+(46,9,2);
 -- idphieuThue = 47
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(47,1,20,20000),
-(47,6,2,20000),
-(47,23,2,20000),
-(47,8,2,20000),
-(47,3,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(47,1,20),
+(47,6,2),
+(47,23,2),
+(47,8,2),
+(47,3,2);
 -- idphieuThue = 48
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(48,1,20,20000),
-(48,6,2,20000),
-(48,2,2,20000),
-(48,8,2,20000),
-(48,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(48,1,20),
+(48,6,2),
+(48,2,2),
+(48,8,2),
+(48,9,2);
 -- idphieuThue = 49
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(49,10,20,20000),
-(49,6,2,20000),
-(49,20,2,62000),
-(49,8,2,20000),
-(49,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(49,10,20),
+(49,6,2),
+(49,20,2),
+(49,8,2),
+(49,9,2);
 -- idphieuThue = 50
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(50,1,20,20000),
-(50,6,2,20000),
-(50,32,2,32000),
-(50,8,2,20000),
-(50,39,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(50,1,20),
+(50,6,2),
+(50,32,2),
+(50,8,2),
+(50,39,2);
 -- idphieuThue = 51
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(51,31,20,200000),
-(51,6,2,20000),
-(51,2,2,20000),
-(51,7,2,32000),
-(51,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(51,31,200),
+(51,6,2),
+(51,2,2),
+(51,7,2),
+(51,9,2);
 -- idphieuThue = 52
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(52,10,20,20000),
-(52,6,2,20000),
-(52,2,2,20000),
-(52,8,2,320000),
-(52,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(52,10,20),
+(52,6,2),
+(52,2,2),
+(52,8,2),
+(52,9,2);
 -- idphieuThue = 53
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(53,1,20,20000),
-(53,26,2,20000),
-(53,7,2,20000),
-(53,18,2,20000),
-(53,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(53,1,20),
+(53,26,2),
+(53,7,2),
+(53,18,2),
+(53,9,2);
 -- idphieuThue = 54
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(54,1,20,20000),
-(54,6,2,20000),
-(54,2,2,20000),
-(54,8,2,20000),
-(54,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(54,1,20),
+(54,6,2),
+(54,2,2),
+(54,8,2),
+(54,9,2);
 -- idphieuThue = 55
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(55,41,20,20000),
-(55,5,2,20000),
-(55,32,2,204000),
-(55,8,2,20000),
-(55,9,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(55,41,20),
+(55,5,2),
+(55,32,2),
+(55,8,2),
+(55,9,2);
 -- idphieuThue = 56
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(56,1,20,20000),
-(56,3,2,20000),
-(56,5,2,20000),
-(56,8,2,20000),
-(56,3,2,20000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(56,1,20),
+(56,3,2),
+(56,5,2),
+(56,8,2),
+(56,3,2);
 -- idphieuThue = 57
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong,donGia) values
-(57,1,20,20000),
-(57,6,2,20000),
-(57,5,2,20000),
-(57,37,2,200000),
-(57,3,2,200000);
+insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
+(57,1,20),
+(57,6,2),
+(57,5,2),
+(57,37,20),
+(57,3,20);
 
 
 
 
 CREATE OR REPLACE VIEW viewDoanhThuTheoNgay as
-SELECT  LEFT(phieuthue.ngayThue,7) as monthYear, SUM(chitietphieuthue.soLuong*chitietphieuthue.donGia) as tongTien
+SELECT  LEFT(phieuthue.ngayThue,7) as monthYear, SUM(chitietphieuthue.soLuong*bangdia.donGia) as tongTien
 FROM phieuthue,chitietphieuthue
-WHERE phieuthue.id = chitietphieuthue.idPhieuThue
+WHERE phieuthue.id = chitietphieuthue.idPhieuThue and chitietphieuthue.idPhieuThue = bangdia.id
 GROUP BY phieuthue.id, phieuthue.ngayThue;
 
 
 
 CREATE OR REPLACE VIEW viewDoanhThuTheoThang as
-SELECT monthYear,tongTien
+SELECT monthYear,SUM(tongTien)as tongTien
 FROM viewDoanhThuTheoNgay
 GROUP BY viewDoanhThuTheoNgay.monthYear
 ORDER BY monthYear;
@@ -988,3 +987,7 @@ GROUP BY luotthuebangdiafull.idTheLoai
 ORDER BY luotThue DESC LIMIT 10;
 
 
+CREATE OR REPLACE VIEW chitietphieuthueful as
+SELECT  chitietphieuthue*,bangdia.giaThue
+FROM bangdia,chitietphieuthue
+WHERE chitietphieuthue.idPhieuThue = bangdia.id

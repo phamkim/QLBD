@@ -5,7 +5,6 @@ const ChiTietPhieuThue = (chiTietphieuThue) => {
   this.idPhieuThue = chiTietphieuThue.idPhieuThue;
   this.idBangDia = chiTietphieuThue.idBangDia;
   this.soLuong = chiTietphieuThue.soLuong;
-  this.donGia = chiTietphieuThue.donGia;
 };
 
 ChiTietPhieuThue.get = (id, callback) => {
@@ -41,14 +40,13 @@ ChiTietPhieuThue.insert = (chiTietphieuThue, callBack) => {
 
 ChiTietPhieuThue.update = (chiTietphieuThue, callBack) => {
   const sqlString =
-    "UPDATE chiTietphieuThue SET idPhieuThue = ?, idBangDia = ?, soLuong = ?, donGia = ?  WHERE id = ?";
+    "UPDATE chiTietphieuThue SET idPhieuThue = ?, idBangDia = ?, soLuong = ? WHERE id = ?";
   db.query(
     sqlString,
     [
       chiTietphieuThue.idPhieuThue,
       chiTietphieuThue.idBangDia,
       chiTietphieuThue.soLuong,
-      chiTietphieuThue.donGia,
       chiTietphieuThue.id,
     ],
     (err, res) => {

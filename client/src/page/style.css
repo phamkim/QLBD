@@ -61,3 +61,8 @@
 .row-quantity {
   margin-bottom: 24px;
 }
+
+.ctpt-scroll {
+  height: 200px;
+  overflow-y: scroll;
+}

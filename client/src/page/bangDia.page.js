@@ -286,7 +286,7 @@ export const BangDiaPage = observer(() => {
               <Option value="Mới 89%">Mới 89%</Option>
             </Select>
           </Form.Item>
-          <Form.Item name="giaThue" label="Giá Thuê">
+          <Form.Item name="giaThue" label="Giá Thuê"  rules={[{ required: true }]}>
             <InputNumber />
           </Form.Item>
           <Form.Item name="ghiChu" label="Ghi Chú" rules={[{ required: true }]}>

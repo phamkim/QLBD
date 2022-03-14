@@ -21,7 +21,7 @@ PhieuThue.get = (id, callback) => {
 
 PhieuThue.getDetail = (id, callback) => {
   const sqlString =
-    "SELECT * FROM chiTietPhieuThue WHERE chiTietPhieuThue.idPhieuThue = ?";
+    "SELECT * FROM chiTietPhieuThueFull WHERE chiTietPhieuThueFull.idPhieuThue = ?";
   db.query(sqlString, id, (err, result) => {
     if (err) {
       return callback(err);
@@ -31,9 +31,9 @@ PhieuThue.getDetail = (id, callback) => {
 };
 
 PhieuThue.getAll = (callback) => {
-  const sqlString = `SELECT phieuthue.id,phieuthue.idNguoiThue,phieuthue.ngayThue,phieuthue.ngayHenTra,phieuthue.ngayTra,SUM(chitietphieuthue.soLuong*chitietphieuthue.donGia)as tongTien
-  FROM phieuthue,chitietphieuthue
-  WHERE phieuthue.id = chitietphieuthue.idPhieuThue
+  const sqlString = `SELECT phieuthue.id,phieuthue.idNguoiThue,phieuthue.ngayThue,phieuthue.ngayHenTra,phieuthue.ngayTra,SUM(chitietphieuthue.soLuong*bangdia.giaThue)as tongTien
+  FROM phieuthue,chitietphieuthue,bangdia
+  WHERE phieuthue.id = chitietphieuthue.idPhieuThue and chitietphieuthue.idBangDia = bangdia.id
   GROUP BY phieuthue.id`;
   db.query(sqlString, (err, result) => {
     if (err) {

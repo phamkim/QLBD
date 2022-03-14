@@ -104,7 +104,6 @@ class PhieuThueStore {
       idPhieuThue: data.idPhieuThue,
       idBangDia: data.idBangDia,
       soLuong: data.soLuong,
-      donGia: data.donGia,
     });
     let result = null;
     await API.post("/chiTietPhieuThue", ctpt)
@@ -123,7 +122,6 @@ class PhieuThueStore {
       idPhieuThue: data.idPhieuThue,
       idBangDia: data.idBangDia,
       soLuong: data.soLuong,
-      donGia: data.donGia,
     });
     let result = null;
     await API.put("/chiTietPhieuThue", ctpt)

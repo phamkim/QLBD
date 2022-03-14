@@ -12,9 +12,8 @@ import {
   Space,
   Divider,
   InputNumber,
-  Typography,
   Row,
-  Col
+  Col,
 } from "antd";
 import {
   EditOutlined,
@@ -26,7 +25,6 @@ import { toJS } from "mobx";
 import { convertDMY, getDateToday } from "../common/index";
 import moment from "moment";
 const { Option } = Select;
-const { Text } = Typography;
 const dateFormat = "DD/MM/YYYY";
 const layout = {
   labelCol: {
@@ -42,9 +40,9 @@ export const PhieuThuePage = observer(() => {
   const { phieuThueStore, thanhVienStore, bangDiaStore } = useStores();
   const [isOpenAdd, setIsOpenAdd] = useState(false);
   const [isOpenEdit, setIsOpenEdit] = useState(false);
-  const [dataSource, setDataSource] = useState();
-  const [thanhViens, setThanhViens] = useState();
-  const [bangDias, setBangDias] = useState();
+  const [dataSource, setDataSource] = useState([]);
+  const [thanhViens, setThanhViens] = useState([]);
+  const [bangDias, setBangDias] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const [chiTietPhieuThue, setChiTietPhieuThue] = useState([]);
 
@@ -67,16 +65,17 @@ export const PhieuThuePage = observer(() => {
 
   useEffect(() => {
     var tongTien = 0;
+    console.log("tinhTong")
     try {
       chiTietPhieuThue.forEach((element) => {
-        if (element.soLuong && element.donGia) {
-          tongTien = tongTien + element.soLuong * element.donGia;
+        if (element.soLuong && element.giaThue) {
+          tongTien = tongTien + element.soLuong * element.giaThue;
         }
         form.setFieldsValue({
           tongTien: tongTien.toFixed(2),
         });
       });
-    } catch (error) { }
+    } catch (error) {}
   }, [chiTietPhieuThue]);
 
   const columns = [
@@ -88,7 +87,7 @@ export const PhieuThuePage = observer(() => {
       filters: thanhVienStore.data
         ? thanhVienStore.data.map((e) => ({ text: e.hoTen, value: e.id }))
         : null,
-      onFilter: (value, record) => record.idNguoiThue == value,
+      onFilter: (value, record) => record.idNguoiThue === value,
       render: (idNguoiThue) => {
         let hoTen = "";
         thanhVienStore.data.map((data) => {
@@ -232,6 +231,7 @@ export const PhieuThuePage = observer(() => {
   };
 
   const onAddFinished = (values) => {
+    console.log(values);
     phieuThueStore
       .insertData(values)
       .then((data) => {
@@ -286,9 +286,9 @@ export const PhieuThuePage = observer(() => {
       <Modal
         title="Sửa Phiếu thuê"
         visible={isOpenEdit}
-        width={740}
+        width={760}
+        style={{ top: 20 }}
         footer={null}
-        okText="Save"
         onCancel={() => {
           resetEditing();
         }}
@@ -305,7 +305,9 @@ export const PhieuThuePage = observer(() => {
               <Form.Item
                 name="idNguoiThue"
                 label="Người Thuê"
-                rules={[{ required: true, message: "Missing area" }]}
+                rules={[
+                  { required: true, message: "Bạn chưa nhập người thuê" },
+                ]}
               >
                 <Select style={{ width: 149.2 }}>
                   {thanhVienStore.data.map((thanhVien, index) => {
@@ -322,14 +324,16 @@ export const PhieuThuePage = observer(() => {
                 label="Ngày Thuê"
                 rules={[{ required: true, message: "Bạn chưa nhập ngày thuê" }]}
               >
-                <DatePicker format={dateFormat} />
+                <DatePicker format={dateFormat} disabled />
               </Form.Item>
             </Col>
             <Col span="12">
               <Form.Item
                 name="ngayHenTra"
                 label="Ngày hẹn trả"
-                rules={[{ required: true, message: "Bạn chưa nhập ngày hẹn trả" }]}
+                rules={[
+                  { required: true, message: "Bạn chưa nhập ngày hẹn trả" },
+                ]}
               >
                 <DatePicker format={dateFormat} />
               </Form.Item>
@@ -338,90 +342,99 @@ export const PhieuThuePage = observer(() => {
               </Form.Item>
             </Col>
           </Row>
-
-          <Divider/>
-          <Form.List name="chiTietPhieuThue">
-            {(fields, { add, remove }) => (
-              <>
-                {fields.map(({ key, name, ...restField }) => (
-                  <Space key={key} align="baseline">
-                    <Form.Item
-                      {...restField}
-                      name={[name, "id"]}
-                      hidden={true}
-                    />
-                    <Form.Item
-                      {...restField}
-                      name={[name, "idPhieuThue"]}
-                      hidden={true}
-                    />
-                    <Form.Item
-                      {...restField}
-                      label="Băng đĩa"
-                      name={[name, "idBangDia"]}
-                      rules={[
-                        {
-                          required: true,
-                          message: "Bạn chưa nhập băng đĩa",
-                        },
-                      ]}
-                    >
-                      <Select style={{ width: 130 }}>
-                        {(bangDiaStore.data || []).map((item) => (
-                          <Option key={item.id} value={item.id}>
-                            {item.tenBangDia}
-                          </Option>
-                        ))}
-                      </Select>
-                    </Form.Item>
-                    <Form.Item
-                      {...restField}
-                      label="Số lượng"
-                      name={[name, "soLuong"]}
-                      rules={[
-                        { required: true, message: "Bạn chưa nhập số lượng" },
-                      ]}
-                    >
-                      <InputNumber
-                        style={{ width: 136 }}
-                        onChange={(e) => {
-                          setChiTietPhieuThue(
-                            form.getFieldValue("chiTietPhieuThue")
-                          );
-                        }}
-                      />
-                    </Form.Item>
-                    <Form.Item
-                      {...restField}
-                      label="Đơn giá"
-                      name={[name, "donGia"]}
-                      rules={[
-                        { required: true, message: "Bạn chưa nhập đơn giá" },
-                      ]}
-                    >
-                      <InputNumber
-                        style={{ width: 127 }}
-                        onChange={(e) => {
-                          setChiTietPhieuThue(
-                            form.getFieldValue("chiTietPhieuThue")
-                          );
-                        }}
-                      />
-                    </Form.Item>
-                    <MinusCircleOutlined onClick={() => remove(name)} />
-                  </Space>
-                ))}
-
-                <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
-                  <Button type="dashed" onClick={() => add()}>
-                    Thêm băng đĩa
-                  </Button>
-                </Form.Item>
-              </>
-            )}
-          </Form.List>
           <Divider />
-
+          <div className="ctpt-scroll">
+            <Form.List name="chiTietPhieuThue">
+              {(fields, { add, remove }) => (
+                <>
+                  {fields.map(({ key, name, ...restField }) => (
+                    <Space key={key} align="baseline">
+                      <Form.Item
+                        {...restField}
+                        name={[name, "id"]}
+                        hidden={true}
+                      />
+                      <Form.Item
+                        {...restField}
+                        name={[name, "idPhieuThue"]}
+                        hidden={true}
+                      />
+                      <Form.Item
+                        {...restField}
+                        label="Băng đĩa"
+                        name={[name, "idBangDia"]}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Bạn chưa nhập băng đĩa",
+                          },
+                        ]}
+                      >
+                        <Select
+                          style={{ width: 130 }}
+                          onChange={(idBangDia) => {
+                            var ctpt = form.getFieldValue("chiTietPhieuThue");
+                            const bd = bangDias.find((e) => e.id === idBangDia);
+                            ctpt.map((e) =>
+                              e.idBangDia === bd.id
+                                ? (e.giaThue = bd.giaThue)
+                                : e
+                            );
+                            form.setFieldsValue({
+                              chiTietPhieuThue: ctpt,
+                            });
+                            setChiTietPhieuThue(
+                              form.getFieldValue("chiTietPhieuThue")
+                            );
+                          }}
+                        >
+                          {(bangDiaStore.data || []).map((item) => {
+                            return (
+                              <Option key={item.id} value={item.id}>
+                                {item.tenBangDia}
+                              </Option>
+                            );
+                          })}
+                        </Select>
+                      </Form.Item>
+                      <Form.Item
+                        {...restField}
+                        label="Số lượng"
+                        name={[name, "soLuong"]}
+                        rules={[
+                          { required: true, message: "Bạn chưa nhập số lượng" },
+                        ]}
+                      >
+                        <InputNumber
+                          style={{ width: 136 }}
+                          onChange={(e) => {
+                            setChiTietPhieuThue(
+                              form.getFieldValue("chiTietPhieuThue")
+                            );
+                          }}
+                        />
+                      </Form.Item>
+                      <Form.Item
+                        {...restField}
+                        label="Giá thuê"
+                        name={[name, "giaThue"]}
+                        style={{ marginRight: 10 }}
+                      >
+                        <InputNumber style={{ width: 127 }} disabled />
+                      </Form.Item>
+                      <MinusCircleOutlined onClick={() => remove(name)} />
+                    </Space>
+                  ))}
+                  <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
+                    <Button type="dashed" onClick={() => add()}>
+                      Thêm băng đĩa
+                    </Button>
+                  </Form.Item>
+                </>
+              )}
+            </Form.List>
+          </div>
+          <Divider />
           <Form.Item label="Tổng tiền" name="tongTien">
             <Input width={500} bordered={false} />
           </Form.Item>
@@ -437,9 +450,9 @@ export const PhieuThuePage = observer(() => {
       <Modal
         title="Thêm Phiếu thuê"
         visible={isOpenAdd}
-        width={740}
+        width={760}
+        style={{ top: 20 }}
         footer={null}
-        okText="Save"
         onCancel={() => {
           resetEditing();
         }}
@@ -456,7 +469,9 @@ export const PhieuThuePage = observer(() => {
               <Form.Item
                 name="idNguoiThue"
                 label="Người Thuê"
-                rules={[{ required: true, message: "Bạn chưa chọn người thuê" }]}
+                rules={[
+                  { required: true, message: "Bạn chưa chọn người thuê" },
+                ]}
               >
                 <Select style={{ width: 149.2 }}>
                   {thanhVienStore.data.map((thanhVien, index) => {
@@ -480,7 +495,9 @@ export const PhieuThuePage = observer(() => {
               <Form.Item
                 name="ngayHenTra"
                 label="Ngày hẹn trả"
-                rules={[{ required: true, message: "Bạn chưa nhập ngày hẹn trả" }]}
+                rules={[
+                  { required: true, message: "Bạn chưa nhập ngày hẹn trả" },
+                ]}
               >
                 <DatePicker format={dateFormat} />
               </Form.Item>
@@ -490,86 +507,96 @@ export const PhieuThuePage = observer(() => {
             </Col>
           </Row>
           <Divider />
-          <Form.List name="chiTietPhieuThue">
-            {(fields, { add, remove }) => (
-              <>
-                {fields.map(({ key, name, ...restField }) => (
-                  <Space key={key} align="baseline">
-                    <Form.Item
-                      {...restField}
-                      name={[name, "id"]}
-                      hidden={true}
-                    />
-                    <Form.Item
-                      {...restField}
-                      name={[name, "idPhieuThue"]}
-                      hidden={true}
-                    />
-                    <Form.Item
-                      {...restField}
-                      label="Băng đĩa"
-                      name={[name, "idBangDia"]}
-                      rules={[
-                        {
-                          required: true,
-                          message: "Bạn chưa nhập băng đĩa",
-                        },
-                      ]}
-                    >
-                      <Select style={{ width: 130 }}>
-                        {(bangDiaStore.data || []).map((item) => (
-                          <Option key={item.id} value={item.id}>
-                            {item.tenBangDia}
-                          </Option>
-                        ))}
-                      </Select>
-                    </Form.Item>
-                    <Form.Item
-                      {...restField}
-                      label="Số lượng"
-                      name={[name, "soLuong"]}
-                      rules={[
-                        { required: true, message: "Bạn chưa nhập số lượng" },
-                      ]}
-                    >
-                      <InputNumber
-                        style={{ width: 136 }}
-                        onChange={(e) => {
-                          setChiTietPhieuThue(
-                            form.getFieldValue("chiTietPhieuThue")
-                          );
-                        }}
+          <div className="ctpt-scroll">
+            <Form.List name="chiTietPhieuThue">
+              {(fields, { add, remove }) => (
+                <>
+                  {fields.map(({ key, name, ...restField }) => (
+                    <Space key={key} align="baseline">
+                      <Form.Item
+                        {...restField}
+                        name={[name, "id"]}
+                        hidden={true}
                       />
-                    </Form.Item>
-                    <Form.Item
-                      {...restField}
-                      label="Đơn giá"
-                      name={[name, "donGia"]}
-                      rules={[
-                        { required: true, message: "Bạn chưa nhập đơn giá" },
-                      ]}
-                    >
-                      <InputNumber
-                        style={{ width: 127 }}
-                        onChange={(e) => {
-                          setChiTietPhieuThue(
-                            form.getFieldValue("chiTietPhieuThue")
-                          );
-                        }}
+                      <Form.Item
+                        {...restField}
+                        name={[name, "idPhieuThue"]}
+                        hidden={true}
                       />
-                    </Form.Item>
-                    <MinusCircleOutlined onClick={() => remove(name)} />
-                  </Space>
-                ))}
+                      <Form.Item
+                        {...restField}
+                        label="Băng đĩa"
+                        name={[name, "idBangDia"]}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Bạn chưa nhập băng đĩa",
+                          },
+                        ]}
+                      >
+                        <Select
+                          style={{ width: 130 }}
+                          onChange={(idBangDia) => {
+                            var ctpt = form.getFieldValue("chiTietPhieuThue");
+                            const bd = bangDias.find((e) => e.id === idBangDia);
+                            ctpt.map((e) =>
+                              e.idBangDia === bd.id
+                                ? (e.giaThue = bd.giaThue)
+                                : e
+                            );
+                            form.setFieldsValue({
+                              chiTietPhieuThue: ctpt,
+                            });
+                            setChiTietPhieuThue(
+                              form.getFieldValue("chiTietPhieuThue")
+                            );
+                          }}
+                        >
+                          {(bangDiaStore.data || []).map((item) => (
+                            <Option key={item.id} value={item.id}>
+                              {item.tenBangDia}
+                            </Option>
+                          ))}
+                        </Select>
+                      </Form.Item>
+                      <Form.Item
+                        {...restField}
+                        label="Số lượng"
+                        name={[name, "soLuong"]}
+                        rules={[
+                          { required: true, message: "Bạn chưa nhập số lượng" },
+                        ]}
+                      >
+                        <InputNumber
+                          style={{ width: 136 }}
+                          onChange={(e) => {
+                            setChiTietPhieuThue(
+                              form.getFieldValue("chiTietPhieuThue")
+                            );
+                          }}
+                        />
+                      </Form.Item>
+                      <Form.Item
+                        {...restField}
+                        label="Giá thuê"
+                        name={[name, "giaThue"]}
+                        style={{ marginRight: 10 }}
+                      >
+                        <InputNumber style={{ width: 127 }} disabled />
+                      </Form.Item>
+                      <MinusCircleOutlined onClick={() => remove(name)} />
+                    </Space>
+                  ))}
 
-                <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
-                  <Button type="dashed" onClick={() => add()}>
-                    Thêm băng đĩa
-                  </Button>
-                </Form.Item>
-              </>
-            )}
-          </Form.List>
+                  <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
+                    <Button type="dashed" onClick={() => add()}>
+                      Thêm băng đĩa
+                    </Button>
+                  </Form.Item>
+                </>
+              )}
+            </Form.List>
+          </div>
           <Divider />
           <Form.Item label="Tổng tiền" name="tongTien">
             <Input width={500} bordered={false} />
