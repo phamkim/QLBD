@@ -41,7 +41,13 @@ class PhieuThueStore {
       idNguoiThue: parseInt(data.idNguoiThue),
     });
     let result = null;
-    await API.post("/phieuThue", phieuThue)
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: window.sessionStorage.getItem("token"),
+      },
+    };
+    await API.post("/phieuThue", phieuThue, config)
       .then((res) => {
         result = res.data;
       })
@@ -154,7 +160,7 @@ class PhieuThueStore {
       },
     };
     let result = null;
-    await API.get("/phieuThue/statistics",config)
+    await API.get("/phieuThue/statistics", config)
       .then((res) => {
         result = res.data;
       })
