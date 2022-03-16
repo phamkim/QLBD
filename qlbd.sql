@@ -987,7 +987,4 @@ GROUP BY luotthuebangdiafull.idTheLoai
 ORDER BY luotThue DESC LIMIT 10;
 
 
-CREATE OR REPLACE VIEW chitietphieuthueful as
-SELECT  chitietphieuthue*,bangdia.giaThue
-FROM bangdia,chitietphieuthue
-WHERE chitietphieuthue.idPhieuThue = bangdia.id
+
