@@ -944,8 +944,8 @@ insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
 
 
 CREATE OR REPLACE VIEW viewDoanhThuTheoNgay as
-SELECT  LEFT(phieuthue.ngayThue,7) as monthYear, SUM(chitietphieuthue.soLuong*bangdia.donGia) as tongTien
-FROM phieuthue,chitietphieuthue
+SELECT  LEFT(phieuthue.ngayThue,7) as monthYear, SUM(chitietphieuthue.soLuong*bangdia.giaThue) as tongTien
+FROM phieuthue,chitietphieuthue,bangdia
 WHERE phieuthue.id = chitietphieuthue.idPhieuThue and chitietphieuthue.idPhieuThue = bangdia.id
 GROUP BY phieuthue.id, phieuthue.ngayThue;
 
