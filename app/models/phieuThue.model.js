@@ -21,7 +21,7 @@ PhieuThue.get = (id, callback) => {
 
 PhieuThue.getDetail = (id, callback) => {
   const sqlString =
-    "SELECT * FROM chiTietPhieuThue WHERE chiTietPhieuThue.idPhieuThue = ?";
+    "SELECT * FROM chiTietPhieuThueFull WHERE chiTietPhieuThueFull.idPhieuThue = ?";
   db.query(sqlString, id, (err, result) => {
     if (err) {
       return callback(err);

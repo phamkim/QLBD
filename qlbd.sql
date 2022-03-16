@@ -987,4 +987,7 @@ GROUP BY luotthuebangdiafull.idTheLoai
 ORDER BY luotThue DESC LIMIT 10;
 
 
-
+CREATE OR REPLACE VIEW chiTietPhieuThueFull as
+SELECT  chiTietPhieuThue.id,chitietphieuthue.idPhieuThue,chitietphieuthue.idBangDia,chitietphieuthue.soLuong,bangdia.giaThue
+FROM bangdia,chitietphieuthue
+WHERE chitietphieuthue.idBangDia = bangdia.id
