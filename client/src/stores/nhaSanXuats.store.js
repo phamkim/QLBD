@@ -39,8 +39,14 @@ class NhaSanXuatStore {
       tenNhaSX: data.tenNhaSX,
       diaChi: data.diaChi,
     });
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: window.sessionStorage.getItem("token"),
+      },
+    };
     let result = null;
-    await API.post("/nhaSX", nhaSanXuat)
+    await API.post("/nhaSX", nhaSanXuat, config)
       .then((data) => {
         result = data;
       })
