@@ -1,16 +1,16 @@
 const db = require("../common/connect");
 
 const ThanhVien = (thanhVien) => {
-  this.id = thanhVien.id;
-  this.hoTen = thanhVien.hoTen;
-  this.maTTV = thanhVien.maTTV;
-  this.ngayTao = thanhVien.ngayTao;
-  this.ngaySua = thanhVien.ngaySua;
-  this.diaChi = thanhVien.diaChi;
-  this.soCMT = thanhVien.soCMT;
-  this.phanQuyen = thanhVien.phanQuyen;
-  this.userName = thanhVien.userName;
-  this.passW = thanhVien.passW;
+  // this.id = thanhVien.id;
+  // this.hoTen = thanhVien.hoTen;
+  // this.maTTV = thanhVien.maTTV;
+  // this.ngayTao = thanhVien.ngayTao;
+  // this.ngaySua = thanhVien.ngaySua;
+  // this.diaChi = thanhVien.diaChi;
+  // this.soCMT = thanhVien.soCMT;
+  // this.phanQuyen = thanhVien.phanQuyen;
+  // this.userName = thanhVien.userName;
+  // this.passW = thanhVien.passW;
 };
 
 ThanhVien.get = (id, callback) => {

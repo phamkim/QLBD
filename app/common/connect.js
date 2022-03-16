@@ -7,11 +7,11 @@ const connection = mysql.createConnection({
   database: process.env.DATABASE,
 });
 
-connection.connect((err, res) => {
-  if (err) {
-    console.error(err);
-  }
-  console.log("kết nối mysql thành công");
-});
+// connection.connect((err, res) => {
+//   if (err) {
+//     console.error(err);
+//   }
+//   console.log("kết nối mysql thành công");
+// });
 
 module.exports = connection;

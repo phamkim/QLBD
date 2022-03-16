@@ -1,10 +1,10 @@
 const db = require("../common/connect");
 
 const ChiTietPhieuThue = (chiTietphieuThue) => {
-  this.id = chiTietphieuThue.id;
-  this.idPhieuThue = chiTietphieuThue.idPhieuThue;
-  this.idBangDia = chiTietphieuThue.idBangDia;
-  this.soLuong = chiTietphieuThue.soLuong;
+  // this.id = chiTietphieuThue.id;
+  // this.idPhieuThue = chiTietphieuThue.idPhieuThue;
+  // this.idBangDia = chiTietphieuThue.idBangDia;
+  // this.soLuong = chiTietphieuThue.soLuong;
 };
 
 ChiTietPhieuThue.get = (id, callback) => {

@@ -1,9 +1,9 @@
 const db = require("../common/connect");
 
 const TheLoai = (theLoai) => {
-  this.id = theLoai.id;
-  this.tenTheLoai = theLoai.tenTheLoai;
-  this.ghiChu = theLoai.ghiChu;
+  // this.id = theLoai.id;
+  // this.tenTheLoai = theLoai.tenTheLoai;
+  // this.ghiChu = theLoai.ghiChu;
 };
 
 TheLoai.get = (id, callback) => {

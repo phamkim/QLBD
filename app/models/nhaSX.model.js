@@ -1,9 +1,9 @@
 const db = require("../common/connect");
 
 const NhaSX = (nhaSX) => {
-  this.id = nhaSX.id;
-  this.tenNhaSX = nhaSX.tenNhaSX;
-  this.diaChi = nhaSX.diaChi;
+  // this.id = nhaSX.id;
+  // this.tenNhaSX = nhaSX.tenNhaSX;
+  // this.diaChi = nhaSX.diaChi;
 };
 
 NhaSX.get = (id, callback) => {

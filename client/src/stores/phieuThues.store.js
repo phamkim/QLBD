@@ -112,7 +112,13 @@ class PhieuThueStore {
       soLuong: data.soLuong,
     });
     let result = null;
-    await API.post("/chiTietPhieuThue", ctpt)
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: window.sessionStorage.getItem("token"),
+      },
+    };
+    await API.post("/chiTietPhieuThue", ctpt,config)
       .then((res) => {
         result = res.data;
       })

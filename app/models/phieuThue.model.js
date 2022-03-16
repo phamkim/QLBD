@@ -1,12 +1,12 @@
 const db = require("../common/connect");
 
 const PhieuThue = (phieuThue) => {
-  this.id = phieuThue.id;
-  this.ngayThue = phieuThue.id;
-  this.ngayHenTra = phieuThue.ngayHenTra;
-  this.ngayTra = phieuThue.ngayTra;
-  this.ngaySua = phieuThue.ngaySua;
-  this.idNguoiThue = phieuThue.idNguoiThue;
+  // this.id = phieuThue.id;
+  // this.ngayThue = phieuThue.id;
+  // this.ngayHenTra = phieuThue.ngayHenTra;
+  // this.ngayTra = phieuThue.ngayTra;
+  // this.ngaySua = phieuThue.ngaySua;
+  // this.idNguoiThue = phieuThue.idNguoiThue;
 };
 
 PhieuThue.get = (id, callback) => {

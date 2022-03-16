@@ -1,16 +1,16 @@
 const db = require("../common/connect");
 
 const BangDia = (bangDia) => {
-  this.id = bangDia.id;
-  this.hinhAnh = bangDia.hinhAnh;
-  this.idTheLoai = bangDia.idTheLoai;
-  this.tenBangDia = bangDia.tenBangDia;
-  this.idNhaSX = bangDia.idNhaSX;
-  this.tinhTrang = bangDia.tinhTrang;
-  this.ngayTao = bangDia.ngayTao;
-  this.ngaySua = bangDia.ngaySua;
-  this.giaThue = bangDia.giaThue;
-  this.ghiChu = bangDia.ghiChu;
+  // this.id = bangDia.id;
+  // this.hinhAnh = bangDia.hinhAnh;
+  // this.idTheLoai = bangDia.idTheLoai;
+  // this.tenBangDia = bangDia.tenBangDia;
+  // this.idNhaSX = bangDia.idNhaSX;
+  // this.tinhTrang = bangDia.tinhTrang;
+  // this.ngayTao = bangDia.ngayTao;
+  // this.ngaySua = bangDia.ngaySua;
+  // this.giaThue = bangDia.giaThue;
+  // this.ghiChu = bangDia.ghiChu;
 };
 
 BangDia.get = (id, callback) => {

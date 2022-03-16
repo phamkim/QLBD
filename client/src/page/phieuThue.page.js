@@ -65,7 +65,7 @@ export const PhieuThuePage = observer(() => {
 
   useEffect(() => {
     var tongTien = 0;
-    console.log("tinhTong")
+    console.log("tinhTong");
     try {
       chiTietPhieuThue.forEach((element) => {
         if (element.soLuong && element.giaThue) {
@@ -406,6 +406,7 @@ export const PhieuThuePage = observer(() => {
                         ]}
                       >
                         <InputNumber
+                          min={1}
                           style={{ width: 136 }}
                           onChange={(e) => {
                             setChiTietPhieuThue(
@@ -568,6 +569,7 @@ export const PhieuThuePage = observer(() => {
                         ]}
                       >
                         <InputNumber
+                          min={1}
                           style={{ width: 136 }}
                           onChange={(e) => {
                             setChiTietPhieuThue(
