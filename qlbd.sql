@@ -487,44 +487,6 @@ values (6,"2021-08-01","2021-08-05","2021-08-05");
 insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
 values (7,"2021-08-01","2021-08-05","2021-08-05");
 
--- tháng 9/2021
--- id=46
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
-values (7,"2021-09-01","2021-09-05","2021-09-05");
--- id=47
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
-values (6,"2021-09-01","2021-09-05","2021-09-05");
--- id=48
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
-values (10,"2021-09-01","2021-09-05","2021-09-05");
--- id=49
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
-values (6,"2021-09-01","2021-09-05","2021-09-05");
--- id=50
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
-values (10,"2021-09-01","2021-09-05","2021-09-05");
--- id=51
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
-values (6,"2021-09-01","2021-09-05","2021-09-05");
--- id=52
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
-values (9,"2021-09-01","2021-09-05","2021-09-05");
--- id=53
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
-values (6,"2021-09-01","2021-09-05","2021-09-05");
--- id=54
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
-values (10,"2021-09-01","2021-09-05","2021-09-05");
--- id=55
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
-values (6,"2021-09-01","2021-09-05","2021-09-05");
--- id=56
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
-values (6,"2021-09-01","2021-09-05","2021-09-05");
--- id=57
-insert into phieuThue(idNguoiThue,ngayThue,ngayHenTra,ngayTra)
-values (1,"2021-09-01","2021-09-05","2021-09-05");
-
 -- tạo bảng chi tiết phiểu thuê
 create table if not exists chiTietPhieuThue
 (
@@ -855,90 +817,7 @@ insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
 (45,22,2),
 (45,8,2),
 (45,39,2);
--- idphieuThue = 46
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
-(46,11,20),
-(46,6,2),
-(46,5,2),
-(46,8,2),
-(46,9,2);
--- idphieuThue = 47
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
-(47,1,20),
-(47,6,2),
-(47,23,2),
-(47,8,2),
-(47,3,2);
--- idphieuThue = 48
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
-(48,1,20),
-(48,6,2),
-(48,2,2),
-(48,8,2),
-(48,9,2);
--- idphieuThue = 49
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
-(49,10,20),
-(49,6,2),
-(49,20,2),
-(49,8,2),
-(49,9,2);
--- idphieuThue = 50
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
-(50,1,20),
-(50,6,2),
-(50,32,2),
-(50,8,2),
-(50,39,2);
--- idphieuThue = 51
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
-(51,31,200),
-(51,6,2),
-(51,2,2),
-(51,7,2),
-(51,9,2);
--- idphieuThue = 52
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
-(52,10,20),
-(52,6,2),
-(52,2,2),
-(52,8,2),
-(52,9,2);
--- idphieuThue = 53
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
-(53,1,20),
-(53,26,2),
-(53,7,2),
-(53,18,2),
-(53,9,2);
--- idphieuThue = 54
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
-(54,1,20),
-(54,6,2),
-(54,2,2),
-(54,8,2),
-(54,9,2);
--- idphieuThue = 55
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
-(55,41,20),
-(55,5,2),
-(55,32,2),
-(55,8,2),
-(55,9,2);
--- idphieuThue = 56
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
-(56,1,20),
-(56,3,2),
-(56,5,2),
-(56,8,2),
-(56,3,2);
--- idphieuThue = 57
-insert into chiTietPhieuThue(idPhieuThue,idBangDia,soLuong) values
-(57,1,20),
-(57,6,2),
-(57,5,2),
-(57,37,20),
-(57,3,20);
+
 
 
 
