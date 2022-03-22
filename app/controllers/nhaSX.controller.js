@@ -22,7 +22,8 @@ exports.insert = (req, res) => {
 
 exports.update = (req, res) => {
   const nhaSX = req.body;
-  NhaSX.update(nhaSX, (result) => {
+  const id = req.params.id;
+  NhaSX.update(nhaSX,id, (result) => {
     res.send(result);
   });
 };

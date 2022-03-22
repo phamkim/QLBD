@@ -5,5 +5,5 @@ module.exports = function (router) {
   router.get("/thanhVien/:id", thanhVienController.get);
   router.post("/thanhVien", thanhVienController.insert);
   router.delete("/thanhVien/:id", thanhVienController.delete);
-  router.put("/thanhVien", thanhVienController.update);
+  router.put("/thanhVien/:id", thanhVienController.update);
 };

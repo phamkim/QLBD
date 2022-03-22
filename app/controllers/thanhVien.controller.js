@@ -22,7 +22,8 @@ exports.insert = (req, res) => {
 
 exports.update = (req, res) => {
   const thanhVien = req.body;
-  ThanhVien.update(thanhVien, (result) => {
+  const id = req.params.id;
+  ThanhVien.update(thanhVien,id, (result) => {
     res.send(result);
   });
 };

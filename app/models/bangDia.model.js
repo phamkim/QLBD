@@ -1,17 +1,6 @@
 const db = require("../common/connect");
 
-const BangDia = (bangDia) => {
-  // this.id = bangDia.id;
-  // this.hinhAnh = bangDia.hinhAnh;
-  // this.idTheLoai = bangDia.idTheLoai;
-  // this.tenBangDia = bangDia.tenBangDia;
-  // this.idNhaSX = bangDia.idNhaSX;
-  // this.tinhTrang = bangDia.tinhTrang;
-  // this.ngayTao = bangDia.ngayTao;
-  // this.ngaySua = bangDia.ngaySua;
-  // this.giaThue = bangDia.giaThue;
-  // this.ghiChu = bangDia.ghiChu;
-};
+const BangDia = () => {};
 
 BangDia.get = (id, callback) => {
   const sqlString = "SELECT * FROM bangDia WHERE id = ? ";
@@ -44,31 +33,15 @@ BangDia.insert = (bangDia, callBack) => {
   });
 };
 
-BangDia.update = (bangDia, callBack) => {
-  const sqlString =
-    "UPDATE bangDia SET hinhAnh = ?,tenBangDia = ?,idTheLoai = ?,  idNhaSX = ?, tinhTrang = ?, ngayTao = ?, ngaySua = ?,giaThue =?, ghiChu = ?  WHERE id = ?";
-  db.query(
-    sqlString,
-    [
-      bangDia.hinhAnh,
-      bangDia.tenBangDia,
-      bangDia.idTheLoai,
-      bangDia.idNhaSX,
-      bangDia.tinhTrang,
-      bangDia.ngayTao,
-      bangDia.ngaySua,
-      bangDia.giaThue,
-      bangDia.ghiChu,
-      bangDia.id,
-    ],
-    (err, res) => {
-      if (err) {
-        callBack(err);
-        return;
-      }
-      callBack(bangDia);
+BangDia.update = (bangDia, id, callBack) => {
+  const sqlString = "UPDATE bangDia SET ?  WHERE id = ?";
+  db.query(sqlString, [bangDia, id], (err, res) => {
+    if (err) {
+      callBack(err);
+      return;
     }
-  );
+    callBack(bangDia);
+  });
 };
 
 BangDia.delete = (id, callBack) => {

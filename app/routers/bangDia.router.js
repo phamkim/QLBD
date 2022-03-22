@@ -5,6 +5,6 @@ module.exports = function (router) {
     router.get("/bangDia/:id", bangDiaController.get);
     router.post("/bangDia", bangDiaController.insert);
     router.delete("/bangDia/:id", bangDiaController.delete);
-    router.put("/bangDia", bangDiaController.update);
+    router.put("/bangDia/:id", bangDiaController.update);
   };
   

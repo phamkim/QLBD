@@ -50,8 +50,8 @@ export const MyLayout = observer(() => {
           }}
         >
           <Link to="/">
-            <div className="logo" style={{ background: "#001529", color: "#FFFFFF", fontWeight: "bold" }}>
-              QUẢN LÝ BĂNG ĐĨA
+            <div className="logo" style={{ background: "#001529", color: "#FFFFFF"}}>
+              QUẢN LÝ THUÊ BĂNG ĐĨA
             </div>
           </Link>
 

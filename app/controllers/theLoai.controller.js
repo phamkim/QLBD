@@ -22,7 +22,8 @@ exports.insert = (req, res) => {
 
 exports.update = (req, res) => {
   const theLoai = req.body;
-  TheLoai.update(theLoai, (result) => {
+  const id = req.params.id;
+  TheLoai.update(theLoai, id, (result) => {
     res.send(result);
   });
 };

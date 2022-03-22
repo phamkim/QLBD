@@ -4,6 +4,6 @@ module.exports = function (router) {
     router.get("/nhaSX/:id", nhaSXController.get);
     router.post("/nhaSX", nhaSXController.insert);
     router.delete("/nhaSX/:id", nhaSXController.delete);
-    router.put("/nhaSX", nhaSXController.update);
+    router.put("/nhaSX/:id", nhaSXController.update);
   };
   

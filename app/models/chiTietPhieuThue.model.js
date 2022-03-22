@@ -1,11 +1,6 @@
 const db = require("../common/connect");
 
-const ChiTietPhieuThue = (chiTietphieuThue) => {
-  // this.id = chiTietphieuThue.id;
-  // this.idPhieuThue = chiTietphieuThue.idPhieuThue;
-  // this.idBangDia = chiTietphieuThue.idBangDia;
-  // this.soLuong = chiTietphieuThue.soLuong;
-};
+const ChiTietPhieuThue = () => {};
 
 ChiTietPhieuThue.get = (id, callback) => {
   const sqlString = "SELECT * FROM chiTietphieuThue WHERE id = ? ";
@@ -38,25 +33,15 @@ ChiTietPhieuThue.insert = (chiTietphieuThue, callBack) => {
   });
 };
 
-ChiTietPhieuThue.update = (chiTietphieuThue, callBack) => {
-  const sqlString =
-    "UPDATE chiTietphieuThue SET idPhieuThue = ?, idBangDia = ?, soLuong = ? WHERE id = ?";
-  db.query(
-    sqlString,
-    [
-      chiTietphieuThue.idPhieuThue,
-      chiTietphieuThue.idBangDia,
-      chiTietphieuThue.soLuong,
-      chiTietphieuThue.id,
-    ],
-    (err, res) => {
-      if (err) {
-        callBack(err);
-        return;
-      }
-      callBack(chiTietphieuThue);
+ChiTietPhieuThue.update = (chiTietphieuThue, id, callBack) => {
+  const sqlString = "UPDATE chiTietphieuThue SET ? WHERE id = ?";
+  db.query(sqlString, [chiTietphieuThue, id], (err, res) => {
+    if (err) {
+      callBack(err);
+      return;
     }
-  );
+    callBack(chiTietphieuThue);
+  });
 };
 
 ChiTietPhieuThue.delete = (id, callBack) => {

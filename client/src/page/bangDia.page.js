@@ -115,24 +115,18 @@ export const BangDiaPage = observer(() => {
         },
       ],
       onFilter: (value, record) => record.tinhTrang.startsWith(value),
-      width: "10%",
+      width: 140,
     },
 
     {
       key: "5",
-      title: "Giá Thuê",
+      title: "Giá Thuê (vnđ)",
       dataIndex: "giaThue",
       sorter: (a, b) => a.giaThue - b.giaThue,
-      width: "10%",
+      width: 150,
     },
     {
       key: "6",
-      title: "Ghi chú",
-      dataIndex: "ghiChu",
-      width: "30%",
-    },
-    {
-      key: "7",
       title: "Actions",
       fixed: "right",
       width: 90,
@@ -230,6 +224,7 @@ export const BangDiaPage = observer(() => {
         title="Thêm băng đĩa"
         visible={isOpenAdd}
         width={740}
+        style={{ top: 20 }}
         footer={null}
         okText="Save"
         onCancel={() => {
@@ -286,7 +281,11 @@ export const BangDiaPage = observer(() => {
               <Option value="Mới 89%">Mới 89%</Option>
             </Select>
           </Form.Item>
-          <Form.Item name="giaThue" label="Giá Thuê"  rules={[{ required: true }]}>
+          <Form.Item
+            name="giaThue"
+            label="Giá Thuê"
+            rules={[{ required: true }]}
+          >
             <InputNumber />
           </Form.Item>
           <Form.Item name="ghiChu" label="Ghi Chú" rules={[{ required: true }]}>
@@ -294,7 +293,7 @@ export const BangDiaPage = observer(() => {
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
             <Button type="primary" htmlType="submit">
-              Submit
+              Lưu
             </Button>
           </Form.Item>
         </Form>
@@ -304,6 +303,7 @@ export const BangDiaPage = observer(() => {
         title="Sửa băng đĩa"
         visible={isOpenEdit}
         width={740}
+        style={{ top: 20 }}
         footer={null}
         okText="Save"
         onCancel={() => {
@@ -369,7 +369,7 @@ export const BangDiaPage = observer(() => {
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
             <Button type="primary" htmlType="submit">
-              Submit
+              Lưu
             </Button>
           </Form.Item>
         </Form>

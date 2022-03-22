@@ -164,7 +164,7 @@ export const NhaSanXuatPage = observer(() => {
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
             <Button type="primary" htmlType="submit">
-              Submit
+              Lưu
             </Button>
           </Form.Item>
         </Form>
@@ -199,7 +199,7 @@ export const NhaSanXuatPage = observer(() => {
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
             <Button type="primary" htmlType="submit">
-              Submit
+              Lưu
             </Button>
           </Form.Item>
         </Form>

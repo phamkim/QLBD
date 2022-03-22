@@ -4,5 +4,5 @@ module.exports = function (router) {
     router.get("/chiTietPhieuThue/:id", chiTietPhieuThueController.get);
     router.post("/chiTietPhieuThue", chiTietPhieuThueController.insert);
     router.delete("/chiTietPhieuThue/:id", chiTietPhieuThueController.delete);
-    router.put("/chiTietPhieuThue", chiTietPhieuThueController.update);
+    router.put("/chiTietPhieuThue/:id", chiTietPhieuThueController.update);
   };

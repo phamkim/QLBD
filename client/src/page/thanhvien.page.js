@@ -53,7 +53,7 @@ export const ThanhVienPage = observer(() => {
         : null,
       onFilter: (value, record) => record.hoTen.includes(value),
       sorter: (a, b) => a.hoTen.length - b.hoTen.length,
-      sortDirections: ['descend'],
+      sortDirections: ["descend"],
     },
     {
       key: "3",
@@ -70,22 +70,8 @@ export const ThanhVienPage = observer(() => {
       title: "Địa chỉ",
       dataIndex: "diaChi",
     },
-
     {
       key: "5",
-      title: "Phân Quyền",
-      render: (record) => {
-        if (record.phanQuyen == 2) {
-          return "Admin";
-        } else if (record.phanQuyen == 1) {
-          return "Nhân viên";
-        } else {
-          return "Thành viên";
-        }
-      },
-    },
-    {
-      key: "6",
       title: "Actions",
       fixed: "right",
       width: 90,
@@ -108,7 +94,6 @@ export const ThanhVienPage = observer(() => {
       },
     },
   ];
-
 
   const onAddFinish = (values) => {
     thanhVienStore.insertData(values).then(() => {
@@ -178,7 +163,7 @@ export const ThanhVienPage = observer(() => {
         dataSource={dataSource}
         scroll={{ x: 800, y: 400 }}
         bordered
-        style={{textAlign: 'center'}}
+        style={{ textAlign: "center" }}
         title={() => <h5>Bảng danh sách thành viên của của hàng</h5>}
       ></Table>
 
@@ -231,7 +216,7 @@ export const ThanhVienPage = observer(() => {
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
             <Button type="primary" htmlType="submit">
-              Submit
+              Lưu
             </Button>
           </Form.Item>
         </Form>
@@ -287,7 +272,7 @@ export const ThanhVienPage = observer(() => {
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
             <Button type="primary" htmlType="submit">
-              Submit
+              Lưu
             </Button>
           </Form.Item>
         </Form>

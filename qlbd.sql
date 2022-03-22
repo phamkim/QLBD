@@ -80,7 +80,6 @@ values ('Pixar','Oshkosh, Wisconsin');
 create table if not exists bangDia
 (
     id int primary key auto_increment,
-    hinhAnh text,
     tenBangDia varchar(55) not null,
     idTheLoai int, 
     idNhaSX int,

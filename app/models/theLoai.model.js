@@ -1,10 +1,6 @@
 const db = require("../common/connect");
 
-const TheLoai = (theLoai) => {
-  // this.id = theLoai.id;
-  // this.tenTheLoai = theLoai.tenTheLoai;
-  // this.ghiChu = theLoai.ghiChu;
-};
+const TheLoai = () => {};
 
 TheLoai.get = (id, callback) => {
   const sqlString = "SELECT * FROM theLoai WHERE id = ? ";
@@ -37,20 +33,15 @@ TheLoai.insert = (theLoai, callBack) => {
   });
 };
 
-TheLoai.update = (theLoai, callBack) => {
-  const sqlString =
-    "UPDATE theLoai SET tenTheLoai = ?, ghiChu = ?  WHERE id = ?";
-  db.query(
-    sqlString,
-    [theLoai.tenTheLoai, theLoai.ghiChu, theLoai.id],
-    (err, res) => {
-      if (err) {
-        callBack(err);
-        return;
-      }
-      callBack(theLoai);
+TheLoai.update = (theLoai, id, callBack) => {
+  const sqlString = "UPDATE theLoai SET ?  WHERE id = ?";
+  db.query(sqlString, [theLoai, id], (err, res) => {
+    if (err) {
+      callBack(err);
+      return;
     }
-  );
+    callBack(theLoai);
+  });
 };
 
 TheLoai.delete = (id, callBack) => {
@@ -72,6 +63,5 @@ TheLoai.statistics = (callBack) => {
     callBack(res);
   });
 };
-
 
 module.exports = TheLoai;

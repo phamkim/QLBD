@@ -1,10 +1,6 @@
 const db = require("../common/connect");
 
-const NhaSX = (nhaSX) => {
-  // this.id = nhaSX.id;
-  // this.tenNhaSX = nhaSX.tenNhaSX;
-  // this.diaChi = nhaSX.diaChi;
-};
+const NhaSX = () => {};
 
 NhaSX.get = (id, callback) => {
   const sqlString = "SELECT * FROM nhaSX WHERE id = ? ";
@@ -37,20 +33,15 @@ NhaSX.insert = (nhaSX, callBack) => {
   });
 };
 
-NhaSX.update = (nhaSX, callBack) => {
-  const sqlString =
-    "UPDATE nhaSX SET tenNhaSX = ?, diaChi = ?  WHERE id = ?";
-  db.query(
-    sqlString,
-    [nhaSX.tenNhaSX, nhaSX.diaChi, nhaSX.id],
-    (err, res) => {
-      if (err) {
-        callBack(err);
-        return;
-      }
-      callBack(nhaSX);
+NhaSX.update = (nhaSX, id, callBack) => {
+  const sqlString = "UPDATE nhaSX SET ?  WHERE id = ?";
+  db.query(sqlString, [nhaSX, id], (err, res) => {
+    if (err) {
+      callBack(err);
+      return;
     }
-  );
+    callBack(nhaSX);
+  });
 };
 
 NhaSX.delete = (id, callBack) => {

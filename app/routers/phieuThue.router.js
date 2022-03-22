@@ -6,5 +6,5 @@ module.exports = function (router) {
     router.get("/phieuThue/detail/:id", phieuThueController.getDetail);
     router.post("/phieuThue", phieuThueController.insert);
     router.delete("/phieuThue/:id", phieuThueController.delete);
-    router.put("/phieuThue", phieuThueController.update);
+    router.put("/phieuThue/:id", phieuThueController.update);
   };

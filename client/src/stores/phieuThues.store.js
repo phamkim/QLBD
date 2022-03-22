@@ -74,7 +74,6 @@ class PhieuThueStore {
 
   updateData = async (data) => {
     let phieuThue = JSON.stringify({
-      id: data.id,
       ngayThue: convertYMD(data.ngayThue),
       ngayHenTra: convertYMD(data.ngayHenTra),
       ngayTra: convertYMD(data.ngayTra),
@@ -83,7 +82,7 @@ class PhieuThueStore {
     });
     console.log(phieuThue);
     let result = null;
-    await API.put("/phieuThue", phieuThue)
+    await API.put("/phieuThue/"+data.id, phieuThue)
       .then((data) => {
         result = data;
       })
@@ -130,13 +129,12 @@ class PhieuThueStore {
 
   updateDetailData = async (data) => {
     let ctpt = JSON.stringify({
-      id: data.id,
       idPhieuThue: data.idPhieuThue,
       idBangDia: data.idBangDia,
       soLuong: data.soLuong,
     });
     let result = null;
-    await API.put("/chiTietPhieuThue", ctpt)
+    await API.put("/chiTietPhieuThue/"+data.id, ctpt)
       .then((data) => {
         result = data;
       })

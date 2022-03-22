@@ -73,7 +73,6 @@ class ThanhVienStore {
 
   updateData = async (data) => {
     let thanhVien = JSON.stringify({
-      id: data.id,
       hoTen: data.hoTen,
       maTTV: data.maTTV,
       diaChi: data.diaChi,
@@ -84,7 +83,7 @@ class ThanhVienStore {
       password: data.password,
     });
     let result = null;
-    await API.put("/thanhVien", thanhVien)
+    await API.put("/thanhVien/"+data.id, thanhVien)
       .then((data) => {
         result = data;
       })

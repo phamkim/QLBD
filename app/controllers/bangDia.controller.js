@@ -22,7 +22,8 @@ exports.insert = (req, res) => {
 
 exports.update = (req, res) => {
   const bangDia = req.body;
-  BangDia.update(bangDia, (result) => {
+  const id = req.params.id;
+  BangDia.update(bangDia, id, (result) => {
     res.send(result);
   });
 };

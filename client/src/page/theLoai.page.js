@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Button, Table, Modal, Input, Form } from "antd";
+import { Button, Table, Modal, Input, Form, Typography } from "antd";
 import "./style.css";
 import { toJS } from "mobx";
 import { useStores } from "../stores";
+const { Text } = Typography;
 const { TextArea } = Input;
 const layout = {
   labelCol: {
@@ -36,7 +37,7 @@ export const TheLoaiPage = observer(() => {
       key: "1",
       title: "Tên Thể loại",
       dataIndex: "tenTheLoai",
-      width: 150,
+      width: "20%",
       filterSearch: true,
       filters: dataSource
         ? dataSource.map((e) => ({ text: e.tenTheLoai, value: e.tenTheLoai }))
@@ -45,8 +46,9 @@ export const TheLoaiPage = observer(() => {
     },
     {
       key: "2",
-      title: "Ghi Chú",
+      title: "Mô tả",
       dataIndex: "ghiChu",
+      render: (ghiChu) => <Text ellipsis>{ghiChu}</Text>,
     },
     {
       key: "3",
@@ -131,7 +133,7 @@ export const TheLoaiPage = observer(() => {
         dataSource={dataSource}
         scroll={{ x: 800, y: 400 }}
         bordered
-        style={{textAlign: 'center'}}
+        style={{ textAlign: "center" }}
         title={() => <h5>Bảng danh sách thể loại băng đĩa</h5>}
       ></Table>
 
@@ -163,7 +165,7 @@ export const TheLoaiPage = observer(() => {
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
             <Button type="primary" htmlType="submit">
-              Submit
+              Lưu
             </Button>
           </Form.Item>
         </Form>
@@ -198,46 +200,11 @@ export const TheLoaiPage = observer(() => {
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
             <Button type="primary" htmlType="submit">
-              Submit
+              Lưu
             </Button>
           </Form.Item>
         </Form>
       </Modal>
-      {/* <Modal
-        title="Edit Thể loại"
-        visible={isEditing}
-        okText="Save"
-        onCancel={() => {
-          resetEditing();
-        }}
-        onOk={() => {
-          theLoaiStore.updateData(editingTheLoai);
-          setRefresh(!refresh);
-          resetEditing();
-        }}
-      >
-        <Input
-          className="input_style"
-          placeholder="Tên Thể loại"
-          value={editingTheLoai?.tenTheLoai}
-          onChange={(e) => {
-            setEditingTheLoai((pre) => {
-              return { ...pre, tenTheLoai: e.target.value };
-            });
-          }}
-        />
-        <TextArea
-          rows={4}
-          className="input_style"
-          placeholder="Ghi chú"
-          value={editingTheLoai?.ghiChu}
-          onChange={(e) => {
-            setEditingTheLoai((pre) => {
-              return { ...pre, ghiChu: e.target.value };
-            });
-          }}
-        />
-      </Modal> */}
     </div>
   );
 });

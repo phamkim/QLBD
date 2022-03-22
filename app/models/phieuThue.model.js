@@ -1,13 +1,6 @@
 const db = require("../common/connect");
 
-const PhieuThue = (phieuThue) => {
-  // this.id = phieuThue.id;
-  // this.ngayThue = phieuThue.id;
-  // this.ngayHenTra = phieuThue.ngayHenTra;
-  // this.ngayTra = phieuThue.ngayTra;
-  // this.ngaySua = phieuThue.ngaySua;
-  // this.idNguoiThue = phieuThue.idNguoiThue;
-};
+const PhieuThue = () => {};
 
 PhieuThue.get = (id, callback) => {
   const sqlString = "SELECT * FROM phieuThue WHERE id = ? ";
@@ -32,9 +25,9 @@ PhieuThue.getDetail = (id, callback) => {
 
 PhieuThue.getAll = (callback) => {
   const sqlString = `SELECT phieuthue.id,phieuthue.idNguoiThue,phieuthue.ngayThue,phieuthue.ngayHenTra,phieuthue.ngayTra,SUM(chitietphieuthue.soLuong*bangdia.giaThue)as tongTien
-  FROM phieuthue,chitietphieuthue,bangdia
-  WHERE phieuthue.id = chitietphieuthue.idPhieuThue and chitietphieuthue.idBangDia = bangdia.id
-  GROUP BY phieuthue.id`;
+                     FROM phieuthue,chitietphieuthue,bangdia
+                     WHERE phieuthue.id = chitietphieuthue.idPhieuThue and chitietphieuthue.idBangDia = bangdia.id
+                     GROUP BY phieuthue.id`;
   db.query(sqlString, (err, result) => {
     if (err) {
       return callback(err);
@@ -54,27 +47,15 @@ PhieuThue.insert = (phieuThue, callBack) => {
   });
 };
 
-PhieuThue.update = (phieuThue, callBack) => {
-  const sqlString =
-    "UPDATE phieuThue SET ngayThue = ?,ngayHenTra = ?, ngayTra = ?, ngaySua = ?, idNguoiThue = ? WHERE id = ?";
-  db.query(
-    sqlString,
-    [
-      phieuThue.ngayThue,
-      phieuThue.ngayHenTra,
-      phieuThue.ngayTra,
-      phieuThue.ngaySua,
-      phieuThue.idNguoiThue,
-      phieuThue.id,
-    ],
-    (err, res) => {
-      if (err) {
-        callBack(err);
-        return;
-      }
-      callBack(phieuThue);
+PhieuThue.update = (phieuThue, id, callBack) => {
+  const sqlString = "UPDATE phieuThue SET ? WHERE id = ?";
+  db.query(sqlString, [phieuThue, id], (err, res) => {
+    if (err) {
+      callBack(err);
+      return;
     }
-  );
+    callBack(phieuThue);
+  });
 };
 
 PhieuThue.delete = (id, callBack) => {
@@ -87,7 +68,7 @@ PhieuThue.delete = (id, callBack) => {
   });
 };
 
-PhieuThue.statistics =(callBack)=>{
+PhieuThue.statistics = (callBack) => {
   db.query(`SELECT * FROM viewDoanhThuTheoThang`, (err, res) => {
     if (err) {
       callBack(err);
@@ -95,6 +76,6 @@ PhieuThue.statistics =(callBack)=>{
     }
     callBack(res);
   });
-}
+};
 
 module.exports = PhieuThue;

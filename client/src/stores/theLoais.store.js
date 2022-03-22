@@ -67,12 +67,11 @@ class TheLoaiStore {
 
   updateData = async (data) => {
     let theLoai = JSON.stringify({
-      id: data.id,
       tenTheLoai: data.tenTheLoai,
       ghiChu: data.ghiChu,
     });
     let result = null;
-    await API.put("/theLoai", theLoai)
+    await API.put("/theLoai/" + data.id, theLoai)
       .then((data) => {
         result = data;
       })
@@ -90,7 +89,7 @@ class TheLoaiStore {
       },
     };
     let result = null;
-    await API.get("/theLoai/statistics",config)
+    await API.get("/theLoai/statistics", config)
       .then((res) => {
         result = res.data;
       })

@@ -1,17 +1,6 @@
 const db = require("../common/connect");
 
-const ThanhVien = (thanhVien) => {
-  // this.id = thanhVien.id;
-  // this.hoTen = thanhVien.hoTen;
-  // this.maTTV = thanhVien.maTTV;
-  // this.ngayTao = thanhVien.ngayTao;
-  // this.ngaySua = thanhVien.ngaySua;
-  // this.diaChi = thanhVien.diaChi;
-  // this.soCMT = thanhVien.soCMT;
-  // this.phanQuyen = thanhVien.phanQuyen;
-  // this.userName = thanhVien.userName;
-  // this.passW = thanhVien.passW;
-};
+const ThanhVien = () => {};
 
 ThanhVien.get = (id, callback) => {
   const sqlString = "SELECT * FROM thanhVien WHERE id = ? ";
@@ -44,31 +33,15 @@ ThanhVien.insert = (thanhVien, callBack) => {
   });
 };
 
-ThanhVien.update = (thanhVien, callBack) => {
-  const sqlString =
-    "UPDATE thanhVien SET hoTen = ?,maTTV = ?, diaChi = ?, soCMT = ?,ngayTao = ?, ngaySua = ?, phanQuyen = ?, userName = ?, passW = ?  WHERE id = ?";
-  db.query(
-    sqlString,
-    [
-      thanhVien.hoTen,
-      thanhVien.maTTV,
-      thanhVien.diaChi,
-      thanhVien.soCMT,
-      thanhVien.ngayTao,
-      thanhVien.ngaySua,
-      thanhVien.phanQuyen,
-      thanhVien.userName,
-      thanhVien.passW,
-      thanhVien.id,
-    ],
-    (err, res) => {
-      if (err) {
-        callBack(err);
-        return;
-      }
-      callBack(thanhVien);
+ThanhVien.update = (thanhVien,id, callBack) => {
+  const sqlString = "UPDATE thanhVien SET ?  WHERE id = ?";
+  db.query(sqlString, [thanhVien, id], (err, res) => {
+    if (err) {
+      callBack(err);
+      return;
     }
-  );
+    callBack(thanhVien);
+  });
 };
 
 ThanhVien.delete = (id, callBack) => {

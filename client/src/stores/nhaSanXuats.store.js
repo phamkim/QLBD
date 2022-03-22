@@ -72,12 +72,11 @@ class NhaSanXuatStore {
   };
   updateData = async (data) => {
     let nhaSanXuat = JSON.stringify({
-      id: data.id,
       tenNhaSX: data.tenNhaSX,
       diaChi: data.diaChi,
     });
     let result = null;
-    await API.put("/nhaSX", nhaSanXuat)
+    await API.put("/nhaSX/"+data.id, nhaSanXuat)
       .then((data) => {
         result = data;
       })

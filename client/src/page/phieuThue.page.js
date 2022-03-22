@@ -124,7 +124,7 @@ export const PhieuThuePage = observer(() => {
     },
     {
       key: "5",
-      title: "Tổng Tiền(VNĐ)",
+      title: "Tổng Tiền (VNĐ)",
       dataIndex: "tongTien",
       render: (tongTien) => {
         return tongTien.toFixed(2);
@@ -442,7 +442,7 @@ export const PhieuThuePage = observer(() => {
           <Divider />
           <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
             <Button type="primary" htmlType="submit">
-              Submit
+              Lưu
             </Button>
           </Form.Item>
         </Form>
@@ -606,7 +606,7 @@ export const PhieuThuePage = observer(() => {
           <Divider />
           <Form.Item wrapperCol={{ offset: 9, span: 14 }}>
             <Button type="primary" htmlType="submit">
-              Submit
+              Lưu
             </Button>
           </Form.Item>
         </Form>

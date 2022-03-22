@@ -72,7 +72,6 @@ class BangDiaStore {
 
   updateData = async (data) => {
     let bangDia = JSON.stringify({
-      id: data.id,
       hinhAnh: data.hinhAnh,
       tenBangDia: data.tenBangDia,
       idTheLoai: parseInt(data.idTheLoai),
@@ -84,7 +83,7 @@ class BangDiaStore {
     });
 
     let result = null;
-    await API.put("/bangDia", bangDia)
+    await API.put("/bangDia/"+data.id, bangDia)
       .then((data) => {
         result = data;
       })

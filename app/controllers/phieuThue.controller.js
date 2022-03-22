@@ -29,7 +29,8 @@ exports.insert = (req, res) => {
 
 exports.update = (req, res) => {
   const phieuThue = req.body;
-  PhieuThue.update(phieuThue, (result) => {
+  const id = req.params.id;
+  PhieuThue.update(phieuThue,id, (result) => {
     res.send(result);
   });
 };

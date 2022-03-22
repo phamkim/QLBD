@@ -5,5 +5,5 @@ module.exports = function (router) {
   router.get("/theLoai/:id", theLoaiController.get);
   router.post("/theLoai", theLoaiController.insert);
   router.delete("/theLoai/:id", theLoaiController.delete);
-  router.put("/theLoai", theLoaiController.update);
+  router.put("/theLoai/:id", theLoaiController.update);
 };
