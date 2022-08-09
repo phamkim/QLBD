@@ -12,3 +12,5 @@ cách cài đặt và chạy chương trình
 tài khoản admin 
 kim2k
 kim@123
+
+link bao cao : https://docs.google.com/document/d/1TTNkmuE-SBjGbDQzK92MS_5jJyNwodIB/edit?usp=sharing&ouid=104580454447578800372&rtpof=true&sd=true
